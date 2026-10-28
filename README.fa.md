@@ -4,6 +4,10 @@
 
 [English](README.md) · [طرح پیشنهادی](docs/DESIGN.md) · [نقشهٔ راه](docs/ROADMAP.md)
 
+قوانین توسعهٔ کل پروژه در [AGENTS.md](AGENTS.md)، برگرفته از
+[Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules)، ثبت شده‌اند.
+تصمیم‌ها، محدودهٔ کار فعلی و پیشرفت پروژه در [PROJECT.md](PROJECT.md) نگهداری می‌شوند.
+
 ## وضعیت فعلی
 
 **در مرحلهٔ طراحی و پیش از MVP هستیم.** این مخزن فعلاً شامل تعریف پروژه و راهنمای مشارکت است؛ برنامهٔ اجرایی، Agent فعال یا اتوماسیون GitHub هنوز پیاده‌سازی نشده است.

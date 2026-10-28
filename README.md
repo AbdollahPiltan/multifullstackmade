@@ -5,6 +5,10 @@ independent testing, security review, and traceable handoffs.
 
 [فارسی](README.fa.md) · [Design](docs/DESIGN.md) · [Roadmap](docs/ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
+Engineering policy: [AGENTS.md](AGENTS.md), adopted from
+[Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules).
+Project decisions, current scope, and progress: [PROJECT.md](PROJECT.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification
