@@ -1,6 +1,7 @@
 # Project Brief and Progress
 
 Engineering policy: [AGENTS.md](AGENTS.md). Product design: [docs/DESIGN.md](docs/DESIGN.md).
+Task status and completion evidence: [TASKS.md](TASKS.md).
 This brief adapts the upstream [project template](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/templates/PROJECT.md).
 Consult the pinned [startup and recovery guide](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/PROJECT-START.md)
 when setup or recovery needs attention; routine tasks should use this brief.
@@ -15,7 +16,7 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Minimum useful scope | Proposed: one user, one project, one bounded mission, four roles, durable checkpoints, independent QA / API tests and security review, then lead acceptance and human-controlled merge / deployment. |
 | Explicit exclusions | No runtime implementation in the policy-adoption task. No multi-user hosted platform, automatic deployment, or speculative infrastructure. No final language, model provider, or UI decision yet. |
 | Product specifications and acceptance criteria | [Design](docs/DESIGN.md) and [v0.1 roadmap](docs/ROADMAP.md) are discussion drafts. The first example module and final acceptance criteria still need agreement. |
-| Current assigned task | Adopt Strict Development Rules across the repository, preserve provenance and licensing, update contributor guidance, verify, and deliver through a feature-branch PR. |
+| Current assigned task | Complete the open engineering-policy documentation PR with a single task tracker for completed and remaining work, preserve provenance and licensing, verify, and publish the follow-up documentation. |
 | Next milestone | Discuss and finalize the v0.1 example module, interface, role contracts, and measurable acceptance criteria. Application implementation requires a separate user instruction. |
 
 ## Setup and authorization
@@ -28,9 +29,9 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Policy-adoption feature branch | `chore/adopt-strict-development-rules`; reuse for this task only. Future tasks use their own scoped branches. |
+| Current documentation feature branch | `chore/adopt-strict-development-rules`; reuse for the policy adoption and its task-tracking follow-up in PR #1. Future unrelated tasks use their own scoped branches. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation and project-wide adoption of the linked rules. Policy documentation, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, and a file listing completed and remaining tasks. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 
@@ -51,14 +52,9 @@ Verify the working directory and `git remote -v` before changing Git metadata.
 
 ## Milestones and checkpoints
 
-| Milestone | Acceptance criteria / specification | Status | Checks and outcome | Commit / branch / PR |
-| --- | --- | --- | --- | --- |
-| Initial project description | Publish the concept, proposed scope, roadmap, and contribution entry points | Published draft | Initial local Markdown links checked; local `main` matched `origin/main` at bootstrap | `a2913714213ee2a2248e0fa346a25f70059382b3` on `main`, predating policy adoption |
-| Engineering policy adoption | Root AGENTS.md with pinned provenance and license, completed project context, consistent contributor and review guidance | Verified locally; PR integration pending | 12 files and 29 local links checked; all 75 upstream rules and the full MIT notice preserved; whitespace and scope checks passed | `chore/adopt-strict-development-rules`; final commit and PR recorded in the delivery report |
-| v0.1 scope agreement | Choose the example module, interface, first target stack, and acceptance criteria | Planned | Awaiting product discussion; existing scope remains proposed | No implementation branch yet |
-| Minimal foundation | Smallest working scaffold, required configuration, and reproducible checks under the agreed scope | Planned | Not run; no runtime exists | Not started |
-| First useful capability | Approved plan through implementation, actual checks, independent review, and traceable delivery | Planned | See [v0.1 roadmap](docs/ROADMAP.md); no implementation exists | Not started |
-| Risk-based hardening and handoff | Verify failure / restart / repair cases, applicable security boundaries, limits, run instructions, and recovery | Planned | Not run; depends on implemented capabilities | Not started |
+Keep the authoritative task and milestone status, evidence, and checkpoint references
+in [TASKS.md](TASKS.md). Release goals and acceptance criteria remain in
+[docs/ROADMAP.md](docs/ROADMAP.md); avoid maintaining a second status table here.
 
 Record this task's final commit hash and PR in the PR description / final report, or
 in a later normal project update. Do not create a self-referential commit-hash loop.

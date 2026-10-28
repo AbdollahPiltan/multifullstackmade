@@ -7,6 +7,7 @@
 قوانین توسعهٔ کل پروژه در [AGENTS.md](AGENTS.md)، برگرفته از
 [Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules)، ثبت شده‌اند.
 تصمیم‌ها، محدودهٔ کار فعلی و پیشرفت پروژه در [PROJECT.md](PROJECT.md) نگهداری می‌شوند.
+فهرست واحد کارهای انجام‌شده، منتظر بررسی و باقی‌مانده در [TASKS.md](TASKS.md) است.
 
 ## وضعیت فعلی
 

@@ -6,6 +6,10 @@ Read [AGENTS.md](AGENTS.md) and the task-relevant parts of [PROJECT.md](PROJECT.
 before contributing. The engineering policy applies across design, implementation,
 review, and delivery. The project brief records current authorization and open
 decisions; a planned roadmap item is not automatic authorization to implement it.
+Use [TASKS.md](TASKS.md) as the single task-status ledger. Update the relevant task
+with its stable ID, actual status, verification evidence, and commit / PR reference.
+An open PR is awaiting review, not merged work. Keep the roadmap focused on release
+goals and PROJECT.md focused on decisions and recovery rather than duplicating status.
 
 ## Proposals
 

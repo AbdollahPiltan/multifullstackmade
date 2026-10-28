@@ -8,6 +8,7 @@ independent testing, security review, and traceable handoffs.
 Engineering policy: [AGENTS.md](AGENTS.md), adopted from
 [Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules).
 Project decisions, current scope, and progress: [PROJECT.md](PROJECT.md).
+Completed work, pending reviews, and remaining tasks: [TASKS.md (فارسی)](TASKS.md).
 
 ## Status
 
