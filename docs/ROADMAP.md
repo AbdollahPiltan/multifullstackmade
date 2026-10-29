@@ -11,7 +11,7 @@ completed runtime features yet.
 - Implement an explicit workflow graph and durable local checkpoints.
 - Record project decisions, task ownership, artifacts, and an audit timeline.
 - Add a deterministic demo mode and a configurable real model provider.
-- Implement the four initial roles and bounded revision loops.
+- Implement the five initial roles with selective activation, sequential scheduling, versioned API contracts, and bounded revision loops.
 - Isolate generated code execution and capture actual test results.
 - Integrate branch / PR creation with revision-bound review evidence.
 - Require independent QA and security checks before lead acceptance.
@@ -24,7 +24,7 @@ every handoff and decision is attributable and tied to its artifacts.
 
 ## v0.2 — Specialist teams and visibility
 
-- Separate frontend, backend, and database roles where useful.
+- Separate a dedicated database role from Backend where useful; Frontend and Backend are already distinct in v0.1.
 - Add dedicated architecture, documentation, and CI/CD roles as needed.
 - Visual task graph and artifact / evidence inspection.
 - Dependency-aware parallel tasks with conflict handling and integration tests.

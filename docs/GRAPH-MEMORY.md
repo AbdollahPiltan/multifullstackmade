@@ -23,10 +23,10 @@ a stage, not an agent. A developer can own multiple task instances of a stage.
 | --- | --- | --- |
 | Request | Clarify | Lead identifies requirements and material questions |
 | Clarify | Plan | Requirements and acceptance criteria are explicit |
-| Plan | Await human | Lead submits scope, architecture and task dependencies |
+| Plan | Await human | Lead submits scope, architecture, acknowledged API contract where needed, and task dependencies |
 | Await human | Implement | Human approves the plan |
 | Await human | Clarify | Human requests changes |
-| Implement | Checks | Developer delivers a concrete revision and artifacts |
+| Implement | Checks | Required Frontend / Backend owners deliver revisions and artifacts against the accepted contract; sequential MVP scheduling |
 | Checks | Independent review | Required actual checks pass on that revision |
 | Checks | Repair | Required check fails; return evidence to task owner |
 | Independent review | Lead review | QA and security both accept the current revision |
@@ -57,6 +57,7 @@ again before final acceptance. A lead cannot turn a missing check into a pass.
 | Artifact | ID, task/attempt, producer, path or object reference, content digest, code revision, sensitivity |
 | Check | ID, command/tool and version, environment, tested revision, relevant file digests, outcome, evidence reference, timestamp |
 | Handoff | Producer, recipient, task/attempt, summary, artifacts, decisions, checks, open findings, expected next action |
+| Developer message | Message/task/attempt IDs, sender/recipient, type, contract/code revision, question or proposal, impact, next action, resolution/acknowledgement reference |
 | Event | Stable event ID, mission/task/attempt, actor, timestamp, event type, relevant record references |
 
 Check outcomes include passed, failed, not run, unavailable and stale. A command
@@ -106,6 +107,12 @@ Use conflict detection for concurrent updates; update the task result and its
 evidence references consistently. Historical events are append-only; corrections
 are new linked records. Retention and redaction policy must allow deletion of
 sensitive data without claiming history is an undeletable secret archive.
+
+Frontend and Backend own separate implementation boundaries, described in
+[DESIGN.md](DESIGN.md). Persist structured coordination and contract acknowledgements
+with the affected task. An unresolved material question blocks dependent work;
+contract changes require lead review and invalidate affected evidence. Sequential
+activation of only necessary developer roles is the MVP default.
 
 Only sanitized design and short project context belong in public Git. Runtime
 databases, private code, execution logs and credentials stay in an access-controlled

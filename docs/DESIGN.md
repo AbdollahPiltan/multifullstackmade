@@ -33,7 +33,8 @@ the lead, who consolidates questions and escalates changes to the approved scope
 | Role | Responsibilities | Deliverables |
 | --- | --- | --- |
 | Tech Lead / Architect | Clarify requirements; define acceptance criteria, architecture, interfaces, tasks, and dependencies; coordinate work; review the result | Approved plan, architecture decisions, task graph, reasoned final review |
-| Full-stack Developer | Implement source, API and data changes; write unit tests and usage documentation; configure initial CI; fix reported defects | Versioned code changes, unit tests, documentation, pull request |
+| Frontend Developer | Own presentation, interactions, accessibility, client state, API integration, and frontend tests/documentation; fix client defects | UI changes, contract-bound fixtures, frontend tests/docs, pull request |
+| Backend Developer | Own business rules, API implementation, server validation/authorization, data schema/migrations, and backend tests/documentation; fix server defects | API/data changes, versioned contract, backend tests/docs, pull request |
 | QA / API Tester | Derive independent scenarios from requirements and API contracts; execute functional, API, and integration tests; reproduce defects; verify fixes | Test definitions, execution evidence, reproducible defect reports |
 | Security Reviewer | Review design risks, authorization, input boundaries, sensitive data, and dependencies; inspect scanner evidence; verify fixes | Findings with severity, location, revision, rationale, and remediation status |
 
@@ -44,6 +45,57 @@ review and scanners provide evidence, not a guarantee that a system is secure.
 Architecture and test planning happen before implementation; security feedback can
 also occur at design time. Separate role prompts, tools, contexts, and permissions
 are more important than assigning every role a different model.
+
+## Developer separation and coordination
+
+Decision DEV-001 (2026-10-29, approved by the owner): replace the previous combined
+Full-stack proposal with distinct Frontend and Backend roles from the MVP. The
+five roles are defined independently; activate only those a task actually needs.
+An API-only task does not automatically invoke Frontend. A UI-only task without
+contract changes need not invoke Backend. Begin with sequential scheduling;
+dependency-aware parallel execution remains a later capability.
+
+The lead owns boundaries and acceptance criteria. Backend owns business rules and
+data access; Frontend owns presentation and client interaction. Client validation
+does not replace server validation. Database responsibilities stay with Backend
+until a dedicated database role is justified. The lead assigns initial CI changes
+to the appropriate developer; configuring CI does not create a separate agent.
+Neither developer approves their own implementation or changes another role's
+owned files without an explicit reassignment recorded by the lead.
+
+Before work that connects the two roles, record a versioned API contract: methods,
+paths, request/response schemas, errors, authorization, pagination/limits where
+relevant, and representative valid/invalid examples. A machine-readable format
+such as OpenAPI can be selected when the stack is agreed; no generator or package
+is required now. Both developers acknowledge the contract; the lead accepts it as
+part of the plan. Frontend fixtures refer to that version, not invented responses.
+
+Coordination uses bounded, task-linked messages rather than an unrestricted chat:
+
+| Message field | Meaning |
+| --- | --- |
+| Message / task / attempt IDs | Stable identity and traceable context |
+| Sender and recipient roles | Who is asking and who must act |
+| Type | Question, proposal, answer, change request, acknowledgement, or handoff |
+| Contract version and code revision | Exact assumptions the message concerns |
+| Question / proposal | Concrete issue with only relevant excerpts or artifact references |
+| Impact and requested next action | Affected behavior, dependencies, acceptance criteria, and expected response |
+| Resolution reference | Accepted answer or lead decision; unresolved issues stay visible |
+
+Messages, decisions and acknowledgements are project-memory records. Direct
+developer coordination is allowed within the approved contract. Contract, scope,
+architecture or ownership changes go to the lead, who asks the human when needed.
+Silence is not acknowledgement. Block dependent work while a material question is
+unresolved; apply recorded attempt/time limits rather than an endless conversation.
+Each role loads relevant contract/decision excerpts, not the other role's entire
+conversation or repository. The human continues to communicate through the lead.
+
+For a connected feature, the lead records sequencing and dependencies. Each role
+delivers its changes and tests against the accepted contract. QA verifies actual
+API behavior, fixture compatibility, and the combined frontend/backend scenario;
+mock-only tests or two separately passing PRs do not establish integration success.
+Changed contracts invalidate dependent fixtures, implementation checks and approvals
+until reconciled. Security review and final lead review remain independent gates.
 
 ## Workflow engine
 
