@@ -29,11 +29,12 @@ The human talks to the Tech Lead; specialist activity remains inspectable.
 ## Proposed MVP
 
 - One user, one project, and one bounded development mission at a time.
-- Four roles: Tech Lead / Architect, Full-stack Developer, QA / API Tester,
+- Five roles: Tech Lead / Architect, Frontend Developer, Backend Developer, QA / API Tester,
   and Security Reviewer.
 - An explicit workflow graph with durable checkpoints and restart recovery.
 - Project memory for approved requirements, decisions, artifacts, and evidence.
-- Isolated development workspaces and versioned handoffs.
+- Activate only the developer roles a task needs; start with sequential execution.
+- Versioned API contracts, structured developer messages, and isolated workspaces.
 - A pull request workflow: automated checks, independent QA and security review,
   then Tech Lead review. Human approval controls merge and deployment.
 - Bounded retries and execution limits, with escalation to the lead on failure.

@@ -14,11 +14,11 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | --- | --- |
 | Project name | multifullstackmade |
 | Intended outcome and users | An open-source AI development team that turns agreed module requirements into reviewable software with traceable work and validation evidence. Public contributors and future users can inspect and reuse the project. |
-| Confirmed direction | The human communicates primarily with the Tech Lead. An execution graph, durable progress, project memory, task ownership, and versioned handoffs are central requirements. Start with an MVP and evolve through later versions. |
-| Minimum useful scope | Proposed: one user, one project, one bounded mission, four roles, durable checkpoints, independent QA / API tests and security review, then lead acceptance and human-controlled merge / deployment. |
+| Confirmed direction | DEV-001 approves separate Frontend and Backend from the MVP, selective role activation, sequential initial execution, versioned API contracts and structured coordination. The human communicates primarily with the Tech Lead. An execution graph, durable progress, project memory, task ownership, and versioned handoffs are central requirements. Start with an MVP and evolve through later versions. |
+| Minimum useful scope | Proposed: one user, one project, one bounded mission, five roles (Tech Lead / Architect, Frontend, Backend, QA / API Tester, Security), durable checkpoints, independent QA / API tests and security review, then lead acceptance and human-controlled merge / deployment. |
 | Explicit exclusions | No runtime implementation in the policy-adoption task. No multi-user hosted platform, automatic deployment, or speculative infrastructure. No final language, model provider, or UI decision yet. |
 | Product specifications and acceptance criteria | [Design](docs/DESIGN.md) and [v0.1 roadmap](docs/ROADMAP.md) are discussion drafts. The first example module and final acceptance criteria still need agreement. |
-| Current assigned task | Document the graph/memory design, add compact continuation memory and repository-wide continuation instructions, verify and publish through a dependent feature-branch PR. |
+| Current assigned task | Record the approved Frontend / Backend role split, structured coordination and API-contract gates; update memory, task evidence and documentation; publish a dependent documentation PR. |
 | Next milestone | Discuss and finalize the v0.1 example module, interface, role contracts, and measurable acceptance criteria. Application implementation requires a separate user instruction. |
 
 ## Setup and authorization
@@ -31,9 +31,9 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Current documentation feature branch | `docs/graph-memory`, based on the still-open PR #1 branch `chore/adopt-strict-development-rules`. Target that dependency first; retarget after its integration if needed. |
+| Current documentation feature branch | `docs/split-developer-roles`, based on the open PR #2 branch `docs/graph-memory`. Deliver against that dependency; verify ancestry before later retargeting. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, and graph/memory documentation with persistent continuation instructions. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, and the Frontend / Backend role split with structured cooperation. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 
@@ -65,6 +65,7 @@ in a later normal project update. Do not create a self-referential commit-hash l
 
 | Item | Decision / evidence | Impact or next action |
 | --- | --- | --- |
+| DEV-001 (2026-10-29) | Owner approved replacing the combined developer proposal with separate Frontend and Backend; see docs/DESIGN.md | Five role contracts; detail T-012 and implement T-022 later. This supersedes the previous combined-role proposal without authorizing runtime code. |
 | Policy source | Upstream commit `0754e297cb8898700b1196f9ecd40884f6c9f86c`, AGENTS.md blob `0a503ff22f8d7d8a52397107f8d39d5f4e53642b` | Keep the upstream MIT notice. Review future updates explicitly through a PR. |
 | Local policy changes | Adoption metadata, project-specific scope, and populated Project decisions table | Preserve all engineering rule IDs and normative requirements; maintain product details here. |
 | AUT-03 / prior discussion | The owner asked to finish discussion before building application code | Adopt documentation now; do not treat the generic startup prompt or roadmap as permission to implement every milestone. |

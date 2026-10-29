@@ -21,9 +21,11 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers documenting graph/memory, persisting these instructions, and GitHub PR delivery.
+  covers documenting graph/memory, the approved developer-role split, and GitHub PR delivery.
 - Python, LangGraph, SQLite, provider selection, UI, and numerical budgets remain
-  open choices. Four initial roles are proposed, not implemented.
+  open choices. DEV-001 approves five distinct roles: lead/architect, Frontend,
+  Backend, QA/API Tester and Security. Activate only needed roles; execute
+  sequentially in the MVP. No role runtime has been implemented.
 - No application, runtime agents, database, automated checkpointing, or CI exists.
 - No direct main pushes, force-pushes, automatic merging, or deployment.
 
@@ -43,18 +45,22 @@ running memory service. Verify it against Git and the current task before relyin
 | Checkpoint | Recorded outcome | Limit |
 | --- | --- | --- |
 | `a291371` on main | Initial public project documentation | Design only |
-| `5eb38fd` in PR #1 | Root policy and brief; 75 original engineering rules and MIT notice preserved | Not merged when last checked on 2026-10-29 |
+| `5eb38fd` in PR #1 | Root policy and brief; 75 original engineering rules and MIT notice preserved | PR #1 verified merged on 2026-10-29 |
 | `0a77334` in PR #1 | TASKS.md, 35 unique task IDs; 13 files, 46 local links, whitespace and final-newline checks passed | Documentation checks, not application tests |
-| Current graph/memory documentation | Scope: MEMORY.md, graph/memory design, entry-point links and task ledger | Exact final commit and verification outcome are recorded in its PR / delivery report to avoid self-referential commits |
+| `70c3724` in PR #2 | Graph/memory design; 15 files, 68 local links, 36 task IDs, 18 transitions, policy preservation and whitespace checks passed | Documentation only; PR #2 still open when checked |
+| Current developer-role split | DEV-001 in docs/DESIGN.md; structured coordination and integration gates | Exact commit and final checks belong in the delivery PR / report |
 
 ## Current continuation
 
-- Branch: `docs/graph-memory`, based on the open PR #1 documentation branch.
-- The graph/memory PR must first target that dependency branch. After PR #1 is
-  integrated, verify ancestry and retarget to main if necessary; do not merge or
-  change shared history automatically.
-- T-036 tracks this documentation delivery. T-014 remains open for detailed runtime
-  design and implementation choices; writing the design does not complete runtime work.
+- Branch: `docs/split-developer-roles`, based on the open PR #2 branch.
+- Deliver against `docs/graph-memory` first. PR #1 is merged; PR #2 still targets
+  its old dependency branch when last checked. Verify ancestry and retarget dependent
+  PRs to main when appropriate; do not merge or rewrite shared history automatically.
+- T-037 tracks the approved role split. T-036 tracks graph/memory documentation.
+  Both are documentation deliveries, not implemented runtime capabilities.
+- API contracts and structured questions/answers connect Frontend and Backend.
+  Record version, sender/recipient, task, impact, acknowledgement and next action.
+  Contract/scope changes go to the lead; QA tests the actual combined feature.
 - Next product discussion: agree on a first module, interface and measurable MVP
   acceptance criteria (T-009–T-013). Do not start implementation without authorization.
 - No known local technical blocker. Maintainer review and MVP decisions remain pending.
