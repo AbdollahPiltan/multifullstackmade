@@ -2,6 +2,10 @@
 
 Status: discussion draft. This document describes intended behavior, not existing code.
 
+Detailed graph, memory records, context retrieval and restart semantics are in
+[GRAPH-MEMORY.md](GRAPH-MEMORY.md). Current manual continuation starts at
+[MEMORY.md](../MEMORY.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)

@@ -2,6 +2,8 @@
 
 Engineering policy: [AGENTS.md](AGENTS.md). Product design: [docs/DESIGN.md](docs/DESIGN.md).
 Task status and completion evidence: [TASKS.md](TASKS.md).
+Continuation entry point: [MEMORY.md](MEMORY.md). Proposed graph and memory contract:
+[docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md).
 This brief adapts the upstream [project template](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/templates/PROJECT.md).
 Consult the pinned [startup and recovery guide](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/PROJECT-START.md)
 when setup or recovery needs attention; routine tasks should use this brief.
@@ -16,7 +18,7 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Minimum useful scope | Proposed: one user, one project, one bounded mission, four roles, durable checkpoints, independent QA / API tests and security review, then lead acceptance and human-controlled merge / deployment. |
 | Explicit exclusions | No runtime implementation in the policy-adoption task. No multi-user hosted platform, automatic deployment, or speculative infrastructure. No final language, model provider, or UI decision yet. |
 | Product specifications and acceptance criteria | [Design](docs/DESIGN.md) and [v0.1 roadmap](docs/ROADMAP.md) are discussion drafts. The first example module and final acceptance criteria still need agreement. |
-| Current assigned task | Complete the open engineering-policy documentation PR with a single task tracker for completed and remaining work, preserve provenance and licensing, verify, and publish the follow-up documentation. |
+| Current assigned task | Document the graph/memory design, add compact continuation memory and repository-wide continuation instructions, verify and publish through a dependent feature-branch PR. |
 | Next milestone | Discuss and finalize the v0.1 example module, interface, role contracts, and measurable acceptance criteria. Application implementation requires a separate user instruction. |
 
 ## Setup and authorization
@@ -29,9 +31,9 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Current documentation feature branch | `chore/adopt-strict-development-rules`; reuse for the policy adoption and its task-tracking follow-up in PR #1. Future unrelated tasks use their own scoped branches. |
+| Current documentation feature branch | `docs/graph-memory`, based on the still-open PR #1 branch `chore/adopt-strict-development-rules`. Target that dependency first; retarget after its integration if needed. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, and a file listing completed and remaining tasks. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, and graph/memory documentation with persistent continuation instructions. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 

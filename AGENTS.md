@@ -9,9 +9,18 @@ Reusable engineering policy for secure, maintainable, resource-efficient softwar
 - Adopted commit: [`0754e297cb8898700b1196f9ecd40884f6c9f86c`](https://github.com/AbdollahPiltan/strict-development-rules/tree/0754e297cb8898700b1196f9ecd40884f6c9f86c).
 - Upstream AGENTS.md blob: `0a503ff22f8d7d8a52397107f8d39d5f4e53642b`.
 - Adopted on: 2026-10-28. The upstream MIT notice below is retained.
-- Local changes: this adoption section, project-specific scope, and the Project decisions table. Engineering rule IDs and their normative requirements are unchanged.
+- Local changes: this adoption section, the project continuation protocol, project-specific scope, and the Project decisions table. Engineering rule IDs and their normative requirements are unchanged.
 - Product decisions, current authorization, milestones, and recovery notes live in [PROJECT.md](PROJECT.md). Read the relevant parts before starting work.
 - Review upstream changes explicitly on a feature branch; do not silently synchronize a moving upstream branch or overwrite local decisions.
+
+### Project continuation protocol
+
+After loading applicable policy, read [MEMORY.md](MEMORY.md) as the compact entry
+point for every new or resumed task. Verify current Git state, then load only the
+relevant TASKS.md rows, PROJECT.md decisions, code and evidence. Expand inspection
+when dependencies or stale/missing evidence require it; never trade correctness
+for a smaller context. Before handoff, update the compact memory and task evidence.
+This is a local project addition; upstream rule IDs and requirements are unchanged.
 
 ## Scope and interpretation
 
