@@ -15,6 +15,8 @@ Resume work from [MEMORY.md](MEMORY.md); read the proposed
 Stage-one product scope: [MVP-SCOPE.md](docs/MVP-SCOPE.md).
 Selected stage-two architecture: [ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+Stage-three role contracts and tool permissions: [AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

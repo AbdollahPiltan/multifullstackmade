@@ -223,8 +223,9 @@ They do not establish performance or token savings without measurements.
 ## 9. Remaining design stages and implementation gate
 
 Stage two selects technologies, boundaries, the future source layout, storage
-approach and execution model. Stage three specifies exact role/tool authority;
-stage four specifies API/message schemas and operation contracts. T-014–T-017
+approach and execution model. Stage-three role/tool authority is now specified in
+[AGENT-CONTRACTS.md](AGENT-CONTRACTS.md); stage four specifies exact API/message
+schemas and operation argument/result contracts. T-014–T-017
 still need migration/retention detail, numerical limits, sandbox validation matrix
 and GitHub identity/reconciliation detail. T-018 creates the actual scaffold only
 after implementation is requested. A lockfile, container image, installed tool,

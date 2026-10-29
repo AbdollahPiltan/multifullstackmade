@@ -47,5 +47,6 @@ needs ongoing support; do not create speculative version branches in advance.
 
 ## Next discussion
 
-Review MVP-001 and [ARCH-001](ARCHITECTURE.md), then specify role/tool and API/message contracts.
+Review MVP-001, [ARCH-001](ARCHITECTURE.md) and stage-three
+[ROLE-001](AGENT-CONTRACTS.md), then specify exact API/message/tool schemas in stage four.
 Implementation needs a separate instruction after the design work.
