@@ -11,6 +11,10 @@ with its stable ID, actual status, verification evidence, and commit / PR refere
 An open PR is awaiting review, not merged work. Keep the roadmap focused on release
 goals and PROJECT.md focused on decisions and recovery rather than duplicating status.
 
+Start resumed work from [MEMORY.md](MEMORY.md), verify its checkpoint against Git,
+and update its concise decisions, evidence references, and next action at handoff.
+Keep detailed history in linked artifacts rather than replaying transcripts.
+
 ## Proposals
 
 Open an issue describing the problem, a concrete example, the proposed behavior,

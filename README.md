@@ -9,6 +9,8 @@ Engineering policy: [AGENTS.md](AGENTS.md), adopted from
 [Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules).
 Project decisions, current scope, and progress: [PROJECT.md](PROJECT.md).
 Completed work, pending reviews, and remaining tasks: [TASKS.md (فارسی)](TASKS.md).
+Resume work from [MEMORY.md](MEMORY.md); read the proposed
+[graph and memory design](docs/GRAPH-MEMORY.md) when relevant.
 
 ## Status
 

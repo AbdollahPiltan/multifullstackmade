@@ -8,6 +8,8 @@
 [Strict Development Rules](https://github.com/AbdollahPiltan/strict-development-rules)، ثبت شده‌اند.
 تصمیم‌ها، محدودهٔ کار فعلی و پیشرفت پروژه در [PROJECT.md](PROJECT.md) نگهداری می‌شوند.
 فهرست واحد کارهای انجام‌شده، منتظر بررسی و باقی‌مانده در [TASKS.md](TASKS.md) است.
+برای ادامهٔ کار از [حافظهٔ پروژه](MEMORY.md) شروع کنید؛ جزئیات
+[طرح گراف و حافظه](docs/GRAPH-MEMORY.md) در سند جداگانه ثبت شده است.
 
 ## وضعیت فعلی
 
