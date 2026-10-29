@@ -94,12 +94,12 @@ Complete this table in an adopting project. An unset value is an open decision, 
 | Naming, formatting, and module conventions | Existing Markdown structure; English primary documentation and Persian README. Follow AUT-07–AUT-13 for feature branches, meaningful commits, and PR delivery. |
 | Deployment model and controlled API entry point | No deployed application or API. Local single-user MVP is proposed; ingress and hosting decisions remain open. |
 | Data sensitivity, roles, and tenant boundaries | Public source and sanitized examples only. Credentials, execution databases, private project memory, and agent transcripts stay outside version control. ROLE-001 in docs/AGENT-CONTRACTS.md defines role/tool authority; ARCH-001 defines isolation requirements. Actual enforcement and sandbox validation must be completed before runtime integration. |
-| API contracts and compatibility policy | No implemented API. Define contracts and compatibility requirements before adding API boundaries. |
+| API contracts and compatibility policy | PROTO-001 in docs/PROTOCOL-CONTRACTS.md defines the notes OpenAPI and internal message/tool schemas and strict compatibility policy. No API server or agent tool runtime is implemented. |
 | Expected traffic, concurrency, and dataset sizes | Not established; no runtime exists. A single project and one active mission are proposed for the first MVP. |
 | Latency, error-rate, memory, CPU, and query budgets | Not measured or agreed. Set representative workloads and limits before making performance claims. |
 | Timeouts, request limits, retry limits, and queue capacity | Bounded execution and repair loops are proposed; numeric values and enforcement remain open. |
 | Cache scope, freshness, and invalidation requirements | No cache exists. Define scope, capacity, freshness, and invalidation only if caching becomes necessary. |
-| Required verification and CI commands | For documentation: git diff --check, local Markdown link / root-containment checks, policy provenance and license preservation, and final diff / sensitive-data review. No runtime tests, build, or CI workflow exist yet. |
+| Required verification and CI commands | For documentation: git diff --check, local Markdown link / root-containment checks, policy provenance and license preservation, and final diff / sensitive-data review. Contract schemas/examples are checked by python scripts/validate_contracts.py in its documented disposable validation environment. No application tests, build, or CI workflow exist yet. |
 | Recovery objectives, backups, and rollback method | Revert published documentation changes through a feature branch and PR. There are no deployed services or application databases; runtime recovery criteria remain open. |
 
 ## Architecture and responsibilities

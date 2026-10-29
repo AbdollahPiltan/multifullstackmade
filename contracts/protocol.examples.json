@@ -1,0 +1,1437 @@
+{
+  "schema_version": "1.0.0",
+  "cases": [
+    {
+      "name": "coordination_question",
+      "definition": "Message",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "message_id": "message_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "sender": "frontend",
+        "recipient": "backend",
+        "kind": "question",
+        "reply_to": null,
+        "summary": "Confirm missing-note behavior.",
+        "impact": "UI error handling",
+        "next_action": "Reply with contract reference.",
+        "artifacts": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "check_ids": [],
+        "finding_ids": [],
+        "resolution_ref": null
+      }
+    },
+    {
+      "name": "unknown_message_field",
+      "definition": "Message",
+      "valid": false,
+      "value": {
+        "protocol_version": "1.0.0",
+        "message_id": "message_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "sender": "frontend",
+        "recipient": "backend",
+        "kind": "question",
+        "reply_to": null,
+        "summary": "Confirm missing-note behavior.",
+        "impact": "UI error handling",
+        "next_action": "Reply with contract reference.",
+        "artifacts": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "check_ids": [],
+        "finding_ids": [],
+        "resolution_ref": null,
+        "human_approved": true
+      }
+    },
+    {
+      "name": "invalid_sender_role",
+      "definition": "Message",
+      "valid": false,
+      "value": {
+        "protocol_version": "1.0.0",
+        "message_id": "message_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "sender": "admin",
+        "recipient": "backend",
+        "kind": "question",
+        "reply_to": null,
+        "summary": "Confirm missing-note behavior.",
+        "impact": "UI error handling",
+        "next_action": "Reply with contract reference.",
+        "artifacts": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "check_ids": [],
+        "finding_ids": [],
+        "resolution_ref": null
+      }
+    },
+    {
+      "name": "frontend_handoff",
+      "definition": "RoleResult",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "result_id": "result_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "producer": "frontend",
+        "outcome": "ready_for_review",
+        "output_revision": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "summary": "UI submitted; integration pending.",
+        "artifacts": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "check_ids": [],
+        "finding_ids": [],
+        "question_ids": [],
+        "recipient": "qa",
+        "next_action": "Run integration suite."
+      }
+    },
+    {
+      "name": "read_file_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_file",
+        "operation_key": "operation_read_file",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "read_file",
+          "arguments": {
+            "path": "frontend/app.js",
+            "start_line": 1,
+            "line_count": 50
+          }
+        }
+      }
+    },
+    {
+      "name": "read_file_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_file",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "read_file",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "search_files_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_search_files",
+        "operation_key": "operation_search_files",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "search_files",
+          "arguments": {
+            "literal": "fetch",
+            "paths": [
+              "frontend"
+            ],
+            "max_matches": 20
+          }
+        }
+      }
+    },
+    {
+      "name": "search_files_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_search_files",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "search_files",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "read_artifact_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_artifact",
+        "operation_key": "operation_read_artifact",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "read_artifact",
+          "arguments": {
+            "artifact": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "offset": 0,
+            "max_characters": 2000
+          }
+        }
+      }
+    },
+    {
+      "name": "read_artifact_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_artifact",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "read_artifact",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_patch_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_patch",
+        "operation_key": "operation_submit_patch",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "submit_patch",
+          "arguments": {
+            "changes": [
+              {
+                "operation": "write",
+                "path": "frontend/app.js",
+                "base_digest": null,
+                "content": "// fixture example\n"
+              }
+            ],
+            "rationale": "Create assigned file."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_patch_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_patch",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_patch",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_change_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_change",
+        "operation_key": "operation_propose_change",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "propose_change",
+          "arguments": {
+            "kind": "contract",
+            "rationale": "Clarify error mapping.",
+            "impact": "UI error handling.",
+            "proposal_ref": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "affected_task_ids": [
+              "task_001"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_change_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_change",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "propose_change",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "request_check_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_request_check",
+        "operation_key": "operation_request_check",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "request_check",
+          "arguments": {
+            "profile_id": "qa_integration",
+            "source_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        }
+      }
+    },
+    {
+      "name": "request_check_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_request_check",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "request_check",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "send_message_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_send_message",
+        "operation_key": "operation_send_message",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "send_message",
+          "arguments": {
+            "protocol_version": "1.0.0",
+            "message_id": "message_001",
+            "context": {
+              "mission_id": "mission_001",
+              "task_id": "task_001",
+              "attempt_id": "attempt_001",
+              "invocation_id": "invocation_001",
+              "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "contract_version": "1.0.0",
+              "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+              "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            },
+            "sender": "frontend",
+            "recipient": "backend",
+            "kind": "question",
+            "reply_to": null,
+            "summary": "Confirm missing-note behavior.",
+            "impact": "UI error handling",
+            "next_action": "Reply with contract reference.",
+            "artifacts": [
+              {
+                "artifact_id": "artifact_001",
+                "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+              }
+            ],
+            "check_ids": [],
+            "finding_ids": [],
+            "resolution_ref": null
+          }
+        }
+      }
+    },
+    {
+      "name": "send_message_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_send_message",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "send_message",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_plan_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_plan",
+        "operation_key": "operation_propose_plan",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "propose_plan",
+          "arguments": {
+            "plan_id": "plan_001",
+            "requirements_ref": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "summary": "Notes fixture plan.",
+            "assignments": [
+              {
+                "task_id": "task_001",
+                "owner": "backend",
+                "dependencies": [],
+                "owned_paths": [
+                  "backend"
+                ],
+                "acceptance_ids": [
+                  "AC-04"
+                ],
+                "deliverables": [
+                  "Notes API"
+                ]
+              }
+            ],
+            "required_check_ids": [
+              "qa_integration"
+            ],
+            "contract_ref": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_plan_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_plan",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "propose_plan",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "ask_human_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_ask_human",
+        "operation_key": "operation_ask_human",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "ask_human",
+          "arguments": {
+            "question": "Approve the plan?",
+            "reason": "Implementation gate.",
+            "affected_task_ids": [
+              "task_001"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "ask_human_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_ask_human",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "ask_human",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_assessment_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_assessment",
+        "operation_key": "operation_submit_assessment",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "submit_assessment",
+          "arguments": {
+            "review_id": "review_001",
+            "reviewer": "qa",
+            "verdict": "blocked",
+            "check_ids": [],
+            "covered_acceptance_ids": [],
+            "findings": [],
+            "limitations": [
+              "Integration not executed."
+            ],
+            "rationale": "Missing check evidence."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_assessment_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_assessment",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_assessment",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_delivery_request",
+      "definition": "ToolRequest",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_delivery",
+        "operation_key": "operation_submit_delivery",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "submit_delivery",
+          "arguments": {
+            "verdict": "blocked",
+            "qa_review_id": "qa_review",
+            "security_review_id": "security_review",
+            "required_check_ids": [
+              "qa_integration"
+            ],
+            "acceptance_ids": [
+              "AC-04"
+            ],
+            "limitations": [
+              "Required evidence missing."
+            ],
+            "summary": "Cannot accept delivery."
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_delivery_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_delivery",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_delivery",
+          "status": "denied",
+          "error": {
+            "code": "permission_denied",
+            "message": "Denied by policy.",
+            "retryable": false,
+            "next_action": "Ask lead to resolve scope."
+          }
+        }
+      }
+    },
+    {
+      "name": "unknown_tool",
+      "definition": "ToolRequest",
+      "valid": false,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_bad",
+        "operation_key": "operation_bad",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "call": {
+          "tool": "shell",
+          "arguments": {
+            "command": "anything"
+          }
+        }
+      }
+    },
+    {
+      "name": "path_traversal",
+      "definition": "read_fileArgs",
+      "valid": false,
+      "value": {
+        "path": "../secret",
+        "start_line": 1,
+        "line_count": 20
+      }
+    },
+    {
+      "name": "unbounded_read",
+      "definition": "read_fileArgs",
+      "valid": false,
+      "value": {
+        "path": "frontend/app.js",
+        "start_line": 1,
+        "line_count": 201
+      }
+    },
+    {
+      "name": "check_command_injection",
+      "definition": "request_checkArgs",
+      "valid": false,
+      "value": {
+        "profile_id": "qa_integration",
+        "source_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "command": "anything"
+      }
+    },
+    {
+      "name": "delete_requires_digest",
+      "definition": "FileChange",
+      "valid": false,
+      "value": {
+        "operation": "delete",
+        "path": "frontend/app.js"
+      }
+    },
+    {
+      "name": "empty_test_pass_shape",
+      "definition": "Evidence",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "check_id": "check_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "profile_id": "qa_integration",
+        "environment_digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "source_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "started_at": "2026-10-29T10:00:00Z",
+        "finished_at": "2026-10-29T10:00:01Z",
+        "outcome": "passed",
+        "exit_code": 0,
+        "tests_collected": 0,
+        "tests_executed": 0,
+        "evidence_refs": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "reason": "Shape valid; semantically invalid for a test gate."
+      }
+    },
+    {
+      "name": "read_file_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_file",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "read_file",
+          "status": "ok",
+          "result": {
+            "artifact": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "content": "// synthetic fixture",
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "name": "search_files_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_search_files",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "search_files",
+          "status": "ok",
+          "result": {
+            "matches": [
+              {
+                "path": "frontend/app.js",
+                "line": 1,
+                "excerpt": "fetch"
+              }
+            ],
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "name": "read_artifact_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_read_artifact",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "read_artifact",
+          "status": "ok",
+          "result": {
+            "artifact": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            },
+            "content": "synthetic summary",
+            "truncated": false
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_patch_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_patch",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_patch",
+          "status": "ok",
+          "result": {
+            "proposal_id": "proposal_001",
+            "status": "recorded",
+            "output_revision": null
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_change_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_change",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "propose_change",
+          "status": "ok",
+          "result": {
+            "proposal_id": "proposal_002",
+            "status": "recorded"
+          }
+        }
+      }
+    },
+    {
+      "name": "request_check_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_request_check",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "request_check",
+          "status": "ok",
+          "result": {
+            "check_id": "check_001",
+            "evidence_ref": {
+              "artifact_id": "artifact_001",
+              "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "send_message_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_send_message",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "send_message",
+          "status": "ok",
+          "result": {
+            "message_id": "message_001",
+            "status": "recorded"
+          }
+        }
+      }
+    },
+    {
+      "name": "propose_plan_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_propose_plan",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "propose_plan",
+          "status": "ok",
+          "result": {
+            "plan_id": "plan_001",
+            "status": "awaiting_authorization"
+          }
+        }
+      }
+    },
+    {
+      "name": "ask_human_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_ask_human",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "ask_human",
+          "status": "ok",
+          "result": {
+            "question_id": "question_001",
+            "status": "awaiting_human"
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_assessment_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_assessment",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_assessment",
+          "status": "ok",
+          "result": {
+            "review_id": "review_001",
+            "status": "recorded"
+          }
+        }
+      }
+    },
+    {
+      "name": "submit_delivery_ok_response",
+      "definition": "ToolResponse",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "request_id": "request_submit_delivery",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "response": {
+          "tool": "submit_delivery",
+          "status": "ok",
+          "result": {
+            "delivery_id": "delivery_001",
+            "status": "recorded"
+          }
+        }
+      }
+    },
+    {
+      "name": "frontend_invocation",
+      "definition": "Invocation",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "role": "frontend",
+        "requirements_ref": {
+          "artifact_id": "artifact_001",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        "contract_ref": {
+          "artifact_id": "artifact_001",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        "owned_paths": [
+          "frontend"
+        ],
+        "dependencies": [],
+        "message_ids": [],
+        "available_check_ids": [
+          "frontend_unit"
+        ],
+        "remaining_budget": {
+          "model_calls": 10,
+          "tool_calls": 30,
+          "repair_attempts": 2,
+          "max_output_tokens": 2000,
+          "deadline": "2026-10-29T11:00:00Z"
+        }
+      }
+    },
+    {
+      "name": "collected_test_evidence",
+      "definition": "Evidence",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "check_id": "check_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "profile_id": "qa_integration",
+        "environment_digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "source_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "started_at": "2026-10-29T10:00:00Z",
+        "finished_at": "2026-10-29T10:00:01Z",
+        "outcome": "passed",
+        "exit_code": 0,
+        "tests_collected": 4,
+        "tests_executed": 4,
+        "evidence_refs": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "reason": "Synthetic evidence shape example only."
+      }
+    },
+    {
+      "name": "tasksnapshot_shape",
+      "definition": "TaskSnapshot",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "owner": "frontend",
+        "dependencies": [],
+        "status": "awaiting_checks",
+        "current_attempt": "attempt_001",
+        "artifacts": [
+          {
+            "artifact_id": "artifact_001",
+            "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "required_check_ids": [
+          "qa_integration"
+        ],
+        "open_finding_ids": []
+      }
+    },
+    {
+      "name": "humandecision_shape",
+      "definition": "HumanDecision",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "decision_id": "decision_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "operator_ref": "operator_001",
+        "decision": "approve_plan",
+        "subject_ref": {
+          "artifact_id": "artifact_001",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        "reason": "Synthetic shape example, not actual consent."
+      }
+    },
+    {
+      "name": "event_shape",
+      "definition": "Event",
+      "valid": true,
+      "value": {
+        "protocol_version": "1.0.0",
+        "event_id": "event_001",
+        "context": {
+          "mission_id": "mission_001",
+          "task_id": "task_001",
+          "attempt_id": "attempt_001",
+          "invocation_id": "invocation_001",
+          "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "contract_version": "1.0.0",
+          "contract_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "policy_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "recorded_at": "2026-10-29T10:00:00Z",
+        "actor_kind": "controller",
+        "actor_ref": "controller_001",
+        "record_kind": "message",
+        "record_ref": {
+          "artifact_id": "artifact_001",
+          "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        "supersedes_event": null
+      }
+    }
+  ]
+}

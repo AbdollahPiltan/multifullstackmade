@@ -21,7 +21,8 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers stage-three role/tool documentation and GitHub PR delivery; not runtime code.
+  covers stage-four schemas, contract-validation tooling and GitHub delivery; not an
+  API server, agent runtime or permission engine.
 - ARCH-001 selects Python 3.12, uv, argparse, LangGraph, SQLite, Pydantic v2,
   an OpenAI Responses adapter, Docker, Git/gh and pytest/HTTPX/Playwright Chromium.
   Notes uses FastAPI/Uvicorn plus plain HTML/CSS/JavaScript, with no Node build stack.
@@ -43,6 +44,7 @@ running memory service. Verify it against Git and the current task before relyin
 | Stage-one inputs, outputs, fixture and acceptance | [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md) |
 | Stage-two stack, boundaries, sandbox and planned source layout | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Exact role authority, owned paths and review gates | [docs/AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md) |
+| Wire/API schemas, errors, tool formats and validation command | [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md) |
 | Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
 ## Last recorded checkpoints and checks
@@ -56,15 +58,19 @@ running memory service. Verify it against Git and the current task before relyin
 | `9814f52` in PR #4 | DEV-001 role split; 15 files, 71 local links, 37 task IDs, five-role consistency and unchanged-policy checks passed | Documentation only; PR #4 verified open at scope-task start |
 | `e955463` in PR #5 | Scope/notes fixture and AC-01–AC-13; 16 files, 78 links, 37 task IDs and documentation checks passed | PR #5 verified open at architecture-task start |
 | `e669624` in PR #6 | ARCH-001; 17 files, 90 links, 37 task IDs, 13 acceptance cases, preserved 75 rules/MIT and documentation checks passed | PR #6 verified open at role-contract task start |
-| Current role contracts | ROLE-001; five roles, path ownership, capability matrix and RC-01–RC-11 | Exact final commit and checks belong in the role-contract PR / report |
+| `7ac3d2d` in PR #7 | ROLE-001; 18 files, 102 links, 37 tasks, five roles, 13 capability rows and 11 role cases checked; rules/MIT preserved | PR #7 verified open at protocol-task start |
+| Current protocol contracts | PROTO-001, OpenAPI and JSON schemas plus validation tooling | Exact final commit and checks belong in the protocol PR / report |
 
 ## Current continuation
 
-- Branch: `docs/agent-contracts`, based on open PR #6 (`docs/mvp-architecture`).
-- Deliver the role-contract PR against that dependency. Verify ancestry before retargeting
+- Branch: `docs/protocol-contracts`, based on open PR #7 (`docs/agent-contracts`).
+- Deliver the protocol PR against that dependency. Verify ancestry before retargeting
   dependent PRs to main; do not auto-merge or rewrite shared history.
-- T-012 tracks ROLE-001, awaiting review; T-010/T-011 are the preceding stack
-  documentation. T-009/T-036/T-037 are prior documentation deliveries.
+- T-013 tracks PROTO-001, awaiting review; T-012 is the preceding role contract.
+  T-009/T-010/T-011/T-036/T-037 are prior documentation deliveries.
+- OpenAPI defines five notes operations; the internal schema defines 11 typed tools.
+  Schema validity is not authorization or real test evidence. Use
+  scripts/validate_contracts.py with its documented disposable validation environment.
 - ROLE-001 denies raw shell/network/credentials and direct GitHub writes to all
   roles. Lead proposes/coordinates; developers own product paths; QA/Security own
   independent tests. Shared config changes require separate validated authorization.
@@ -76,9 +82,9 @@ running memory service. Verify it against Git and the current task before relyin
 - API contracts and structured questions/answers connect Frontend and Backend.
   Record version, sender/recipient, task, impact, acknowledgement and next action.
   Contract/scope changes go to the lead; QA tests the actual combined feature.
-- Next: exact API/message/tool schemas and compatibility contracts (T-013).
-  T-014–T-017 retain storage/profile/limit/integration detail. Do not start runtime
-  implementation without authorization or claim Docker/CI/dependencies already work.
+- Next: graph/persistence details (T-014), limits/profiles/integration (T-015–T-017).
+  Do not start runtime implementation without authorization or claim Docker/CI
+  or application dependencies already work.
 - No known local technical blocker. Maintainer review and MVP decisions remain pending.
 
 ## Maintenance and trust

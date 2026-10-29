@@ -1,0 +1,110 @@
+{
+  "contract_version": "1.0.0",
+  "cases": [
+    {
+      "name": "create_minimal",
+      "definition": "NoteInput",
+      "valid": true,
+      "value": {
+        "title": "Example"
+      }
+    },
+    {
+      "name": "create_full",
+      "definition": "NoteInput",
+      "valid": true,
+      "value": {
+        "title": "Example",
+        "body": "<script>text only</script>"
+      }
+    },
+    {
+      "name": "saved_note",
+      "definition": "Note",
+      "valid": true,
+      "value": {
+        "id": "550e8400-e29b-41d4-a716-446655440000",
+        "title": "Example",
+        "body": "Synthetic only",
+        "created_at": "2026-10-29T10:00:00Z",
+        "updated_at": "2026-10-29T10:00:00Z"
+      }
+    },
+    {
+      "name": "empty_page",
+      "definition": "NotePage",
+      "valid": true,
+      "value": {
+        "items": [],
+        "next_after": null
+      }
+    },
+    {
+      "name": "sanitized_error",
+      "definition": "Error",
+      "valid": true,
+      "value": {
+        "error": {
+          "code": "not_found",
+          "message": "Note not found.",
+          "request_id": "request_001",
+          "details": []
+        }
+      }
+    },
+    {
+      "name": "blank_title",
+      "definition": "NoteInput",
+      "valid": false,
+      "value": {
+        "title": "   "
+      }
+    },
+    {
+      "name": "missing_title",
+      "definition": "NoteInput",
+      "valid": false,
+      "value": {
+        "body": "Example"
+      }
+    },
+    {
+      "name": "unknown_field",
+      "definition": "NoteInput",
+      "valid": false,
+      "value": {
+        "title": "Example",
+        "admin": true
+      }
+    },
+    {
+      "name": "null_body",
+      "definition": "NoteInput",
+      "valid": false,
+      "value": {
+        "title": "Example",
+        "body": null
+      }
+    },
+    {
+      "name": "wrong_title_type",
+      "definition": "NoteInput",
+      "valid": false,
+      "value": {
+        "title": 123
+      }
+    },
+    {
+      "name": "wrong_note_id",
+      "definition": "Note",
+      "valid": false,
+      "value": {
+        "id": "not-a-uuid",
+        "title": "Example",
+        "body": "Synthetic only",
+        "created_at": "2026-10-29T10:00:00Z",
+        "updated_at": "2026-10-29T10:00:00Z"
+      }
+    }
+  ]
+}

@@ -17,7 +17,8 @@ A graph database, vector database, or extra service is not required by this desi
 
 Role inputs/outputs and authority are specified in
 [AGENT-CONTRACTS.md](AGENT-CONTRACTS.md). The controller must enforce those
-permissions; graph progress alone does not grant tool access.
+permissions; graph progress alone does not grant tool access. Serialized records
+and check evidence are defined in [PROTO-001](PROTOCOL-CONTRACTS.md).
 
 ## Directed workflow graph
 

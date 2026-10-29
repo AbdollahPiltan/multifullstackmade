@@ -1,0 +1,2133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:multifullstackmade:protocol:1.0.0",
+  "title": "PROTO-001 agent/controller records",
+  "description": "Design-only contract; schema validation does not authorize an operation. Evidence and ToolResponse are controller-authored.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Message"
+    },
+    {
+      "$ref": "#/$defs/RoleResult"
+    },
+    {
+      "$ref": "#/$defs/ToolRequest"
+    },
+    {
+      "$ref": "#/$defs/ToolResponse"
+    },
+    {
+      "$ref": "#/$defs/Evidence"
+    },
+    {
+      "$ref": "#/$defs/Invocation"
+    },
+    {
+      "$ref": "#/$defs/TaskSnapshot"
+    },
+    {
+      "$ref": "#/$defs/HumanDecision"
+    },
+    {
+      "$ref": "#/$defs/Event"
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "Revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "Role": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "frontend",
+        "backend",
+        "qa",
+        "security"
+      ]
+    },
+    "RelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_./-]+$"
+    },
+    "Context": {
+      "type": "object",
+      "properties": {
+        "mission_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "task_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "invocation_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "source_revision": {
+          "$ref": "#/$defs/Revision"
+        },
+        "contract_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "contract_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "policy_digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "mission_id",
+        "task_id",
+        "attempt_id",
+        "invocation_id",
+        "source_revision",
+        "contract_version",
+        "contract_digest",
+        "policy_digest"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "message_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "sender": {
+          "$ref": "#/$defs/Role"
+        },
+        "recipient": {
+          "$ref": "#/$defs/Role"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "question",
+            "proposal",
+            "answer",
+            "change_request",
+            "acknowledgement",
+            "handoff"
+          ]
+        },
+        "reply_to": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "finding_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "resolution_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "protocol_version",
+        "message_id",
+        "context",
+        "sender",
+        "recipient",
+        "kind",
+        "reply_to",
+        "summary",
+        "impact",
+        "next_action",
+        "artifacts",
+        "check_ids",
+        "finding_ids",
+        "resolution_ref"
+      ],
+      "additionalProperties": false
+    },
+    "Assignment": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "owner": {
+          "$ref": "#/$defs/Role"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "owned_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelativePath"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "acceptance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "deliverables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "task_id",
+        "owner",
+        "dependencies",
+        "owned_paths",
+        "acceptance_ids",
+        "deliverables"
+      ],
+      "additionalProperties": false
+    },
+    "Plan": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "requirements_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "assignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Assignment"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "contract_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "plan_id",
+        "requirements_ref",
+        "summary",
+        "assignments",
+        "required_check_ids",
+        "contract_ref"
+      ],
+      "additionalProperties": false
+    },
+    "RoleResult": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "result_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "producer": {
+          "$ref": "#/$defs/Role"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "ready_for_review",
+            "needs_input",
+            "blocked",
+            "failed",
+            "cancelled"
+          ]
+        },
+        "output_revision": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Revision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "finding_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "question_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "recipient": {
+          "$ref": "#/$defs/Role"
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "protocol_version",
+        "result_id",
+        "context",
+        "producer",
+        "outcome",
+        "output_revision",
+        "summary",
+        "artifacts",
+        "check_ids",
+        "finding_ids",
+        "question_ids",
+        "recipient",
+        "next_action"
+      ],
+      "additionalProperties": false
+    },
+    "Finding": {
+      "type": "object",
+      "properties": {
+        "finding_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "reproduction": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "resolved",
+            "false_positive"
+          ]
+        },
+        "disposition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "revision": {
+          "$ref": "#/$defs/Revision"
+        }
+      },
+      "required": [
+        "finding_id",
+        "severity",
+        "location",
+        "summary",
+        "impact",
+        "reproduction",
+        "evidence_refs",
+        "status",
+        "disposition",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "Assessment": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "reviewer": {
+          "type": "string",
+          "enum": [
+            "qa",
+            "security"
+          ]
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "changes_requested",
+            "blocked"
+          ]
+        },
+        "check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "covered_acceptance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Finding"
+          },
+          "maxItems": 30,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "review_id",
+        "reviewer",
+        "verdict",
+        "check_ids",
+        "covered_acceptance_ids",
+        "findings",
+        "limitations",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "check_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "profile_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "environment_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "source_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed",
+            "not_run",
+            "unavailable",
+            "stale",
+            "cancelled"
+          ]
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tests_collected": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tests_executed": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "protocol_version",
+        "check_id",
+        "context",
+        "profile_id",
+        "environment_digest",
+        "source_digest",
+        "started_at",
+        "finished_at",
+        "outcome",
+        "exit_code",
+        "tests_collected",
+        "tests_executed",
+        "evidence_refs",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "FileChange": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "write"
+            },
+            "path": {
+              "$ref": "#/$defs/RelativePath"
+            },
+            "base_digest": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Digest"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "content": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 65536
+            }
+          },
+          "required": [
+            "operation",
+            "path",
+            "base_digest",
+            "content"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "const": "delete"
+            },
+            "path": {
+              "$ref": "#/$defs/RelativePath"
+            },
+            "base_digest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "required": [
+            "operation",
+            "path",
+            "base_digest"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "read_fileArgs": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RelativePath"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "line_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        }
+      },
+      "required": [
+        "path",
+        "start_line",
+        "line_count"
+      ],
+      "additionalProperties": false
+    },
+    "read_fileResult": {
+      "type": "object",
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 65536
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "artifact",
+        "content",
+        "truncated"
+      ],
+      "additionalProperties": false
+    },
+    "search_filesArgs": {
+      "type": "object",
+      "properties": {
+        "literal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelativePath"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "max_matches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        }
+      },
+      "required": [
+        "literal",
+        "paths",
+        "max_matches"
+      ],
+      "additionalProperties": false
+    },
+    "search_filesResult": {
+      "type": "object",
+      "properties": {
+        "matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "$ref": "#/$defs/RelativePath"
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "excerpt": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "path",
+              "line",
+              "excerpt"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 50,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "matches",
+        "truncated"
+      ],
+      "additionalProperties": false
+    },
+    "read_artifactArgs": {
+      "type": "object",
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_characters": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        }
+      },
+      "required": [
+        "artifact",
+        "offset",
+        "max_characters"
+      ],
+      "additionalProperties": false
+    },
+    "read_artifactResult": {
+      "type": "object",
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 65536
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "artifact",
+        "content",
+        "truncated"
+      ],
+      "additionalProperties": false
+    },
+    "submit_patchArgs": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileChange"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "changes",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "submit_patchResult": {
+      "type": "object",
+      "properties": {
+        "proposal_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "recorded",
+            "applied"
+          ]
+        },
+        "output_revision": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Revision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "proposal_id",
+        "status",
+        "output_revision"
+      ],
+      "additionalProperties": false
+    },
+    "propose_changeArgs": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "contract",
+            "shared_configuration",
+            "lead_decision"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "impact": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "proposal_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "affected_task_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "kind",
+        "rationale",
+        "impact",
+        "proposal_ref",
+        "affected_task_ids"
+      ],
+      "additionalProperties": false
+    },
+    "propose_changeResult": {
+      "type": "object",
+      "properties": {
+        "proposal_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "recorded"
+        }
+      },
+      "required": [
+        "proposal_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "request_checkArgs": {
+      "type": "object",
+      "properties": {
+        "profile_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "source_digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "profile_id",
+        "source_digest"
+      ],
+      "additionalProperties": false
+    },
+    "request_checkResult": {
+      "type": "object",
+      "properties": {
+        "check_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "evidence_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        }
+      },
+      "required": [
+        "check_id",
+        "evidence_ref"
+      ],
+      "additionalProperties": false
+    },
+    "send_messageArgs": {
+      "$ref": "#/$defs/Message"
+    },
+    "send_messageResult": {
+      "type": "object",
+      "properties": {
+        "message_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "recorded"
+        }
+      },
+      "required": [
+        "message_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "propose_planArgs": {
+      "$ref": "#/$defs/Plan"
+    },
+    "propose_planResult": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "awaiting_authorization"
+        }
+      },
+      "required": [
+        "plan_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "ask_humanArgs": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "affected_task_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "question",
+        "reason",
+        "affected_task_ids"
+      ],
+      "additionalProperties": false
+    },
+    "ask_humanResult": {
+      "type": "object",
+      "properties": {
+        "question_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "awaiting_human"
+        }
+      },
+      "required": [
+        "question_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "submit_assessmentArgs": {
+      "$ref": "#/$defs/Assessment"
+    },
+    "submit_assessmentResult": {
+      "type": "object",
+      "properties": {
+        "review_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "recorded"
+        }
+      },
+      "required": [
+        "review_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "submit_deliveryArgs": {
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "changes_requested",
+            "blocked"
+          ]
+        },
+        "qa_review_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "security_review_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "required_check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "acceptance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 20,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "verdict",
+        "qa_review_id",
+        "security_review_id",
+        "required_check_ids",
+        "acceptance_ids",
+        "limitations",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "submit_deliveryResult": {
+      "type": "object",
+      "properties": {
+        "delivery_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "const": "recorded"
+        }
+      },
+      "required": [
+        "delivery_id",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "ToolRequest": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "request_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "operation_key": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "call": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "read_file"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/read_fileArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "search_files"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/search_filesArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "read_artifact"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/read_artifactArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_patch"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/submit_patchArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "propose_change"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/propose_changeArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "request_check"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/request_checkArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "send_message"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/send_messageArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "propose_plan"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/propose_planArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "ask_human"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/ask_humanArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_assessment"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/submit_assessmentArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_delivery"
+                },
+                "arguments": {
+                  "$ref": "#/$defs/submit_deliveryArgs"
+                }
+              },
+              "required": [
+                "tool",
+                "arguments"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "protocol_version",
+        "request_id",
+        "operation_key",
+        "context",
+        "call"
+      ],
+      "additionalProperties": false
+    },
+    "ToolFailure": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "type": "string",
+          "enum": [
+            "read_file",
+            "search_files",
+            "read_artifact",
+            "submit_patch",
+            "propose_change",
+            "request_check",
+            "send_message",
+            "propose_plan",
+            "ask_human",
+            "submit_assessment",
+            "submit_delivery"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "denied",
+            "failed",
+            "unavailable",
+            "cancelled"
+          ]
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "permission_denied",
+                "invalid_arguments",
+                "stale_revision",
+                "stale_contract",
+                "limit_exceeded",
+                "not_found",
+                "conflict",
+                "tool_unavailable",
+                "execution_failed",
+                "cancelled"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "retryable": {
+              "type": "boolean"
+            },
+            "next_action": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "code",
+            "message",
+            "retryable",
+            "next_action"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tool",
+        "status",
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "ToolResponse": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "request_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "response": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "read_file"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/read_fileResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "search_files"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/search_filesResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "read_artifact"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/read_artifactResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_patch"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/submit_patchResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "propose_change"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/propose_changeResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "request_check"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/request_checkResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "send_message"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/send_messageResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "propose_plan"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/propose_planResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "ask_human"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/ask_humanResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_assessment"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/submit_assessmentResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tool": {
+                  "const": "submit_delivery"
+                },
+                "status": {
+                  "const": "ok"
+                },
+                "result": {
+                  "$ref": "#/$defs/submit_deliveryResult"
+                }
+              },
+              "required": [
+                "tool",
+                "status",
+                "result"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "$ref": "#/$defs/ToolFailure"
+            }
+          ]
+        }
+      },
+      "required": [
+        "protocol_version",
+        "request_id",
+        "context",
+        "response"
+      ],
+      "additionalProperties": false
+    },
+    "Invocation": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "role": {
+          "$ref": "#/$defs/Role"
+        },
+        "requirements_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "contract_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "owned_paths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelativePath"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "message_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "available_check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "remaining_budget": {
+          "type": "object",
+          "properties": {
+            "model_calls": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "tool_calls": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "repair_attempts": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_output_tokens": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "deadline": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "model_calls",
+            "tool_calls",
+            "repair_attempts",
+            "max_output_tokens",
+            "deadline"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "protocol_version",
+        "context",
+        "role",
+        "requirements_ref",
+        "contract_ref",
+        "owned_paths",
+        "dependencies",
+        "message_ids",
+        "available_check_ids",
+        "remaining_budget"
+      ],
+      "additionalProperties": false
+    },
+    "TaskSnapshot": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "owner": {
+          "$ref": "#/$defs/Role"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "ready",
+            "in_progress",
+            "awaiting_checks",
+            "changes_requested",
+            "awaiting_lead",
+            "awaiting_human",
+            "done",
+            "blocked",
+            "cancelled"
+          ]
+        },
+        "current_attempt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtifactRef"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "required_check_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "open_finding_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "protocol_version",
+        "context",
+        "owner",
+        "dependencies",
+        "status",
+        "current_attempt",
+        "artifacts",
+        "required_check_ids",
+        "open_finding_ids"
+      ],
+      "additionalProperties": false
+    },
+    "HumanDecision": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "decision_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "operator_ref": {
+          "$ref": "#/$defs/Id"
+        },
+        "decision": {
+          "enum": [
+            "approve_plan",
+            "reject_plan",
+            "accept_delivery",
+            "request_changes",
+            "cancel"
+          ]
+        },
+        "subject_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "protocol_version",
+        "decision_id",
+        "context",
+        "operator_ref",
+        "decision",
+        "subject_ref",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "protocol_version": {
+          "const": "1.0.0"
+        },
+        "event_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actor_kind": {
+          "enum": [
+            "controller",
+            "operator",
+            "agent"
+          ]
+        },
+        "actor_ref": {
+          "$ref": "#/$defs/Id"
+        },
+        "record_kind": {
+          "enum": [
+            "invocation",
+            "message",
+            "role_result",
+            "tool_request",
+            "tool_response",
+            "evidence",
+            "human_decision",
+            "task_snapshot"
+          ]
+        },
+        "record_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "supersedes_event": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "protocol_version",
+        "event_id",
+        "context",
+        "recorded_at",
+        "actor_kind",
+        "actor_ref",
+        "record_kind",
+        "record_ref",
+        "supersedes_event"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "x-tool-role-allowlist": {
+    "read_file": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "search_files": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "read_artifact": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "propose_change": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "request_check": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "send_message": [
+      "lead",
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "submit_patch": [
+      "frontend",
+      "backend",
+      "qa",
+      "security"
+    ],
+    "propose_plan": [
+      "lead"
+    ],
+    "ask_human": [
+      "lead"
+    ],
+    "submit_assessment": [
+      "qa",
+      "security"
+    ],
+    "submit_delivery": [
+      "lead"
+    ]
+  }
+}

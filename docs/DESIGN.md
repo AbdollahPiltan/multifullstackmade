@@ -10,6 +10,8 @@ Stage-two technology and execution decisions: [ARCHITECTURE.md](ARCHITECTURE.md)
 The authoritative stage-three role, path and tool permissions are in
 [AGENT-CONTRACTS.md](AGENT-CONTRACTS.md); role summaries below are an overview.
 
+Stage-four serialized API/message/tool contracts: [PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)
