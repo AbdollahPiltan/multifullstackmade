@@ -47,5 +47,5 @@ needs ongoing support; do not create speculative version branches in advance.
 
 ## Next discussion
 
-Review MVP-001, then select the stack and minimal architecture in stage two.
+Review MVP-001 and [ARCH-001](ARCHITECTURE.md), then specify role/tool and API/message contracts.
 Implementation needs a separate instruction after the design work.

@@ -6,6 +6,8 @@ Detailed graph, memory records, context retrieval and restart semantics are in
 [GRAPH-MEMORY.md](GRAPH-MEMORY.md). Current manual continuation starts at
 [MEMORY.md](../MEMORY.md).
 
+Stage-two technology and execution decisions: [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)
@@ -23,7 +25,7 @@ mission and reference rule IDs in findings and exceptions.
 The first useful outcome is one bounded software module delivered with source,
 documentation, independently executed tests, and review evidence. Start with a
 single-user local application and one active mission per project. The notes demonstration fixture and minimal operator interface are defined in
-[MVP-SCOPE.md](MVP-SCOPE.md); target language remains a stage-two decision.
+[MVP-SCOPE.md](MVP-SCOPE.md); target languages and execution boundaries are selected in ARCHITECTURE.md.
 
 The human communicates with the Tech Lead. Specialists may surface questions to
 the lead, who consolidates questions and escalates changes to the approved scope.
@@ -171,11 +173,11 @@ permissions, and enforcement need an explicit integration design.
 
 ## Open decisions
 
-- First target language and minimal scaffold for the scoped notes fixture.
+- Exact locked dependency/image versions and minimal scaffold details for the selected stack.
 - CLI commands and bounded graph/status export details; the stage-one operator interface is local CLI.
-- Python / LangGraph / SQLite versus alternatives; schema and migration strategy.
-- Model provider abstraction and configurable model selection per role.
-- Sandbox implementation, permitted commands, and network policy.
+- Detailed application schema, migrations and retention within the selected SQLite architecture.
+- Detailed provider interface and model identifiers per role within the selected OpenAI adapter.
+- Validated Docker profiles, numerical limits and exact permitted tool schemas.
 - GitHub authentication, bot identity, review enforcement, and artifact storage.
 - Numeric budgets, retry limits, and the definition of an accepted delivery.
 

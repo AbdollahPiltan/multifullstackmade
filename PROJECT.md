@@ -3,6 +3,7 @@
 Engineering policy: [AGENTS.md](AGENTS.md). Product design: [docs/DESIGN.md](docs/DESIGN.md).
 Task status and completion evidence: [TASKS.md](TASKS.md).
 Stage-one scope baseline and acceptance matrix: [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md).
+Stage-two selected stack and boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 Continuation entry point: [MEMORY.md](MEMORY.md). Proposed graph and memory contract:
 [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md).
 This brief adapts the upstream [project template](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/templates/PROJECT.md).
@@ -17,24 +18,24 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Intended outcome and users | An open-source AI development team that turns agreed module requirements into reviewable software with traceable work and validation evidence. Public contributors and future users can inspect and reuse the project. |
 | Confirmed direction | DEV-001 approves separate Frontend and Backend from the MVP, selective role activation, sequential initial execution, versioned API contracts and structured coordination. The human communicates primarily with the Tech Lead. An execution graph, durable progress, project memory, task ownership, and versioned handoffs are central requirements. Start with an MVP and evolve through later versions. |
 | Minimum useful scope | Stage-one baseline MVP-001: local single-user operator interface, one bounded mission, five sequential selectively activated roles, inspectable graph, durable context, actual QA/security evidence and one delivery PR. Personal notes is the first fixture; see docs/MVP-SCOPE.md. |
-| Explicit exclusions | No runtime implementation in this scope task. No multi-user hosted platform, automatic deployment, parallel execution, advanced orchestration dashboard, arbitrary legacy repositories or speculative infrastructure. Stack/model provider remain open; a minimal local CLI operator interface and a browser UI for the notes fixture are scoped. |
+| Explicit exclusions | No runtime implementation in this scope task. No multi-user hosted platform, automatic deployment, parallel execution, advanced orchestration dashboard, arbitrary legacy repositories or speculative infrastructure. Stack/provider are selected in ARCH-001; a minimal local CLI operator interface and a browser UI for the notes fixture are scoped. |
 | Product specifications and acceptance criteria | [MVP-001 scope](docs/MVP-SCOPE.md) defines the first fixture, delivery boundary and AC-01–AC-13. Review is pending; this defines acceptance, not passing test results. Design and roadmap remain supporting documents. |
-| Current assigned task | Complete stage one with the MVP scope, notes fixture, inputs/outputs, exclusions and acceptance matrix; verify documentation and publish a dependent PR. |
-| Next milestone | Stage two: choose the stack, minimal architecture and execution model against MVP-001. Detailed role/API contracts follow. Application implementation requires a separate user instruction. |
+| Current assigned task | Complete stage two: select stack, module boundaries, source layout, storage, provider and sandbox architecture; verify documentation and deliver a dependent PR. |
+| Next milestone | Stage three: specify detailed five-role responsibilities and tool permissions under ARCH-001; stage four defines exact API/message contracts. No application implementation is authorized yet. |
 
 ## Setup and authorization
 
 | Field | Value |
 | --- | --- |
-| Languages, frameworks, and supported versions | Not selected. Python / LangGraph / SQLite are initial candidates, not dependencies or approved requirements. |
-| Architecture and data-model references | [docs/DESIGN.md](docs/DESIGN.md); there is no implemented data model. |
+| Languages, frameworks, and supported versions | ARCH-001 baseline: CPython 3.12; uv; argparse CLI; LangGraph + SQLite checkpoint adapter; Pydantic v2; sqlite3; official OpenAI Python SDK / Responses API; Docker; Git + gh. Notes fixture: FastAPI/Uvicorn and plain browser HTML/CSS/JavaScript; pytest/HTTPX/Playwright Chromium. Exact compatible package versions and images will be locked and tested at scaffold, not in this documentation change. |
+| Architecture and data-model references | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/DESIGN.md](docs/DESIGN.md) and graph/memory contract; no implemented data model. |
 | GitHub owner/repository | [AbdollahPiltan/multifullstackmade](https://github.com/AbdollahPiltan/multifullstackmade) |
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Current documentation feature branch | `docs/mvp-scope`, based on the open PR #4 branch `docs/split-developer-roles`. Deliver against that dependency; verify ancestry before later retargeting. |
+| Current documentation feature branch | `docs/mvp-architecture`, based on the open PR #5 branch `docs/mvp-scope`. Deliver against that dependency; verify ancestry before later retargeting. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, the Frontend / Backend role split with structured cooperation, and completion of stage-one product scope. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, the Frontend / Backend role split with structured cooperation, completion of stage-one product scope, and stage-two technology/architecture selection. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 
@@ -48,7 +49,7 @@ Verify the working directory and `git remote -v` before changing Git metadata.
 | Installation and local run instructions | Not applicable yet: the repository contains documentation only. |
 | Required documentation checks | `git diff --check`; verify relative Markdown links exist and remain inside the repository; compare engineering rules and license notice with the pinned upstream file; review the final diff and intended file list for scope and sensitive data. |
 | Runtime test, lint, type, and CI commands | Not applicable yet. Define reproducible commands and appropriate automation with the first executable contribution. Do not invent passing runtime results. |
-| Security and sensitive data | Publish sanitized source and examples only. Never commit credentials, private execution state, private repository data, or sensitive transcripts. Future runtime permissions and sandbox boundaries are unresolved. |
+| Security and sensitive data | Publish sanitized source and examples only. Never commit credentials, private execution state, private repository data, or sensitive transcripts. ARCH-001 defines the Docker boundary; exact role permissions and validated sandbox profiles remain later design/implementation work. |
 | Workload and performance budgets | Not established. Select representative workloads and agree on budgets before implementation makes performance claims. |
 | Deployment target and authorization | No deployed application or deployment authorization. A local prototype is proposed. |
 | Recovery constraints | Documentation can be reverted through a PR. Git history does not recover external GitHub effects, execution databases, secrets, or deployments. Define runtime backup / recovery procedures when relevant. |
@@ -66,7 +67,8 @@ in a later normal project update. Do not create a self-referential commit-hash l
 
 | Item | Decision / evidence | Impact or next action |
 | --- | --- | --- |
-| MVP-001 (2026-10-29) | Stage-one default baseline authored under the owner's completion request: local CLI team orchestrator with a personal-notes acceptance fixture, exact outcomes in docs/MVP-SCOPE.md | Scope PR review pending; framework, target language, numeric limits and runtime code remain outside this task. |
+| ARCH-001 (2026-10-29) | Selected stage-two architecture in docs/ARCHITECTURE.md, including stack, modular boundaries, provider and execution environment | Review pending; lockfile, compatible package versions, migrations, numeric limits, role contracts and runtime verification remain future work. |
+| MVP-001 (2026-10-29) | Stage-one default baseline authored under the owner's completion request: local CLI team orchestrator with a personal-notes acceptance fixture, exact outcomes in docs/MVP-SCOPE.md | Scope PR review pending; stage-two stack selection is now in ARCH-001. Numeric limits and runtime implementation remain outside the scope-documentation task. |
 | DEV-001 (2026-10-29) | Owner approved replacing the combined developer proposal with separate Frontend and Backend; see docs/DESIGN.md | Five role contracts; detail T-012 and implement T-022 later. This supersedes the previous combined-role proposal without authorizing runtime code. |
 | Policy source | Upstream commit `0754e297cb8898700b1196f9ecd40884f6c9f86c`, AGENTS.md blob `0a503ff22f8d7d8a52397107f8d39d5f4e53642b` | Keep the upstream MIT notice. Review future updates explicitly through a PR. |
 | Local policy changes | Adoption metadata, project-specific scope, and populated Project decisions table | Preserve all engineering rule IDs and normative requirements; maintain product details here. |
