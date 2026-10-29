@@ -28,8 +28,8 @@ build arbitrary production applications.
 - Five independent roles: lead/architect, Frontend, Backend, QA/API Tester and
   Security Reviewer. Activate only needed roles and execute sequentially.
 - One supported target stack, one configured real model-provider integration and
-  one execution environment. Select these in stage two; provider/model choice is
-  not hardcoded into this scope.
+  one execution environment. Stage-two selections are recorded in
+  [ARCHITECTURE.md](ARCHITECTURE.md); the model identifier remains configured.
 - One small, explicitly selected local repository or a fresh fixture workspace.
   The supplied scaffold, allowed paths and starting revision are recorded inputs.
   General large/legacy repositories are outside initial acceptance.
@@ -152,8 +152,8 @@ notes UI is distinct from an orchestration dashboard and remains in scope.
 Stage one delivers this scope baseline, fixture behavior, inputs/outputs, exclusions
 and measurable acceptance matrix, linked from the project brief, task ledger and
 memory. Its documentation checks and checkpoint are recorded in the delivery PR.
-Task T-009 remains awaiting review until the scope PR is accepted; T-010 has its
-example selected but its target language is still part of stage two. No feature
+Task T-009 remains awaiting review until the scope PR is accepted; T-010/T-011
+now have stage-two selections in ARCHITECTURE.md, awaiting their own PR review. No feature
 is marked implemented because its acceptance criteria have been written.
 
 Stage two selects the stack, minimum architecture, interfaces and execution model

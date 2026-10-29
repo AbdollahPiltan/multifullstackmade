@@ -3,7 +3,8 @@
 Status: proposed runtime design, documented 2026-10-29. The current repository uses
 [MEMORY.md](../MEMORY.md) for manual continuation and [TASKS.md](../TASKS.md) for
 task status. No runtime graph engine, database, retrieval service, or automatic
-resume behavior has been implemented. No framework or storage product is selected.
+resume behavior has been implemented. Framework/storage and execution choices are now selected in
+[ARCHITECTURE.md](ARCHITECTURE.md); no runtime has been implemented.
 
 ## Purpose and boundaries
 

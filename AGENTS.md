@@ -90,7 +90,7 @@ Complete this table in an adopting project. An unset value is an open decision, 
 | Decision | Project value |
 | --- | --- |
 | Product scope and critical workflows | Graph-based AI development team; human communicates with the Tech Lead; durable state, project memory, and traceable handoffs. MVP remains proposed; see [PROJECT.md](PROJECT.md) and [docs/DESIGN.md](docs/DESIGN.md). |
-| Languages, frameworks, and supported versions | Not selected. Python, LangGraph, and SQLite are candidates only; no application or dependencies exist yet. |
+| Languages, frameworks, and supported versions | Selected architecture baseline ARCH-001: Python 3.12, LangGraph, SQLite, Pydantic v2, uv, argparse CLI, OpenAI Responses adapter, Docker and Git/gh; FastAPI plus plain browser JavaScript for notes. See docs/ARCHITECTURE.md. No packages or runtime are installed by this documentation change; exact compatibility is verified at scaffold. |
 | Naming, formatting, and module conventions | Existing Markdown structure; English primary documentation and Persian README. Follow AUT-07–AUT-13 for feature branches, meaningful commits, and PR delivery. |
 | Deployment model and controlled API entry point | No deployed application or API. Local single-user MVP is proposed; ingress and hosting decisions remain open. |
 | Data sensitivity, roles, and tenant boundaries | Public source and sanitized examples only. Credentials, execution databases, private project memory, and agent transcripts stay outside version control. Future role permissions and isolation must be designed before runtime integration. |

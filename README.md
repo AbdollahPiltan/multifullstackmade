@@ -12,7 +12,8 @@ Completed work, pending reviews, and remaining tasks: [TASKS.md (فارسی)](TA
 Resume work from [MEMORY.md](MEMORY.md); read the proposed
 [graph and memory design](docs/GRAPH-MEMORY.md) when relevant.
 
-Stage-one product scope and future acceptance checks: [MVP-SCOPE.md](docs/MVP-SCOPE.md).
+Stage-one product scope: [MVP-SCOPE.md](docs/MVP-SCOPE.md).
+Selected stage-two architecture: [ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Status
 
@@ -59,9 +60,11 @@ checks rerun after changes. Combined changes require integration testing.
 
 ## Development direction
 
-Python, LangGraph, and SQLite are initial candidates for a local prototype.
-The provider interface, execution sandbox, GitHub identity model, and detailed CLI interface
-still need design decisions. No specific model provider is required by this specification.
+The selected baseline is Python 3.12, LangGraph, SQLite, a local CLI, an OpenAI
+Responses adapter and Docker execution. The notes fixture uses FastAPI and plain
+browser HTML/CSS/JavaScript. See ARCHITECTURE.md for boundaries and alternatives.
+These are architecture decisions, not installed dependencies or verified runtime
+features; exact versions, role permissions and operation schemas follow later.
 
 Use short-lived feature branches and pull requests into `main`. Use version tags
 for releases; create long-lived version branches only when a supported release
