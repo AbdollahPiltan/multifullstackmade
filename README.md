@@ -17,6 +17,8 @@ Selected stage-two architecture: [ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 Stage-three role contracts and tool permissions: [AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md).
 
+Stage-four API/message/tool schemas: [PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

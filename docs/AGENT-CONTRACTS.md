@@ -3,8 +3,8 @@
 Record ROLE-001, authored 2026-10-29 under the request to complete stage three.
 Applies to [MVP-001](MVP-SCOPE.md), [ARCH-001](ARCHITECTURE.md), and DEV-001 in
 [DESIGN.md](DESIGN.md). These are implementation requirements for future agents,
-not running agents or enforced permissions. Stage four defines exact serialized
-schemas, API routes and tool argument formats; this document fixes their authority.
+not running agents or enforced permissions. Exact serialized schemas, API routes and tool formats are now in
+[PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md); this document fixes their authority.
 
 ## 1. Shared invocation and result contract
 
@@ -152,7 +152,7 @@ scope as well. No role may approve a privilege it is requesting for itself.
 
 `P` means a validated proposal/request, `R` a bounded authorized read, `—` denied.
 Every actual effect remains controller-mediated. Tool IDs below are authority
-categories; stage four will define exact argument/output schemas.
+categories; [PROTO-001](PROTOCOL-CONTRACTS.md) defines their exact argument/output schemas.
 
 | Capability | Lead | Frontend | Backend | QA | Security |
 | --- | --- | --- | --- | --- | --- |
@@ -225,8 +225,8 @@ These scenarios are requirements for implementation tests, not executed runtime 
 
 Stage three delivers these five role contracts, path ownership, capability matrix,
 submission gates, escalation/denial rules and RC-01–RC-11. T-012 is a documentation
-delivery awaiting PR review. T-013 remains stage four: precise API/message/tool
-schemas and compatibility behavior. Numeric budgets, validated sandbox profiles,
+delivery awaiting PR review. T-013 now delivers precise API/message/tool
+schemas and compatibility behavior in PROTOCOL-CONTRACTS.md. Numeric budgets, validated sandbox profiles,
 storage migrations/retention and provider/GitHub implementation remain later work.
 No dependency, role prompt runtime, permission engine or test runner is installed
 or claimed to work by this document.
