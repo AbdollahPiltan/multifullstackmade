@@ -2,6 +2,7 @@
 
 Engineering policy: [AGENTS.md](AGENTS.md). Product design: [docs/DESIGN.md](docs/DESIGN.md).
 Task status and completion evidence: [TASKS.md](TASKS.md).
+Stage-one scope baseline and acceptance matrix: [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md).
 Continuation entry point: [MEMORY.md](MEMORY.md). Proposed graph and memory contract:
 [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md).
 This brief adapts the upstream [project template](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/templates/PROJECT.md).
@@ -15,11 +16,11 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Project name | multifullstackmade |
 | Intended outcome and users | An open-source AI development team that turns agreed module requirements into reviewable software with traceable work and validation evidence. Public contributors and future users can inspect and reuse the project. |
 | Confirmed direction | DEV-001 approves separate Frontend and Backend from the MVP, selective role activation, sequential initial execution, versioned API contracts and structured coordination. The human communicates primarily with the Tech Lead. An execution graph, durable progress, project memory, task ownership, and versioned handoffs are central requirements. Start with an MVP and evolve through later versions. |
-| Minimum useful scope | Proposed: one user, one project, one bounded mission, five roles (Tech Lead / Architect, Frontend, Backend, QA / API Tester, Security), durable checkpoints, independent QA / API tests and security review, then lead acceptance and human-controlled merge / deployment. |
-| Explicit exclusions | No runtime implementation in the policy-adoption task. No multi-user hosted platform, automatic deployment, or speculative infrastructure. No final language, model provider, or UI decision yet. |
-| Product specifications and acceptance criteria | [Design](docs/DESIGN.md) and [v0.1 roadmap](docs/ROADMAP.md) are discussion drafts. The first example module and final acceptance criteria still need agreement. |
-| Current assigned task | Record the approved Frontend / Backend role split, structured coordination and API-contract gates; update memory, task evidence and documentation; publish a dependent documentation PR. |
-| Next milestone | Discuss and finalize the v0.1 example module, interface, role contracts, and measurable acceptance criteria. Application implementation requires a separate user instruction. |
+| Minimum useful scope | Stage-one baseline MVP-001: local single-user operator interface, one bounded mission, five sequential selectively activated roles, inspectable graph, durable context, actual QA/security evidence and one delivery PR. Personal notes is the first fixture; see docs/MVP-SCOPE.md. |
+| Explicit exclusions | No runtime implementation in this scope task. No multi-user hosted platform, automatic deployment, parallel execution, advanced orchestration dashboard, arbitrary legacy repositories or speculative infrastructure. Stack/model provider remain open; a minimal local CLI operator interface and a browser UI for the notes fixture are scoped. |
+| Product specifications and acceptance criteria | [MVP-001 scope](docs/MVP-SCOPE.md) defines the first fixture, delivery boundary and AC-01–AC-13. Review is pending; this defines acceptance, not passing test results. Design and roadmap remain supporting documents. |
+| Current assigned task | Complete stage one with the MVP scope, notes fixture, inputs/outputs, exclusions and acceptance matrix; verify documentation and publish a dependent PR. |
+| Next milestone | Stage two: choose the stack, minimal architecture and execution model against MVP-001. Detailed role/API contracts follow. Application implementation requires a separate user instruction. |
 
 ## Setup and authorization
 
@@ -31,9 +32,9 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Current documentation feature branch | `docs/split-developer-roles`, based on the open PR #2 branch `docs/graph-memory`. Deliver against that dependency; verify ancestry before later retargeting. |
+| Current documentation feature branch | `docs/mvp-scope`, based on the open PR #4 branch `docs/split-developer-roles`. Deliver against that dependency; verify ancestry before later retargeting. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, and the Frontend / Backend role split with structured cooperation. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, the Frontend / Backend role split with structured cooperation, and completion of stage-one product scope. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 
@@ -65,6 +66,7 @@ in a later normal project update. Do not create a self-referential commit-hash l
 
 | Item | Decision / evidence | Impact or next action |
 | --- | --- | --- |
+| MVP-001 (2026-10-29) | Stage-one default baseline authored under the owner's completion request: local CLI team orchestrator with a personal-notes acceptance fixture, exact outcomes in docs/MVP-SCOPE.md | Scope PR review pending; framework, target language, numeric limits and runtime code remain outside this task. |
 | DEV-001 (2026-10-29) | Owner approved replacing the combined developer proposal with separate Frontend and Backend; see docs/DESIGN.md | Five role contracts; detail T-012 and implement T-022 later. This supersedes the previous combined-role proposal without authorizing runtime code. |
 | Policy source | Upstream commit `0754e297cb8898700b1196f9ecd40884f6c9f86c`, AGENTS.md blob `0a503ff22f8d7d8a52397107f8d39d5f4e53642b` | Keep the upstream MIT notice. Review future updates explicitly through a PR. |
 | Local policy changes | Adoption metadata, project-specific scope, and populated Project decisions table | Preserve all engineering rule IDs and normative requirements; maintain product details here. |

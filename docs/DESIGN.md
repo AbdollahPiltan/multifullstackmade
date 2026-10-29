@@ -22,8 +22,8 @@ mission and reference rule IDs in findings and exceptions.
 
 The first useful outcome is one bounded software module delivered with source,
 documentation, independently executed tests, and review evidence. Start with a
-single-user local application and one active mission per project. The first target
-language and demonstration module remain open decisions.
+single-user local application and one active mission per project. The notes demonstration fixture and minimal operator interface are defined in
+[MVP-SCOPE.md](MVP-SCOPE.md); target language remains a stage-two decision.
 
 The human communicates with the Tech Lead. Specialists may surface questions to
 the lead, who consolidates questions and escalates changes to the approved scope.
@@ -171,8 +171,8 @@ permissions, and enforcement need an explicit integration design.
 
 ## Open decisions
 
-- First target language, repository shape, and demonstration module.
-- CLI versus a small web interface; how the graph is inspected.
+- First target language and minimal scaffold for the scoped notes fixture.
+- CLI commands and bounded graph/status export details; the stage-one operator interface is local CLI.
 - Python / LangGraph / SQLite versus alternatives; schema and migration strategy.
 - Model provider abstraction and configurable model selection per role.
 - Sandbox implementation, permitted commands, and network policy.

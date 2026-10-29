@@ -21,9 +21,10 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers documenting graph/memory, the approved developer-role split, and GitHub PR delivery.
+  covers stage-one scope documentation and GitHub PR delivery; not runtime code.
 - Python, LangGraph, SQLite, provider selection, UI, and numerical budgets remain
-  open choices. DEV-001 approves five distinct roles: lead/architect, Frontend,
+  open choices except the stage-one CLI operator / notes browser-fixture boundary
+  in [MVP-SCOPE.md](docs/MVP-SCOPE.md). DEV-001 approves five distinct roles: lead/architect, Frontend,
   Backend, QA/API Tester and Security. Activate only needed roles; execute
   sequentially in the MVP. No role runtime has been implemented.
 - No application, runtime agents, database, automated checkpointing, or CI exists.
@@ -38,6 +39,7 @@ running memory service. Verify it against Git and the current task before relyin
 | Completed / pending work and evidence | [TASKS.md](TASKS.md), relevant task IDs only |
 | Roles, handoffs, acceptance gates | [docs/DESIGN.md](docs/DESIGN.md) |
 | Graph, memory records, retrieval, stale evidence | [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md) |
+| Stage-one inputs, outputs, fixture and acceptance | [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md) |
 | Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
 ## Last recorded checkpoints and checks
@@ -48,21 +50,26 @@ running memory service. Verify it against Git and the current task before relyin
 | `5eb38fd` in PR #1 | Root policy and brief; 75 original engineering rules and MIT notice preserved | PR #1 verified merged on 2026-10-29 |
 | `0a77334` in PR #1 | TASKS.md, 35 unique task IDs; 13 files, 46 local links, whitespace and final-newline checks passed | Documentation checks, not application tests |
 | `70c3724` in PR #2 | Graph/memory design; 15 files, 68 local links, 36 task IDs, 18 transitions, policy preservation and whitespace checks passed | Documentation only; PR #2 still open when checked |
-| Current developer-role split | DEV-001 in docs/DESIGN.md; structured coordination and integration gates | Exact commit and final checks belong in the delivery PR / report |
+| `9814f52` in PR #4 | DEV-001 role split; 15 files, 71 local links, 37 task IDs, five-role consistency and unchanged-policy checks passed | Documentation only; PR #4 verified open at scope-task start |
+| Current scope documentation | MVP-001, notes fixture and AC-01–AC-13 | Exact checkpoint and documentation checks in scope PR / delivery report |
 
 ## Current continuation
 
-- Branch: `docs/split-developer-roles`, based on the open PR #2 branch.
-- Deliver against `docs/graph-memory` first. PR #1 is merged; PR #2 still targets
-  its old dependency branch when last checked. Verify ancestry and retarget dependent
-  PRs to main when appropriate; do not merge or rewrite shared history automatically.
-- T-037 tracks the approved role split. T-036 tracks graph/memory documentation.
-  Both are documentation deliveries, not implemented runtime capabilities.
+- Branch: `docs/mvp-scope`, based on open PR #4 (`docs/split-developer-roles`).
+- Deliver the scope PR against that dependency. Verify ancestry before retargeting
+  dependent PRs to main; do not auto-merge or rewrite shared history.
+- T-009 tracks stage-one scope delivery; T-010 selects the notes example but target
+  language remains open. T-036/T-037 are prior documentation deliveries.
+- MVP-001 selects a local single-user CLI orchestrator, sequential roles, inspectable
+  graph, durable continuation and one reviewable PR. The notes browser/API fixture
+  exercises create/list/edit/delete, validation, persistence and safe text rendering.
+- AC-01–AC-13 define future checks, including restart, stale evidence, repair,
+  reconciliation and usage accounting; none are claimed as runtime tests already run.
 - API contracts and structured questions/answers connect Frontend and Backend.
   Record version, sender/recipient, task, impact, acknowledgement and next action.
   Contract/scope changes go to the lead; QA tests the actual combined feature.
-- Next product discussion: agree on a first module, interface and measurable MVP
-  acceptance criteria (T-009–T-013). Do not start implementation without authorization.
+- Next: review MVP-001, then stage two selects stack/architecture (T-011). Role/API
+  details remain T-012/T-013. Do not start implementation without authorization.
 - No known local technical blocker. Maintainer review and MVP decisions remain pending.
 
 ## Maintenance and trust
