@@ -2,6 +2,19 @@
 
 The project is in design / pre-MVP. There is no application to install or test yet.
 
+Read [AGENTS.md](AGENTS.md) and the task-relevant parts of [PROJECT.md](PROJECT.md)
+before contributing. The engineering policy applies across design, implementation,
+review, and delivery. The project brief records current authorization and open
+decisions; a planned roadmap item is not automatic authorization to implement it.
+Use [TASKS.md](TASKS.md) as the single task-status ledger. Update the relevant task
+with its stable ID, actual status, verification evidence, and commit / PR reference.
+An open PR is awaiting review, not merged work. Keep the roadmap focused on release
+goals and PROJECT.md focused on decisions and recovery rather than duplicating status.
+
+Start resumed work from [MEMORY.md](MEMORY.md), verify its checkpoint against Git,
+and update its concise decisions, evidence references, and next action at handoff.
+Keep detailed history in linked artifacts rather than replaying transcripts.
+
 ## Proposals
 
 Open an issue describing the problem, a concrete example, the proposed behavior,
@@ -20,7 +33,19 @@ the relevant behavior changes.
 4. Update documentation and clearly distinguish plans from working features.
 5. Wait for maintainer review before merging.
 
+Do not push directly to `main` or force-push shared history (AUT-07). Before
+committing, inspect the final diff and include only intended, verified changes
+(AUT-08). Use meaningful milestone commits, record checkpoint references in the PR,
+and report actual checks, failures, and remaining blockers (AUT-10–AUT-13).
+
+Use rule IDs for applicable findings and material exceptions. An exception must
+record its reason, impact, and mitigation; irrelevant infrastructure is not required.
+
 Until executable code exists, validate Markdown links, consistency, and clarity.
+Run `git diff --check` and review the changed files for sensitive data. Policy
+updates must preserve their upstream provenance, rule requirements, and license
+notice unless a deliberate change is documented. See PROJECT.md for the full
+current verification scope.
 Once code is introduced, its setup and required checks must be documented in the
 same contribution. Do not claim a check passed when it was not executed.
 
@@ -34,3 +59,10 @@ data for examples and keep local credentials outside version control.
 
 Use short-lived feature branches and version tags. Release and merge decisions
 remain with the maintainers. No deployment permission is implied by a contribution.
+
+## Updating the upstream policy
+
+The adopted revision and local customizations are recorded in AGENTS.md. Inspect
+later upstream changes and apply them through a dedicated branch and PR; do not
+silently replace the local policy from a moving upstream branch. Preserve product
+decisions and the upstream license notice.

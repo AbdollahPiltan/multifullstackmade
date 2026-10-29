@@ -1,20 +1,22 @@
 # Roadmap
 
-All milestones are planned. There are no released versions or completed runtime features yet.
+The release capabilities below are proposed goals. Current task status and completion
+evidence live only in [TASKS.md](../TASKS.md). There are no released versions or
+completed runtime features yet.
 
 ## v0.1 — Local MVP
 
-- [ ] Agree on a first module, target language, and measurable acceptance criteria.
-- [ ] Finalize role inputs, outputs, permissions, and the handoff schema.
-- [ ] Implement an explicit workflow graph and durable local checkpoints.
-- [ ] Record project decisions, task ownership, artifacts, and an audit timeline.
-- [ ] Add a deterministic demo mode and a configurable real model provider.
-- [ ] Implement the four initial roles and bounded revision loops.
-- [ ] Isolate generated code execution and capture actual test results.
-- [ ] Integrate branch / PR creation with revision-bound review evidence.
-- [ ] Require independent QA and security checks before lead acceptance.
-- [ ] Leave merge and deployment to a human.
-- [ ] Demonstrate interruption, restart, failed tests, repair, and final delivery.
+- Agree on a first module, target language, and measurable acceptance criteria.
+- Finalize role inputs, outputs, permissions, and the handoff schema.
+- Implement an explicit workflow graph and durable local checkpoints.
+- Record project decisions, task ownership, artifacts, and an audit timeline.
+- Add a deterministic demo mode and a configurable real model provider.
+- Implement the four initial roles and bounded revision loops.
+- Isolate generated code execution and capture actual test results.
+- Integrate branch / PR creation with revision-bound review evidence.
+- Require independent QA and security checks before lead acceptance.
+- Leave merge and deployment to a human.
+- Demonstrate interruption, restart, failed tests, repair, and final delivery.
 
 Acceptance: one module moves from an approved plan to a reviewable delivery;
 state survives a process restart; failures cannot silently become successes;
@@ -22,18 +24,18 @@ every handoff and decision is attributable and tied to its artifacts.
 
 ## v0.2 — Specialist teams and visibility
 
-- [ ] Separate frontend, backend, and database roles where useful.
-- [ ] Add dedicated architecture, documentation, and CI/CD roles as needed.
-- [ ] Visual task graph and artifact / evidence inspection.
-- [ ] Dependency-aware parallel tasks with conflict handling and integration tests.
-- [ ] Improve context retrieval, usage reporting, and provider configuration.
+- Separate frontend, backend, and database roles where useful.
+- Add dedicated architecture, documentation, and CI/CD roles as needed.
+- Visual task graph and artifact / evidence inspection.
+- Dependency-aware parallel tasks with conflict handling and integration tests.
+- Improve context retrieval, usage reporting, and provider configuration.
 
 ## v0.3 — Shared use
 
-- [ ] Multi-user project isolation and access control.
-- [ ] Durable workers, resumable jobs, and remote execution environments.
-- [ ] Team-level policies and audited approval workflows.
-- [ ] Deployment integration with explicit permissions and release controls.
+- Multi-user project isolation and access control.
+- Durable workers, resumable jobs, and remote execution environments.
+- Team-level policies and audited approval workflows.
+- Deployment integration with explicit permissions and release controls.
 
 ## Branches and versions
 

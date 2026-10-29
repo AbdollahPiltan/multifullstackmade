@@ -2,6 +2,22 @@
 
 Status: discussion draft. This document describes intended behavior, not existing code.
 
+Detailed graph, memory records, context retrieval and restart semantics are in
+[GRAPH-MEMORY.md](GRAPH-MEMORY.md). Current manual continuation starts at
+[MEMORY.md](../MEMORY.md).
+
+## Engineering policy
+
+[AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)
+records product decisions, authorization, milestones, and recovery context.
+The proposed runtime must provide applicable policy requirements to each role and
+enforce relevant permissions, limits, evidence, and approval gates through the
+controller and CI. Policy text is not an implemented enforcement mechanism.
+
+Future agents working on another repository must also read that target's approved
+requirements and applicable instructions. Record the policy revision used for a
+mission and reference rule IDs in findings and exceptions.
+
 ## Product boundaries
 
 The first useful outcome is one bounded software module delivered with source,
