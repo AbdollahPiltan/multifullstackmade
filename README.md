@@ -12,6 +12,8 @@ Completed work, pending reviews, and remaining tasks: [TASKS.md (فارسی)](TA
 Resume work from [MEMORY.md](MEMORY.md); read the proposed
 [graph and memory design](docs/GRAPH-MEMORY.md) when relevant.
 
+Stage-one product scope and future acceptance checks: [MVP-SCOPE.md](docs/MVP-SCOPE.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification
@@ -58,7 +60,7 @@ checks rerun after changes. Combined changes require integration testing.
 ## Development direction
 
 Python, LangGraph, and SQLite are initial candidates for a local prototype.
-The provider interface, execution sandbox, GitHub identity model, and user interface
+The provider interface, execution sandbox, GitHub identity model, and detailed CLI interface
 still need design decisions. No specific model provider is required by this specification.
 
 Use short-lived feature branches and pull requests into `main`. Use version tags

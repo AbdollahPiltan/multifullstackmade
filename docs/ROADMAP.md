@@ -2,11 +2,12 @@
 
 The release capabilities below are proposed goals. Current task status and completion
 evidence live only in [TASKS.md](../TASKS.md). There are no released versions or
-completed runtime features yet.
+completed runtime features yet. The stage-one baseline and future acceptance matrix
+are in [MVP-SCOPE.md](MVP-SCOPE.md); scope review is not runtime completion.
 
 ## v0.1 — Local MVP
 
-- Agree on a first module, target language, and measurable acceptance criteria.
+- Review the notes fixture and acceptance baseline, then select its target language.
 - Finalize role inputs, outputs, permissions, and the handoff schema.
 - Implement an explicit workflow graph and durable local checkpoints.
 - Record project decisions, task ownership, artifacts, and an audit timeline.
@@ -46,5 +47,5 @@ needs ongoing support; do not create speculative version branches in advance.
 
 ## Next discussion
 
-Choose the first example module and interface, then freeze a small v0.1 scope
-before adding runtime code.
+Review MVP-001, then select the stack and minimal architecture in stage two.
+Implementation needs a separate instruction after the design work.
