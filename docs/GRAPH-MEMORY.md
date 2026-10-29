@@ -15,6 +15,10 @@ memory records relevant knowledge; evidence records what was actually checked.
 These are distinct concerns and can share a simple local store in a future MVP.
 A graph database, vector database, or extra service is not required by this design.
 
+Role inputs/outputs and authority are specified in
+[AGENT-CONTRACTS.md](AGENT-CONTRACTS.md). The controller must enforce those
+permissions; graph progress alone does not grant tool access.
+
 ## Directed workflow graph
 
 The following edge table is the canonical proposed graph definition. Each node is
