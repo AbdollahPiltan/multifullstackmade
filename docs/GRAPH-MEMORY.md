@@ -6,6 +6,8 @@ task status. No runtime graph engine, database, retrieval service, or automatic
 resume behavior has been implemented. Framework/storage and execution choices are now selected in
 [ARCHITECTURE.md](ARCHITECTURE.md); no runtime has been implemented.
 
+Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTENCE.md).
+
 ## Purpose and boundaries
 
 Give each role enough verified context to continue a bounded task without routinely

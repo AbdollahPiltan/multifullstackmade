@@ -1,6 +1,6 @@
 # Project memory / حافظهٔ ادامهٔ کار
 
-Updated: 2026-10-29. This is a compact, human-maintained project summary, not a
+Updated: 2026-10-30. This is a compact, human-maintained project summary, not a
 running memory service. Verify it against Git and the current task before relying on it.
 
 ## Start here
@@ -21,8 +21,8 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers stage-four schemas, contract-validation tooling and GitHub delivery; not an
-  API server, agent runtime or permission engine.
+  covers stage-five graph/storage/recovery design, static validation fixtures and
+  GitHub delivery; not an API server, agent runtime or permission engine.
 - ARCH-001 selects Python 3.12, uv, argparse, LangGraph, SQLite, Pydantic v2,
   an OpenAI Responses adapter, Docker, Git/gh and pytest/HTTPX/Playwright Chromium.
   Notes uses FastAPI/Uvicorn plus plain HTML/CSS/JavaScript, with no Node build stack.
@@ -45,6 +45,7 @@ running memory service. Verify it against Git and the current task before relyin
 | Stage-two stack, boundaries, sandbox and planned source layout | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Exact role authority, owned paths and review gates | [docs/AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md) |
 | Wire/API schemas, errors, tool formats and validation command | [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md) |
+| Durable commit/restart, graph fixture, SQL design, retention and restore | [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md) |
 | Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
 ## Last recorded checkpoints and checks
@@ -59,14 +60,15 @@ running memory service. Verify it against Git and the current task before relyin
 | `e955463` in PR #5 | Scope/notes fixture and AC-01–AC-13; 16 files, 78 links, 37 task IDs and documentation checks passed | PR #5 verified open at architecture-task start |
 | `e669624` in PR #6 | ARCH-001; 17 files, 90 links, 37 task IDs, 13 acceptance cases, preserved 75 rules/MIT and documentation checks passed | PR #6 verified open at role-contract task start |
 | `7ac3d2d` in PR #7 | ROLE-001; 18 files, 102 links, 37 tasks, five roles, 13 capability rows and 11 role cases checked; rules/MIT preserved | PR #7 verified open at protocol-task start |
-| Current protocol contracts | PROTO-001, OpenAPI and JSON schemas plus validation tooling | Exact final commit and checks belong in the protocol PR / report |
+| `2c2e191` in PR #8 | PROTO-001; 48 protocol + 11 API examples, 3 length boundaries, 11 tools and 5 operations validated | PR #8 verified open at stage-five start |
+| Current state design | STATE-001; 13 stages/18 edges, 11 tables, 17 rejected SQL cases, rollback/version conflict and synthetic backup checked; 28 files/135 local links and policy preserved | Static checks on Python 3.10.6 / SQLite 3.37.2; final commit in state-design PR/report; no runtime integration claim |
 
 ## Current continuation
 
-- Branch: `docs/protocol-contracts`, based on open PR #7 (`docs/agent-contracts`).
-- Deliver the protocol PR against that dependency. Verify ancestry before retargeting
+- Branch: `codex/graph-persistence`, based on open PR #8 (`docs/protocol-contracts`).
+- Deliver the state-design PR against that dependency. Verify ancestry before retargeting
   dependent PRs to main; do not auto-merge or rewrite shared history.
-- T-013 tracks PROTO-001, awaiting review; T-012 is the preceding role contract.
+- T-014 tracks STATE-001, awaiting review; T-013 is the preceding protocol contract.
   T-009/T-010/T-011/T-036/T-037 are prior documentation deliveries.
 - OpenAPI defines five notes operations; the internal schema defines 11 typed tools.
   Schema validity is not authorization or real test evidence. Use
@@ -82,7 +84,11 @@ running memory service. Verify it against Git and the current task before relyin
 - API contracts and structured questions/answers connect Frontend and Backend.
   Record version, sender/recipient, task, impact, acknowledgement and next action.
   Contract/scope changes go to the lead; QA tests the actual combined feature.
-- Next: graph/persistence details (T-014), limits/profiles/integration (T-015–T-017).
+- STATE-001 pins domain results as authority, separate opaque graph checkpoints and
+  immutable objects. Reconcile unknown effects; recheck gates after input changes.
+  Retention is operator-controlled; complete restore still needs integration tests.
+  Validate fixtures: python3 scripts/validate_state_design.py (no dependencies).
+- Next: stage-six limits/repair/cancellation (T-015), then profiles/integration (T-016–T-017).
   Do not start runtime implementation without authorization or claim Docker/CI
   or application dependencies already work.
 - No known local technical blocker. Maintainer review and MVP decisions remain pending.

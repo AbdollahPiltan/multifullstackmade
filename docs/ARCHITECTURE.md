@@ -226,8 +226,10 @@ Stage two selects technologies, boundaries, the future source layout, storage
 approach and execution model. Stage-three role/tool authority is now specified in
 [AGENT-CONTRACTS.md](AGENT-CONTRACTS.md); stage four specifies exact API/message
 schemas and operation argument/result contracts now documented in
-[PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md). T-014–T-017
-still need migration/retention detail, numerical limits, sandbox validation matrix
-and GitHub identity/reconciliation detail. T-018 creates the actual scaffold only
+[PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md). Stage-five
+[STATE-001](STATE-PERSISTENCE.md) now specifies the domain schema,
+commit/restart, migration and retention design. T-015–T-017 still need numerical
+limits, sandbox validation matrix and GitHub identity/reconciliation detail.
+T-018 creates the actual scaffold only
 after implementation is requested. A lockfile, container image, installed tool,
 passing runtime test or configured CI is not claimed by this document.
