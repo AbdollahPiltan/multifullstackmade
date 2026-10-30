@@ -23,6 +23,8 @@ Stage-five graph, storage and recovery: [STATE-PERSISTENCE.md](docs/STATE-PERSIS
 
 Stage-six limits, repair and cancellation: [EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md).
 
+Stage-seven sandbox and tool-access design: [SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

@@ -21,7 +21,7 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers stage-six execution-limit/retry/repair/cancellation design, numeric fixtures and
+  covers stage-seven sandbox/tool-access design, static policy fixtures and
   GitHub delivery; not an API server, agent runtime or permission engine.
 - ARCH-001 selects Python 3.12, uv, argparse, LangGraph, SQLite, Pydantic v2,
   an OpenAI Responses adapter, Docker, Git/gh and pytest/HTTPX/Playwright Chromium.
@@ -47,6 +47,7 @@ running memory service. Verify it against Git and the current task before relyin
 | Wire/API schemas, errors, tool formats and validation command | [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md) |
 | Durable commit/restart, graph fixture, SQL design, retention and restore | [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md) |
 | Numeric ceilings, persistent budgets, retry/repair, clocks and cancellation | [docs/EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md) |
+| Isolation, paths, six check profiles and image/host qualification | [docs/SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md) |
 | Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
 ## Last recorded checkpoints and checks
@@ -63,14 +64,15 @@ running memory service. Verify it against Git and the current task before relyin
 | `7ac3d2d` in PR #7 | ROLE-001; 18 files, 102 links, 37 tasks, five roles, 13 capability rows and 11 role cases checked; rules/MIT preserved | PR #7 verified open at protocol-task start |
 | `2c2e191` in PR #8 | PROTO-001; 48 protocol + 11 API examples, 3 length boundaries, 11 tools and 5 operations validated | PR #8 verified open at stage-five start |
 | `200c7cf` in PR #9 | STATE-001; 13 stages/18 edges, 11 tables, 17 rejected SQL cases, rollback/version conflict and synthetic backup checked; 28 files/135 local links and policy preserved | PR #9 verified open at stage-six start; synthetic checks on Python 3.10.6 / SQLite 3.37.2, no runtime integration claim |
-| Current limits design | LIM-001; closed profile and 50 synthetic cases; earlier validators passed; 33 files/154 links, 37 tasks and 75 pinned rules/MIT checked | Python 3.10.6 tooling only; final commit in limits PR/report; runtime enforcement remains unverified |
+| `f3863ca` in PR #10 | LIM-001; closed profile and 50 synthetic cases; earlier validators passed; 33 files/154 links, 37 tasks and 75 pinned rules/MIT checked | PR #10 verified open at stage-seven start; Python 3.10.6 tooling, no runtime enforcement |
+| Current sandbox design | SBX-001; six frozen profiles/55 synthetic cases, prior validators passed; 38 files/172 local links and 75 pinned rules/MIT checked | Final commit in sandbox PR/report; Docker CLI absent, no image or real sandbox qualification |
 
 ## Current continuation
 
-- Branch: `codex/execution-limits`, based on open PR #9 (`codex/graph-persistence`).
-- Deliver the limits PR against that dependency. Verify ancestry before retargeting
+- Branch: `codex/sandbox-profiles`, based on open PR #10 (`codex/execution-limits`).
+- Deliver the sandbox-design PR against that dependency. Verify ancestry before retargeting
   dependent PRs to main; do not auto-merge or rewrite shared history.
-- T-015 tracks LIM-001, awaiting review; T-014 is the preceding state design.
+- T-016 tracks SBX-001, awaiting review; T-015 is the preceding limits policy.
   T-009/T-010/T-011/T-036/T-037 are prior documentation deliveries.
 - OpenAPI defines five notes operations; the internal schema defines 11 typed tools.
   Schema validity is not authorization or real test evidence. Use
@@ -93,10 +95,14 @@ running memory service. Verify it against Git and the current task before relyin
 - LIM-001: 40 model requests/mission, 2 repairs/task and 6/mission, 3,600 active
   seconds and 86,400 lifetime seconds. Reservations/unknown effects survive restart.
   Validate: python scripts/validate_execution_limits.py (same jsonschema environment).
-- Next: stage-seven sandbox/profiles (T-016), then external identity/integration (T-017).
+- SBX-001: no egress/host mounts/credentials; six fixed checks, owned path grants,
+  reviewed seccomp derivative for browser profiles only. Null releases block execution.
+  Validate: python scripts/validate_sandbox_profiles.py (same jsonschema environment).
+- Next: stage-eight GitHub identity/integration (T-017), then separately authorized scaffold.
   Do not start runtime implementation without authorization or claim Docker/CI
   or application dependencies already work.
-- No known local technical blocker. Maintainer review and MVP decisions remain pending.
+- Design delivery has no local blocker; Docker/image/host qualification is absent.
+  Maintainer review and effective sandbox checks remain pending before runtime.
 
 ## Maintenance and trust
 

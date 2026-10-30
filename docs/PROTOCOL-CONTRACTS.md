@@ -183,7 +183,8 @@ Initial registered profile IDs: frontend_unit (Frontend/QA), backend_unit
 but cannot edit their commands. Invocation available_check_ids further restricts
 the set. A tool request cannot add a check profile. Exact commands/images are
 reviewed at scaffold and profile validation; they are not executable strings in
-model output. Container restrictions from ARCH-001 apply to every profile.
+model output. Container restrictions from ARCH-001 and the detailed [SBX-001](SANDBOX-PROFILES.md)
+apply to every profile; unresolved image releases cannot execute.
 
 ToolResponse is controller-authored and correlated by request_id and immutable
 context. `ok` means the requested operation produced its typed result; for
@@ -251,5 +252,6 @@ enabled; all references are local and validation requires no remote schema retri
 T-013 delivers these contracts for review. Stage-five [STATE-001](STATE-PERSISTENCE.md)
 specifies graph/storage/migration/retention without changing these wire contracts.
 Stage-six LIM-001 specifies numeric execution limits and retry/repair/cancellation.
-T-016/T-017 retain validated sandbox profiles and external identity/reconciliation detail. T-018 remains the future scaffold;
+Stage-seven SBX-001 specifies sandbox/access design and future qualification checks.
+T-017 retains external identity/reconciliation detail; T-018 remains the future scaffold;
 no server, agent, permission engine or model integration is started here.

@@ -10,6 +10,8 @@ Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTE
 
 Stage-six numeric budgets, bounded repair and cancellation: [LIM-001](EXECUTION-LIMITS.md).
 
+Stage-seven isolation, path checks and image qualification: [SBX-001](SANDBOX-PROFILES.md).
+
 ## Purpose and boundaries
 
 Give each role enough verified context to continue a bounded task without routinely

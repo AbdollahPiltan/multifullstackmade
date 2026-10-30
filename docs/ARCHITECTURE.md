@@ -162,7 +162,8 @@ packages or enable egress as part of a check. Image preparation is a separate
 operator-controlled action with explicit network access.
 
 Container profiles require non-root execution, dropped capabilities, default
-seccomp, no-new-privileges, read-only root/source snapshot, bounded writable tmpfs,
+seccomp (or the narrowly reviewed browser derivative from [SBX-001](SANDBOX-PROFILES.md)),
+no-new-privileges, read-only root/source snapshot, bounded writable tmpfs,
 CPU/memory/PID limits, a command deadline and bounded logs. Docker does not set
 resource constraints by default; inspect effective support rather than assuming
 requested limits were enforced. Containers share kernel/daemon risk and are not
@@ -175,8 +176,9 @@ For automated API/browser tests, run the notes server and Chromium in the same
 test container, using its internal loopback with no external network. Store fixture
 data in bounded writable temporary storage and capture evidence with size limits.
 This avoids exposing ports merely for automated acceptance. A separate explicit
-human preview profile may bind only host 127.0.0.1; restrict origins/hosts and
-requests there. No default host-network mode, privileged execution or silent
+human preview profile may bind only host 127.0.0.1; SBX-001 keeps that optional
+profile disabled until separately qualified. Restrict origins/hosts and requests
+there. No default host-network mode, privileged execution or silent
 fallback to running generated code on the host.
 
 ## 7. Verification, GitHub and delivery
@@ -230,8 +232,9 @@ schemas and operation argument/result contracts now documented in
 [PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md). Stage-five
 [STATE-001](STATE-PERSISTENCE.md) now specifies the domain schema,
 commit/restart, migration and retention design. Stage-six LIM-001 selects numerical
-limits and bounded retry/repair/cancellation. T-016/T-017 still need sandbox
-validation matrix and GitHub identity/reconciliation detail.
+limits and bounded retry/repair/cancellation. Stage-seven SBX-001 specifies sandbox
+profiles and qualification matrix; effective images/hosts are still unqualified.
+T-017 still needs GitHub identity/reconciliation detail.
 T-018 creates the actual scaffold only
 after implementation is requested. A lockfile, container image, installed tool,
 passing runtime test or configured CI is not claimed by this document.

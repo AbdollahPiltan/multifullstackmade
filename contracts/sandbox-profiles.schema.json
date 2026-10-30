@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:multifullstackmade:sandbox-profiles:1",
+  "title": "SBX-001 frozen design envelope; release references unresolved",
+  "type": "object",
+  "properties": {
+    "policy_id": {
+      "const": "SBX-001"
+    },
+    "design_version": {
+      "const": 1
+    },
+    "common": {
+      "const": {
+        "driver_uid": 10001,
+        "driver_gid": 10001,
+        "service_uid": 10002,
+        "service_gid": 10002,
+        "read_only_root": true,
+        "read_only_source": true,
+        "source_target": "/src",
+        "privileged": false,
+        "devices": [],
+        "cap_drop": [
+          "ALL"
+        ],
+        "cap_add": [],
+        "no_new_privileges": true,
+        "network": "none",
+        "published_ports": [],
+        "pid_namespace": "private",
+        "ipc_namespace": "private",
+        "host_socket_mounts": false,
+        "inherit_environment": false,
+        "automatic_pull": false,
+        "restart_policy": "no",
+        "writable_tmpfs": [
+          {
+            "target": "/tmp",
+            "owner_uid": 10001,
+            "size_mib": 32,
+            "mode": "0700",
+            "flags": [
+              "noexec",
+              "nosuid",
+              "nodev"
+            ]
+          },
+          {
+            "target": "/run/notes",
+            "owner_uid": 10002,
+            "size_mib": 32,
+            "mode": "0700",
+            "flags": [
+              "noexec",
+              "nosuid",
+              "nodev"
+            ]
+          },
+          {
+            "target": "/dev/shm",
+            "owner_uid": 10001,
+            "size_mib": 64,
+            "mode": "0700",
+            "flags": [
+              "noexec",
+              "nosuid",
+              "nodev"
+            ]
+          }
+        ],
+        "limits_ref": "LIM-001:notes_local_v1",
+        "preview_enabled": false,
+        "advisory_max_age_seconds": 604800
+      }
+    },
+    "path_policy": {
+      "const": {
+        "max_characters": 240,
+        "owners": {
+          "frontend": [
+            "frontend",
+            "tests/frontend",
+            "docs/frontend"
+          ],
+          "backend": [
+            "backend",
+            "tests/backend",
+            "docs/backend"
+          ],
+          "qa": [
+            "tests/qa"
+          ],
+          "security": [
+            "tests/security"
+          ]
+        },
+        "private_basename_patterns": [
+          "*.pem",
+          "*.key",
+          "credentials*",
+          "secrets*"
+        ],
+        "shared_basename_patterns": [
+          "conftest.py",
+          "pytest.ini",
+          "pyproject.toml",
+          "setup.cfg",
+          "setup.py",
+          "tox.ini",
+          "requirements*.txt",
+          "package*.json",
+          "*.lock",
+          "*-lock.*",
+          "ruff.toml",
+          "mypy.ini",
+          "bandit.yaml",
+          "security-baseline.json"
+        ],
+        "reject_hidden": true,
+        "reject_symlinks": true,
+        "reject_hardlinks": true,
+        "reject_case_collisions": true
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "properties": {
+        "frontend_unit": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "frontend",
+                "qa",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "frontend_unit_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "tests"
+            },
+            "browser": {
+              "const": true
+            },
+            "service": {
+              "const": true
+            },
+            "seccomp": {
+              "const": "browser_userns_reviewed"
+            },
+            "deadline_ref": {
+              "const": "checks.frontend_unit"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        },
+        "backend_unit": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "backend",
+                "qa",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "backend_unit_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "tests"
+            },
+            "browser": {
+              "const": false
+            },
+            "service": {
+              "const": false
+            },
+            "seccomp": {
+              "const": "engine_default"
+            },
+            "deadline_ref": {
+              "const": "checks.backend_unit"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        },
+        "api_contract": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "backend",
+                "qa",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "api_contract_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "tests"
+            },
+            "browser": {
+              "const": false
+            },
+            "service": {
+              "const": true
+            },
+            "seccomp": {
+              "const": "engine_default"
+            },
+            "deadline_ref": {
+              "const": "checks.api_contract"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        },
+        "qa_integration": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "qa",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "qa_integration_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "tests"
+            },
+            "browser": {
+              "const": true
+            },
+            "service": {
+              "const": true
+            },
+            "seccomp": {
+              "const": "browser_userns_reviewed"
+            },
+            "deadline_ref": {
+              "const": "checks.qa_integration"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        },
+        "security_static": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "security",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "security_static_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "scanner"
+            },
+            "browser": {
+              "const": false
+            },
+            "service": {
+              "const": false
+            },
+            "seccomp": {
+              "const": "engine_default"
+            },
+            "deadline_ref": {
+              "const": "checks.security_static"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        },
+        "security_negative": {
+          "type": "object",
+          "properties": {
+            "roles": {
+              "const": [
+                "security",
+                "lead"
+              ]
+            },
+            "harness_id": {
+              "const": "security_negative_v1"
+            },
+            "image_family": {
+              "const": "notes_checks_v1"
+            },
+            "kind": {
+              "const": "tests"
+            },
+            "browser": {
+              "const": false
+            },
+            "service": {
+              "const": true
+            },
+            "seccomp": {
+              "const": "engine_default"
+            },
+            "deadline_ref": {
+              "const": "checks.security_negative"
+            },
+            "release": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "roles",
+            "harness_id",
+            "image_family",
+            "kind",
+            "browser",
+            "service",
+            "seccomp",
+            "deadline_ref",
+            "release"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "frontend_unit",
+        "backend_unit",
+        "api_contract",
+        "qa_integration",
+        "security_static",
+        "security_negative"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "policy_id",
+    "design_version",
+    "common",
+    "path_policy",
+    "profiles"
+  ],
+  "additionalProperties": false
+}
