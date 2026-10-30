@@ -141,7 +141,8 @@ selected code to the configured model is a remote disclosure: mission setup must
 identify the provider and approved project scope. Live usage is metered; record
 actual input/output usage and uncertain results. Disable competing retry layers
 and put eligible bounded retries under one controller policy. Model-specific
-token budgets and numeric retry/time limits remain T-015 design, required before run.
+token budgets and numeric retry/time ceilings are now specified in
+[LIM-001](EXECUTION-LIMITS.md); enforce and validate them before live runs.
 
 ## 6. Tool and sandbox boundary
 
@@ -228,8 +229,9 @@ approach and execution model. Stage-three role/tool authority is now specified i
 schemas and operation argument/result contracts now documented in
 [PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md). Stage-five
 [STATE-001](STATE-PERSISTENCE.md) now specifies the domain schema,
-commit/restart, migration and retention design. T-015–T-017 still need numerical
-limits, sandbox validation matrix and GitHub identity/reconciliation detail.
+commit/restart, migration and retention design. Stage-six LIM-001 selects numerical
+limits and bounded retry/repair/cancellation. T-016/T-017 still need sandbox
+validation matrix and GitHub identity/reconciliation detail.
 T-018 creates the actual scaffold only
 after implementation is requested. A lockfile, container image, installed tool,
 passing runtime test or configured CI is not claimed by this document.

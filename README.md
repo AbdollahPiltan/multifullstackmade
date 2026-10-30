@@ -21,6 +21,8 @@ Stage-four API/message/tool schemas: [PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTR
 
 Stage-five graph, storage and recovery: [STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md).
 
+Stage-six limits, repair and cancellation: [EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

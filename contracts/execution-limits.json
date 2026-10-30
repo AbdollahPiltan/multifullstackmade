@@ -1,0 +1,94 @@
+{
+  "policy_id": "LIM-001",
+  "profile_version": 1,
+  "profile_name": "notes_local_v1",
+  "concurrency": {
+    "missions": 1,
+    "roles": 1,
+    "models": 1,
+    "tools": 1,
+    "containers": 1
+  },
+  "mission": {
+    "tasks": 16,
+    "role_invocations": 32,
+    "model_calls": 40,
+    "tool_calls": 240,
+    "checks": 24,
+    "repair_attempts": 6,
+    "messages": 128
+  },
+  "task": {
+    "model_calls_per_attempt": 8,
+    "tool_calls_per_attempt": 48,
+    "repair_attempts": 2,
+    "messages": 16,
+    "reply_depth": 6
+  },
+  "invocation": {
+    "model_calls": 4,
+    "tool_calls": 24
+  },
+  "time": {
+    "mission_lifetime_seconds": 86400,
+    "mission_active_seconds": 3600,
+    "task_active_seconds": 900,
+    "invocation_seconds": 300,
+    "model_seconds": 120,
+    "ordinary_tool_seconds": 10,
+    "github_seconds": 30,
+    "sqlite_busy_seconds": 1,
+    "stop_grace_seconds": 5,
+    "cleanup_seconds": 15
+  },
+  "retry": {
+    "max_dispatches": 3,
+    "base_seconds": 2,
+    "jitter_cap_seconds": 16,
+    "max_wait_seconds": 60
+  },
+  "tokens": {
+    "input_per_call": 16000,
+    "output_per_call": 4000,
+    "mission_total": 400000
+  },
+  "bytes": {
+    "provider_input": 65536,
+    "provider_response": 1048576,
+    "tool_request": 1048576,
+    "source_files": 128,
+    "source_total": 2097152,
+    "source_file": 262144,
+    "tool_read_response": 262144,
+    "artifact": 4194304,
+    "check_logs": 1048576,
+    "mission_logs": 8388608,
+    "private_project": 536870912,
+    "control_reserve": 16777216
+  },
+  "container": {
+    "cpu_units": 2,
+    "memory_mib": 1024,
+    "memory_plus_swap_mib": 1024,
+    "pids": 128,
+    "tmpfs_mib": 128
+  },
+  "api": {
+    "connections": 8,
+    "queued_requests": 0,
+    "lifetime_seconds": 10
+  },
+  "checks": {
+    "frontend_unit": 60,
+    "backend_unit": 60,
+    "api_contract": 90,
+    "qa_integration": 180,
+    "security_static": 60,
+    "security_negative": 90
+  },
+  "collections": {
+    "event_page": 100,
+    "context_records": 100,
+    "json_depth": 32
+  }
+}

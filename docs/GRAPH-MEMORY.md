@@ -8,6 +8,8 @@ resume behavior has been implemented. Framework/storage and execution choices ar
 
 Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTENCE.md).
 
+Stage-six numeric budgets, bounded repair and cancellation: [LIM-001](EXECUTION-LIMITS.md).
+
 ## Purpose and boundaries
 
 Give each role enough verified context to continue a bounded task without routinely

@@ -1,0 +1,61 @@
+{
+  "description": "Synthetic design calculations only; not runtime execution evidence.",
+  "configuration": [
+    {"name": "baseline", "path": [], "value": null, "valid": true},
+    {"name": "repairs_disabled", "path": ["task", "repair_attempts"], "value": 0, "valid": true},
+    {"name": "lower_output", "path": ["tokens", "output_per_call"], "value": 2000, "valid": true},
+    {"name": "unlimited_zero_calls", "path": ["mission", "model_calls"], "value": 0, "valid": false},
+    {"name": "negative_timeout", "path": ["time", "model_seconds"], "value": -1, "valid": false},
+    {"name": "raise_model_cap", "path": ["mission", "model_calls"], "value": 41, "valid": false},
+    {"name": "boolean_as_integer", "path": ["tokens", "input_per_call"], "value": true, "valid": false},
+    {"name": "unbounded_queue", "path": ["mission", "tasks"], "value": null, "valid": false},
+    {"name": "unknown_field", "path": ["invocation", "unlimited"], "value": true, "valid": false},
+    {"name": "parallel_models", "path": ["concurrency", "models"], "value": 2, "valid": false},
+    {"name": "swap_mismatch", "path": ["container", "memory_mib"], "value": 512, "valid": false},
+    {"name": "deadline_inverted", "path": ["time", "invocation_seconds"], "value": 60, "valid": false},
+    {"name": "zero_backlog_only", "path": ["api", "queued_requests"], "value": 1, "valid": false},
+    {"name": "fractional_count", "path": ["mission", "tasks"], "value": 1.5, "valid": false}
+  ],
+  "admission": [
+    {"name": "exact_call_boundary", "charges": [{"limit": ["mission", "model_calls"], "spent": 39, "reserved": 0, "request": 1}], "admit": true},
+    {"name": "call_over_boundary", "charges": [{"limit": ["mission", "model_calls"], "spent": 40, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "reserved_last_slot", "charges": [{"limit": ["mission", "model_calls"], "spent": 39, "reserved": 1, "request": 1}], "admit": false},
+    {"name": "all_scopes_exact", "charges": [{"limit": ["mission", "model_calls"], "spent": 39, "reserved": 0, "request": 1}, {"limit": ["task", "model_calls_per_attempt"], "spent": 7, "reserved": 0, "request": 1}, {"limit": ["invocation", "model_calls"], "spent": 3, "reserved": 0, "request": 1}], "admit": true},
+    {"name": "invocation_exhausted", "charges": [{"limit": ["mission", "model_calls"], "spent": 2, "reserved": 0, "request": 1}, {"limit": ["invocation", "model_calls"], "spent": 4, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "unknown_tokens_retained", "charges": [{"limit": ["tokens", "mission_total"], "spent": 380000, "reserved": 20000, "request": 1}], "admit": false},
+    {"name": "token_exact", "charges": [{"limit": ["tokens", "mission_total"], "spent": 380000, "reserved": 0, "request": 20000}], "admit": true},
+    {"name": "token_over", "charges": [{"limit": ["tokens", "mission_total"], "spent": 380001, "reserved": 0, "request": 20000}], "admit": false},
+    {"name": "third_task_repair", "charges": [{"limit": ["task", "repair_attempts"], "spent": 2, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "second_task_repair", "charges": [{"limit": ["task", "repair_attempts"], "spent": 1, "reserved": 0, "request": 1}], "admit": true},
+    {"name": "seventh_mission_repair", "charges": [{"limit": ["task", "repair_attempts"], "spent": 0, "reserved": 0, "request": 1}, {"limit": ["mission", "repair_attempts"], "spent": 6, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "invalid_negative_usage", "charges": [{"limit": ["mission", "tool_calls"], "spent": -1, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "storage_reservation", "charges": [{"limit": ["bytes", "private_project"], "spent": 500000000, "reserved": 30000000, "request": 10000000}], "admit": false},
+    {"name": "model_slot_busy", "charges": [{"limit": ["concurrency", "models"], "spent": 0, "reserved": 1, "request": 1}], "admit": false},
+    {"name": "ordinary_storage_exact", "charges": [{"limit": ["bytes", "private_project"], "spent": 520093695, "reserved": 0, "request": 1}], "admit": true},
+    {"name": "control_reserve_protected", "charges": [{"limit": ["bytes", "private_project"], "spent": 520093696, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "boolean_usage", "charges": [{"limit": ["mission", "tool_calls"], "spent": true, "reserved": 0, "request": 1}], "admit": false},
+    {"name": "duplicate_budget_scope", "charges": [{"limit": ["mission", "model_calls"], "spent": 39, "reserved": 0, "request": 1}, {"limit": ["mission", "model_calls"], "spent": 39, "reserved": 0, "request": 1}], "admit": false}
+  ],
+  "retry": [
+    {"name": "first_retry_jitter", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": 1},
+    {"name": "second_retry_jitter", "input": {"safe": true, "transient": true, "dispatches_used": 2, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": 2},
+    {"name": "three_dispatches_spent", "input": {"safe": true, "transient": true, "dispatches_used": 3, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": null},
+    {"name": "retry_after_floor", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": 12, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": 12},
+    {"name": "server_wait_too_long", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": 61, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": null},
+    {"name": "server_wait_exact_limit", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": 60, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": 60},
+    {"name": "deadline_no_execution_time", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": 12, "seconds_remaining": 12, "cancelled": false}, "delay_seconds": null},
+    {"name": "unknown_effect_no_retry", "input": {"safe": false, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": null},
+    {"name": "validation_failure_no_retry", "input": {"safe": true, "transient": false, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": false}, "delay_seconds": null},
+    {"name": "cancel_during_backoff", "input": {"safe": true, "transient": true, "dispatches_used": 1, "jitter_fraction": 0.5, "retry_after_seconds": null, "seconds_remaining": 120, "cancelled": true}, "delay_seconds": null}
+  ],
+  "control": [
+    {"name": "fresh_mission", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": 0, "remaining_active_seconds": 3600}, "admit": true},
+    {"name": "cancel_barrier", "input": {"cancelled": true, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": 0, "remaining_active_seconds": 3600}, "admit": false},
+    {"name": "unknown_effect_holds_slot", "input": {"cancelled": false, "unknown_effect": true, "quiescent_wait": false, "lifetime_elapsed_seconds": 0, "remaining_active_seconds": 3600}, "admit": false},
+    {"name": "human_wait_no_dispatch", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": true, "lifetime_elapsed_seconds": 0, "remaining_active_seconds": 3600}, "admit": false},
+    {"name": "lifetime_expires_at_equality", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": 86400, "remaining_active_seconds": 3600}, "admit": false},
+    {"name": "last_lifetime_second", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": 86399, "remaining_active_seconds": 3600}, "admit": true},
+    {"name": "active_time_exhausted", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": 0, "remaining_active_seconds": 0}, "admit": false},
+    {"name": "backward_clock", "input": {"cancelled": false, "unknown_effect": false, "quiescent_wait": false, "lifetime_elapsed_seconds": -1, "remaining_active_seconds": 3600}, "admit": false}
+  ]
+}
