@@ -26,7 +26,8 @@ Git/Docker/gh adapters; do not import a target Python module, run its shell scri
 load its plugins, install its dependencies or execute its hooks on the host.
 Git hooks, external filters, credential helpers, submodules and repository config
 from an untrusted target are not executable instructions: adapters must disable or
-isolate them. GitHub identity and external operation details remain T-017.
+isolate them. GitHub identity and external operation details are now specified in
+[GH-001](GITHUB-DELIVERY.md).
 
 Containers share kernel/daemon risk; this MVP admits only the scoped synthetic
 notes fixture. It does not claim isolation suitable for arbitrary hostile public
@@ -247,5 +248,5 @@ validators remain applicable. No new dependency or application code is installed
 
 T-016's sandbox/tool design is ready for review. Image creation and effective
 qualification remain explicit implementation prerequisites, tracked by T-018/T-023
-and the matrix above. T-017 next specifies GitHub identity/integration; no deployment,
+and the matrix above. GH-001 now specifies GitHub identity/integration; no deployment,
 credential access, merge permission or arbitrary-code execution is authorized here.

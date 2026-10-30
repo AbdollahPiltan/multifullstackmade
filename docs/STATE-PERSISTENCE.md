@@ -163,7 +163,7 @@ Place human interrupts before effects and make resumed bodies consult the journa
 | Object exists, domain reference absent | Quarantine as orphan; retain until reference reconciliation; no automatic success |
 | Domain result committed, checkpoint behind | Reuse verified result for identical input, advance through adapter; no repeated paid/tool effect |
 | Checkpoint claims completion, domain result missing | Block; inspect backup/domain integrity; no fabricated result or direct checkpoint SQL repair |
-| PR may exist, response absent | Controller reconciles approved repository/base/head and intent; ambiguity blocks; T-017 defines identity details |
+| PR may exist, response absent | Controller reconciles approved repository/base/head and intent; ambiguity blocks; GH-001 defines identity details |
 | Paid model call may have completed | Keep usage reservation and unknown outcome; use supported provider observations where available; otherwise require an explicit retry decision under budget |
 | Source/contract/policy/profile changed | Mark affected result unusable, recompute context and rerun applicable gates |
 | Running container at cancellation/crash | Controller finds owned execution identity, stops or observes it; late outputs are recorded without accepting delivery |
@@ -294,7 +294,7 @@ Future integration scenarios (not claimed passing here):
 
 LIM-001 now selects numeric budgets and accounting/cancellation design.
 SBX-001 now specifies sandbox/access design and its required runtime qualification;
-T-017 resolves
-external identities/reconciliation and T-018 starts implementation when instructed.
+[GH-001](GITHUB-DELIVERY.md) now specifies external identities/reconciliation.
+T-018 starts implementation when instructed.
 T-019/T-020 implement this design. Passing the static fixture checks does not prove
 these integration scenarios or a working durable agent team.

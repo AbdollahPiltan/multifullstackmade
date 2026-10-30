@@ -25,6 +25,8 @@ Stage-six limits, repair and cancellation: [EXECUTION-LIMITS.md](docs/EXECUTION-
 
 Stage-seven sandbox and tool-access design: [SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md).
 
+Stage-eight GitHub identity and delivery: [GITHUB-DELIVERY.md](docs/GITHUB-DELIVERY.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

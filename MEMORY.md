@@ -21,8 +21,8 @@ running memory service. Verify it against Git and the current task before relyin
 - The human primarily talks to the Tech Lead. Track task ownership, handoffs,
   decisions, code revisions, and actual test evidence in a persistent workflow.
 - Finish design discussion before implementing application code. Current authorization
-  covers stage-seven sandbox/tool-access design, static policy fixtures and
-  GitHub delivery; not an API server, agent runtime or permission engine.
+  covers stage-eight GitHub identity/publication/reconciliation design and fixtures;
+  documentation GitHub delivery is authorized; no product runtime or adapter implementation.
 - ARCH-001 selects Python 3.12, uv, argparse, LangGraph, SQLite, Pydantic v2,
   an OpenAI Responses adapter, Docker, Git/gh and pytest/HTTPX/Playwright Chromium.
   Notes uses FastAPI/Uvicorn plus plain HTML/CSS/JavaScript, with no Node build stack.
@@ -48,6 +48,7 @@ running memory service. Verify it against Git and the current task before relyin
 | Durable commit/restart, graph fixture, SQL design, retention and restore | [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md) |
 | Numeric ceilings, persistent budgets, retry/repair, clocks and cancellation | [docs/EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md) |
 | Isolation, paths, six check profiles and image/host qualification | [docs/SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md) |
+| Publication identity, draft CI, native checks and external reconciliation | [docs/GITHUB-DELIVERY.md](docs/GITHUB-DELIVERY.md) |
 | Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
 ## Last recorded checkpoints and checks
@@ -65,14 +66,15 @@ running memory service. Verify it against Git and the current task before relyin
 | `2c2e191` in PR #8 | PROTO-001; 48 protocol + 11 API examples, 3 length boundaries, 11 tools and 5 operations validated | PR #8 verified open at stage-five start |
 | `200c7cf` in PR #9 | STATE-001; 13 stages/18 edges, 11 tables, 17 rejected SQL cases, rollback/version conflict and synthetic backup checked; 28 files/135 local links and policy preserved | PR #9 verified open at stage-six start; synthetic checks on Python 3.10.6 / SQLite 3.37.2, no runtime integration claim |
 | `f3863ca` in PR #10 | LIM-001; closed profile and 50 synthetic cases; earlier validators passed; 33 files/154 links, 37 tasks and 75 pinned rules/MIT checked | PR #10 verified open at stage-seven start; Python 3.10.6 tooling, no runtime enforcement |
-| Current sandbox design | SBX-001; six frozen profiles/55 synthetic cases, prior validators passed; 38 files/172 local links and 75 pinned rules/MIT checked | Final commit in sandbox PR/report; Docker CLI absent, no image or real sandbox qualification |
+| `b679007` in PR #11 | SBX-001; six frozen profiles/55 synthetic cases, prior validators passed; 38 files/172 local links and 75 pinned rules/MIT checked | PR #11 verified open at stage-eight start; Docker CLI absent, no real sandbox qualification |
+| Current GitHub design | GH-001; 57 synthetic cases and prior validators passed; 43 files/194 local links, 37 tasks and pinned rules/MIT checked | Final commit in delivery PR/report; Python 3.10.6 tooling, no runtime auth/replay/CI proof |
 
 ## Current continuation
 
-- Branch: `codex/sandbox-profiles`, based on open PR #10 (`codex/execution-limits`).
-- Deliver the sandbox-design PR against that dependency. Verify ancestry before retargeting
+- Branch: `codex/github-delivery`, based on open PR #11 (`codex/sandbox-profiles`).
+- Deliver the GitHub-design PR against that dependency. Verify ancestry before retargeting
   dependent PRs to main; do not auto-merge or rewrite shared history.
-- T-016 tracks SBX-001, awaiting review; T-015 is the preceding limits policy.
+- T-017 tracks GH-001, awaiting review; T-016 is the preceding sandbox design.
   T-009/T-010/T-011/T-036/T-037 are prior documentation deliveries.
 - OpenAPI defines five notes operations; the internal schema defines 11 typed tools.
   Schema validity is not authorization or real test evidence. Use
@@ -98,7 +100,10 @@ running memory service. Verify it against Git and the current task before relyin
 - SBX-001: no egress/host mounts/credentials; six fixed checks, owned path grants,
   reviewed seccomp derivative for browser profiles only. Null releases block execution.
   Validate: python scripts/validate_sandbox_profiles.py (same jsonschema environment).
-- Next: stage-eight GitHub identity/integration (T-017), then separately authorized scaffold.
+- GH-001: one operator principal; local gates -> draft PR -> native CI -> ready
+  -> human acceptance. Unknown creates require reconciliation; no merge/review tool.
+  Validate: python scripts/validate_github_delivery.py (same jsonschema environment).
+- Next: separately requested implementation scaffold (T-018); design stages 1–8 documented.
   Do not start runtime implementation without authorization or claim Docker/CI
   or application dependencies already work.
 - Design delivery has no local blocker; Docker/image/host qualification is absent.

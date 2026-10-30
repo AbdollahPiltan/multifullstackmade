@@ -262,6 +262,7 @@ dispatches work. Also run the earlier contract and state-design validators.
 | LM-10 | Unknown tokenizer/usage or missing capability blocks; actual metering and representative timings reported |
 
 These ten scenarios remain unimplemented. SBX-001 now provides sandbox/access design;
-T-017 retains GitHub identity details. T-018 starts the scaffold only after
+[GH-001](GITHUB-DELIVERY.md) now specifies GitHub identity and external reconciliation.
+T-018 starts the scaffold only after
 implementation is requested.
 No currency savings, performance target or successful runtime enforcement is claimed.

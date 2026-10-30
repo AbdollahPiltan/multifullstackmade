@@ -201,8 +201,11 @@ destination; report them as not run when unavailable, rather than as simulated p
 GitHub actions are controller-mediated. Use Git worktrees per assigned developer
 and an integration worktree; record ownership while preserving a single final PR.
 The operator authorizes the destination/base and gh identity. After required
-checks, QA/security and lead review, create/update that PR through a reconciled
-operation. Do not claim that five roles imply five independent GitHub reviewers.
+local checks, QA/security and lead review, create one draft PR through a reconciled
+operation. [GH-001](GITHUB-DELIVERY.md) puts PR-triggered native CI before readiness
+and human acceptance, keeps the initial body immutable to the controller, and
+specifies identity/permission/replay gates. Do not claim that five roles imply
+five independent GitHub reviewers.
 No merge/deployment tool is exposed in the MVP.
 
 ## 8. Alternatives and consequences
@@ -234,7 +237,8 @@ schemas and operation argument/result contracts now documented in
 commit/restart, migration and retention design. Stage-six LIM-001 selects numerical
 limits and bounded retry/repair/cancellation. Stage-seven SBX-001 specifies sandbox
 profiles and qualification matrix; effective images/hosts are still unqualified.
-T-017 still needs GitHub identity/reconciliation detail.
+Stage-eight GH-001 now specifies GitHub identity/publication/reconciliation detail;
+its effective adapter, credentials and draft CI remain implementation work.
 T-018 creates the actual scaffold only
 after implementation is requested. A lockfile, container image, installed tool,
 passing runtime test or configured CI is not claimed by this document.
