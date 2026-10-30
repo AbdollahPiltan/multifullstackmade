@@ -1,0 +1,154 @@
+{
+  "design_version": 1,
+  "initial": "request",
+  "terminal": [
+    "delivered",
+    "cancelled"
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "task_status": "planned"
+    },
+    {
+      "id": "clarify",
+      "task_status": "planned"
+    },
+    {
+      "id": "plan",
+      "task_status": "planned"
+    },
+    {
+      "id": "await_human",
+      "task_status": "planned"
+    },
+    {
+      "id": "implement",
+      "task_status": "in_progress"
+    },
+    {
+      "id": "checks",
+      "task_status": "awaiting_checks"
+    },
+    {
+      "id": "independent_review",
+      "task_status": "awaiting_checks"
+    },
+    {
+      "id": "repair",
+      "task_status": "changes_requested"
+    },
+    {
+      "id": "lead_review",
+      "task_status": "awaiting_lead"
+    },
+    {
+      "id": "await_delivery_decision",
+      "task_status": "awaiting_human"
+    },
+    {
+      "id": "delivered",
+      "task_status": "done"
+    },
+    {
+      "id": "blocked",
+      "task_status": "blocked"
+    },
+    {
+      "id": "cancelled",
+      "task_status": "cancelled"
+    }
+  ],
+  "edges": [
+    {
+      "from": "request",
+      "to": "clarify",
+      "guard": "requirements_captured"
+    },
+    {
+      "from": "clarify",
+      "to": "plan",
+      "guard": "requirements_resolved"
+    },
+    {
+      "from": "plan",
+      "to": "await_human",
+      "guard": "plan_recorded"
+    },
+    {
+      "from": "await_human",
+      "to": "implement",
+      "guard": "plan_approved_and_contract_acknowledged"
+    },
+    {
+      "from": "await_human",
+      "to": "clarify",
+      "guard": "plan_changes_requested"
+    },
+    {
+      "from": "implement",
+      "to": "checks",
+      "guard": "required_revisions_integrated"
+    },
+    {
+      "from": "checks",
+      "to": "independent_review",
+      "guard": "required_checks_current_and_passed"
+    },
+    {
+      "from": "checks",
+      "to": "repair",
+      "guard": "required_check_failed"
+    },
+    {
+      "from": "independent_review",
+      "to": "lead_review",
+      "guard": "qa_security_current_and_accepted"
+    },
+    {
+      "from": "independent_review",
+      "to": "repair",
+      "guard": "blocking_review_findings"
+    },
+    {
+      "from": "repair",
+      "to": "implement",
+      "guard": "repair_authorized_with_budget"
+    },
+    {
+      "from": "lead_review",
+      "to": "await_delivery_decision",
+      "guard": "lead_and_controller_gates_passed"
+    },
+    {
+      "from": "lead_review",
+      "to": "repair",
+      "guard": "scoped_correction_requested"
+    },
+    {
+      "from": "await_delivery_decision",
+      "to": "delivered",
+      "guard": "human_accepted_and_delivery_observed"
+    },
+    {
+      "from": "await_delivery_decision",
+      "to": "clarify",
+      "guard": "delivery_scope_changes_requested"
+    },
+    {
+      "from": "@active",
+      "to": "blocked",
+      "guard": "dependency_limit_or_unresolved_failure"
+    },
+    {
+      "from": "blocked",
+      "to": "@resume",
+      "guard": "cause_resolved_inputs_reconciled_resume_authorized"
+    },
+    {
+      "from": "@nonterminal",
+      "to": "cancelled",
+      "guard": "operator_cancelled"
+    }
+  ]
+}

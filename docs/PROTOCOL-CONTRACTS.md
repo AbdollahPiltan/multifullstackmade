@@ -246,7 +246,8 @@ references, role allowlists and positive/negative shape examples. It does not pr
 controller authorization, API behavior or runtime acceptance. Format validation is
 enabled; all references are local and validation requires no remote schema retrieval.
 
-T-013 delivers these contracts for review. T-014/T-015/T-016/T-017 retain storage
-schema/migration/retention, numeric execution limits, validated sandbox profiles
+T-013 delivers these contracts for review. Stage-five [STATE-001](STATE-PERSISTENCE.md)
+specifies graph/storage/migration/retention without changing these wire contracts.
+T-015/T-016/T-017 retain numeric execution limits, validated sandbox profiles
 and external identity/reconciliation detail. T-018 remains the future scaffold;
 no server, agent, permission engine or model integration is started here.

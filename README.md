@@ -19,6 +19,8 @@ Stage-three role contracts and tool permissions: [AGENT-CONTRACTS.md](docs/AGENT
 
 Stage-four API/message/tool schemas: [PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md).
 
+Stage-five graph, storage and recovery: [STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md).
+
 ## Status
 
 **Planning / pre-MVP.** This repository currently contains the project specification

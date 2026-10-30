@@ -99,8 +99,8 @@ Complete this table in an adopting project. An unset value is an open decision, 
 | Latency, error-rate, memory, CPU, and query budgets | Not measured or agreed. Set representative workloads and limits before making performance claims. |
 | Timeouts, request limits, retry limits, and queue capacity | Bounded execution and repair loops are proposed; numeric values and enforcement remain open. |
 | Cache scope, freshness, and invalidation requirements | No cache exists. Define scope, capacity, freshness, and invalidation only if caching becomes necessary. |
-| Required verification and CI commands | For documentation: git diff --check, local Markdown link / root-containment checks, policy provenance and license preservation, and final diff / sensitive-data review. Contract schemas/examples are checked by python scripts/validate_contracts.py in its documented disposable validation environment. No application tests, build, or CI workflow exist yet. |
-| Recovery objectives, backups, and rollback method | Revert published documentation changes through a feature branch and PR. There are no deployed services or application databases; runtime recovery criteria remain open. |
+| Required verification and CI commands | For documentation: git diff --check, local Markdown link / root-containment checks, policy provenance and license preservation, and final diff / sensitive-data review. Contract schemas/examples are checked by python scripts/validate_contracts.py in its documented disposable validation environment. State-design fixtures are checked by python3 scripts/validate_state_design.py using synthetic in-memory SQLite. No application tests, build, or CI workflow exist yet. |
+| Recovery objectives, backups, and rollback method | Revert published documentation changes through a feature branch and PR. STATE-001 specifies private runtime backup/restore and migration design; no project database or deployed service exists. Full recovery verification and operational targets remain future work. |
 
 ## Architecture and responsibilities
 

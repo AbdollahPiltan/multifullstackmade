@@ -12,6 +12,8 @@ The authoritative stage-three role, path and tool permissions are in
 
 Stage-four serialized API/message/tool contracts: [PROTOCOL-CONTRACTS.md](PROTOCOL-CONTRACTS.md).
 
+Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTENCE.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)

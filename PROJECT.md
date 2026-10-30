@@ -6,6 +6,7 @@ Stage-one scope baseline and acceptance matrix: [docs/MVP-SCOPE.md](docs/MVP-SCO
 Stage-two selected stack and boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 Stage-three role/tool authority: [docs/AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md).
 Stage-four wire/API contracts and validation: [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md).
+Stage-five durable state, recovery and retention: [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md).
 Continuation entry point: [MEMORY.md](MEMORY.md). Proposed graph and memory contract:
 [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md).
 This brief adapts the upstream [project template](https://github.com/AbdollahPiltan/strict-development-rules/blob/0754e297cb8898700b1196f9ecd40884f6c9f86c/templates/PROJECT.md).
@@ -22,22 +23,22 @@ when setup or recovery needs attention; routine tasks should use this brief.
 | Minimum useful scope | Stage-one baseline MVP-001: local single-user operator interface, one bounded mission, five sequential selectively activated roles, inspectable graph, durable context, actual QA/security evidence and one delivery PR. Personal notes is the first fixture; see docs/MVP-SCOPE.md. |
 | Explicit exclusions | No runtime implementation in this scope task. No multi-user hosted platform, automatic deployment, parallel execution, advanced orchestration dashboard, arbitrary legacy repositories or speculative infrastructure. Stack/provider are selected in ARCH-001; a minimal local CLI operator interface and a browser UI for the notes fixture are scoped. |
 | Product specifications and acceptance criteria | [MVP-001 scope](docs/MVP-SCOPE.md) defines the first fixture, delivery boundary and AC-01–AC-13. Review is pending; this defines acceptance, not passing test results. Design and roadmap remain supporting documents. |
-| Current assigned task | Complete stage four: define and validate fixture OpenAPI, serialized invocation/message/result/evidence and 11 typed tool input/output contracts; update continuation context and deliver a dependent PR. |
-| Next milestone | Stage five: detailed graph/persistence implementation design (T-014), then numeric limits, sandbox profiles and external integration detail (T-015–T-017). Actual scaffold/runtime still requires a separate instruction. |
+| Current assigned task | Complete stage five: specify graph stages, domain storage, durable commit/restart, context invalidation, retention and backup/restore; validate design fixtures and deliver a dependent PR. |
+| Next milestone | Stage six: numeric limits and bounded repair/cancellation policy (T-015), then sandbox profiles and external integration detail (T-016–T-017). Actual scaffold/runtime still requires a separate instruction. |
 
 ## Setup and authorization
 
 | Field | Value |
 | --- | --- |
 | Languages, frameworks, and supported versions | ARCH-001 baseline: CPython 3.12; uv; argparse CLI; LangGraph + SQLite checkpoint adapter; Pydantic v2; sqlite3; official OpenAI Python SDK / Responses API; Docker; Git + gh. Notes fixture: FastAPI/Uvicorn and plain browser HTML/CSS/JavaScript; pytest/HTTPX/Playwright Chromium. Exact compatible package versions and images will be locked and tested at scaffold, not in this documentation change. |
-| Architecture and data-model references | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/DESIGN.md](docs/DESIGN.md) and graph/memory contract; no implemented data model. |
+| Architecture and data-model references | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/DESIGN.md](docs/DESIGN.md) and graph/memory contract; STATE-001 reference domain schema; no installed database or runtime data model. |
 | GitHub owner/repository | [AbdollahPiltan/multifullstackmade](https://github.com/AbdollahPiltan/multifullstackmade) |
 | Repository visibility | Public, explicitly requested by the owner. |
 | Remote name and URL | `origin`: `https://github.com/AbdollahPiltan/multifullstackmade.git` |
 | Default branch | `main`, verified from GitHub and local tracking metadata. |
-| Current documentation feature branch | `docs/protocol-contracts`, based on the open PR #7 branch `docs/agent-contracts`. Deliver against that dependency; verify ancestry before later retargeting. |
+| Current documentation feature branch | `codex/graph-persistence`, based on the open PR #8 branch `docs/protocol-contracts`. Deliver against that dependency; verify ancestry before later retargeting. |
 | Commit identity | `AbdollahPiltan`; use the account's public noreply address for published commits. No credentials belong here. |
-| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, the Frontend / Backend role split with structured cooperation, completion of stage-one product scope, stage-two technology/architecture selection, completion of stage-three role/tool contracts, and stage-four API/message/tool schemas with validation tooling. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
+| Authorized actions | The owner requested public repository creation, project-wide adoption of the linked rules, a file listing completed and remaining tasks, graph/memory documentation with persistent continuation instructions, the Frontend / Backend role split with structured cooperation, completion of stage-one product scope, stage-two technology/architecture selection, completion of stage-three role/tool contracts, stage-four API/message/tool schemas with validation tooling, and stage-five graph/storage/recovery design with static validation fixtures. These documentation changes, feature-branch publication, and a reviewable PR are in scope. This does not authorize unrelated repository settings, cloud resources, application implementation, merging the adoption PR, or deployment. |
 | PR, review, and merge requirements | AUT-07 prohibits direct default-branch pushes and force-pushes. Use reviewed PRs. Future agent output additionally follows the proposed revision-bound QA, security, and lead gates. |
 | Technical enforcement | At adoption, GitHub reports `main` as unprotected with no required status-check contexts; no CI workflow exists. The written policy is a development requirement, not a claim that protections or agent gates are already configured. |
 
@@ -48,9 +49,9 @@ Verify the working directory and `git remote -v` before changing Git metadata.
 
 | Field | Value |
 | --- | --- |
-| Installation and local run instructions | Not applicable yet: the repository contains documentation only. |
+| Installation and local run instructions | No application run command yet: design documents, reference schemas and validation tooling only. |
 | Required documentation checks | `git diff --check`; verify relative Markdown links exist and remain inside the repository; compare engineering rules and license notice with the pinned upstream file; review the final diff and intended file list for scope and sensitive data. |
-| Runtime test, lint, type, and CI commands | Not applicable yet. Contract validation tooling: python scripts/validate_contracts.py with disposable jsonschema 4.25.1 and openapi-spec-validator 0.7.2. Runtime setup/CI commands are still future work; do not invent passing runtime results. |
+| Runtime test, lint, type, and CI commands | Not applicable yet. Contract validation tooling: python scripts/validate_contracts.py with disposable jsonschema 4.25.1 and openapi-spec-validator 0.7.2. State design: python3 scripts/validate_state_design.py (standard library, synthetic in-memory SQLite). Runtime setup/CI commands are still future work; do not invent passing runtime results. |
 | Security and sensitive data | Publish sanitized source and examples only. Never commit credentials, private execution state, private repository data, or sensitive transcripts. ARCH-001 defines the Docker boundary and ROLE-001 defines role/tool authority. Actual permission enforcement and validated sandbox profiles remain implementation work. |
 | Workload and performance budgets | Not established. Select representative workloads and agree on budgets before implementation makes performance claims. |
 | Deployment target and authorization | No deployed application or deployment authorization. A local prototype is proposed. |
@@ -69,6 +70,7 @@ in a later normal project update. Do not create a self-referential commit-hash l
 
 | Item | Decision / evidence | Impact or next action |
 | --- | --- | --- |
+| STATE-001 (2026-10-30) | docs/STATE-PERSISTENCE.md, 13-stage/18-edge graph and reference v1 domain schema; restart, context, retention and backup design | Static fixtures validated; actual LangGraph crash/restart, filesystem durability, process locks and complete restore remain implementation checks. |
 | PROTO-001 (2026-10-29) | docs/PROTOCOL-CONTRACTS.md, OpenAPI 3.1 and JSON Schema 2020-12 define five API operations, 11 tool contracts and closed records | Shape validation works; semantic authority, real API behavior and replay remain future implementation requirements. |
 | ROLE-001 (2026-10-29) | Five role contracts and controller-mediated capability matrix in docs/AGENT-CONTRACTS.md, including private/test/shared-file boundaries and rejection rules | Documentation review pending; serialized contracts now in PROTO-001; runtime enforcement is not implemented. |
 | ARCH-001 (2026-10-29) | Selected stage-two architecture in docs/ARCHITECTURE.md, including stack, modular boundaries, provider and execution environment | Review pending; lockfile, compatible package versions, migrations, numeric limits and runtime verification remain future work; role authority is now specified in ROLE-001. |
