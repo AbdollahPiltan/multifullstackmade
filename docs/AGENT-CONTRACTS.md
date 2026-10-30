@@ -228,7 +228,8 @@ submission gates, escalation/denial rules and RC-01–RC-11. T-012 is a document
 delivery awaiting PR review. T-013 now delivers precise API/message/tool
 schemas and compatibility behavior in PROTOCOL-CONTRACTS.md. STATE-001 specifies
 storage/migration/retention; [LIM-001](EXECUTION-LIMITS.md) now selects numeric
-budgets and retry/repair/cancellation. Validated sandbox profiles and provider/GitHub
-implementation remain later work.
+budgets and retry/repair/cancellation. [SBX-001](SANDBOX-PROFILES.md) now defines
+sandbox/tool/path design and qualification gates. Effective images/hosts and
+provider/GitHub implementation remain later work.
 No dependency, role prompt runtime, permission engine or test runner is installed
 or claimed to work by this document.

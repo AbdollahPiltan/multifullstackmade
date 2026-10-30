@@ -16,6 +16,8 @@ Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTE
 
 Stage-six numeric budgets, bounded repair and cancellation: [LIM-001](EXECUTION-LIMITS.md).
 
+Stage-seven isolation, path checks and image qualification: [SBX-001](SANDBOX-PROFILES.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)

@@ -215,8 +215,9 @@ the managed directory are reported separately and never silently deleted.
 
 Resource limits require effective runtime verification, not just command flags.
 Docker has [no resource constraints by default](https://docs.docker.com/engine/containers/resource_constraints/).
-T-016 must pin profiles/images and validate CPU/memory/PID/tmpfs enforcement on the
-supported hosts. Failure/timeout/OOM/log overflow is non-success evidence, not a
+[SBX-001](SANDBOX-PROFILES.md) now fixes profile requirements and the image-release
+gate. Pin actual images and validate CPU/memory/PID/tmpfs enforcement before running
+on supported hosts. Failure/timeout/OOM/log overflow is non-success evidence, not a
 passing test. No network egress, host execution fallback or new permission is
 implied by this policy. These caps are for the small fixture and may require a
 reviewed revision after measurement.
@@ -228,7 +229,8 @@ excess connections are closed/rejected at transport admission, shown as a visibl
 network error by the client. No new 429/503 JSON shape is invented. Any later HTTP
 overload response needs an explicit compatible contract revision before exposure.
 The local synthetic-data profile has no public ingress or public per-user rate
-policy; T-016 tests admission under repeated connections. A hosted API would need
+policy; SBX-001 requires future admission tests under repeated connections.
+A hosted API would need
 its own authentication/rate/ingress design and remains outside this MVP.
 
 ## 6. Failure reporting and future acceptance
@@ -259,6 +261,7 @@ dispatches work. Also run the earlier contract and state-design validators.
 | LM-09 | Container CPU/memory/PID/tmpfs enforcement, OOM and timeout produce genuine non-success evidence |
 | LM-10 | Unknown tokenizer/usage or missing capability blocks; actual metering and representative timings reported |
 
-These ten scenarios remain unimplemented. T-016/T-017 provide sandbox and GitHub
-identity details; T-018 starts the scaffold only after implementation is requested.
+These ten scenarios remain unimplemented. SBX-001 now provides sandbox/access design;
+T-017 retains GitHub identity details. T-018 starts the scaffold only after
+implementation is requested.
 No currency savings, performance target or successful runtime enforcement is claimed.

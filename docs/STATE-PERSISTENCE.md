@@ -293,7 +293,8 @@ Future integration scenarios (not claimed passing here):
 | ST-11 | Unsupported migration/adapter version blocks; tested restore preserves the prior recoverable copy |
 
 LIM-001 now selects numeric budgets and accounting/cancellation design.
-T-016 validates sandbox profiles, T-017 resolves
+SBX-001 now specifies sandbox/access design and its required runtime qualification;
+T-017 resolves
 external identities/reconciliation and T-018 starts implementation when instructed.
 T-019/T-020 implement this design. Passing the static fixture checks does not prove
 these integration scenarios or a working durable agent team.

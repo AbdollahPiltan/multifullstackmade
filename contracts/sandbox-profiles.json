@@ -1,0 +1,202 @@
+{
+  "policy_id": "SBX-001",
+  "design_version": 1,
+  "common": {
+    "driver_uid": 10001,
+    "driver_gid": 10001,
+    "service_uid": 10002,
+    "service_gid": 10002,
+    "read_only_root": true,
+    "read_only_source": true,
+    "source_target": "/src",
+    "privileged": false,
+    "devices": [],
+    "cap_drop": [
+      "ALL"
+    ],
+    "cap_add": [],
+    "no_new_privileges": true,
+    "network": "none",
+    "published_ports": [],
+    "pid_namespace": "private",
+    "ipc_namespace": "private",
+    "host_socket_mounts": false,
+    "inherit_environment": false,
+    "automatic_pull": false,
+    "restart_policy": "no",
+    "writable_tmpfs": [
+      {
+        "target": "/tmp",
+        "owner_uid": 10001,
+        "size_mib": 32,
+        "mode": "0700",
+        "flags": [
+          "noexec",
+          "nosuid",
+          "nodev"
+        ]
+      },
+      {
+        "target": "/run/notes",
+        "owner_uid": 10002,
+        "size_mib": 32,
+        "mode": "0700",
+        "flags": [
+          "noexec",
+          "nosuid",
+          "nodev"
+        ]
+      },
+      {
+        "target": "/dev/shm",
+        "owner_uid": 10001,
+        "size_mib": 64,
+        "mode": "0700",
+        "flags": [
+          "noexec",
+          "nosuid",
+          "nodev"
+        ]
+      }
+    ],
+    "limits_ref": "LIM-001:notes_local_v1",
+    "preview_enabled": false,
+    "advisory_max_age_seconds": 604800
+  },
+  "path_policy": {
+    "max_characters": 240,
+    "owners": {
+      "frontend": [
+        "frontend",
+        "tests/frontend",
+        "docs/frontend"
+      ],
+      "backend": [
+        "backend",
+        "tests/backend",
+        "docs/backend"
+      ],
+      "qa": [
+        "tests/qa"
+      ],
+      "security": [
+        "tests/security"
+      ]
+    },
+    "private_basename_patterns": [
+      "*.pem",
+      "*.key",
+      "credentials*",
+      "secrets*"
+    ],
+    "shared_basename_patterns": [
+      "conftest.py",
+      "pytest.ini",
+      "pyproject.toml",
+      "setup.cfg",
+      "setup.py",
+      "tox.ini",
+      "requirements*.txt",
+      "package*.json",
+      "*.lock",
+      "*-lock.*",
+      "ruff.toml",
+      "mypy.ini",
+      "bandit.yaml",
+      "security-baseline.json"
+    ],
+    "reject_hidden": true,
+    "reject_symlinks": true,
+    "reject_hardlinks": true,
+    "reject_case_collisions": true
+  },
+  "profiles": {
+    "frontend_unit": {
+      "roles": [
+        "frontend",
+        "qa",
+        "lead"
+      ],
+      "harness_id": "frontend_unit_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "tests",
+      "browser": true,
+      "service": true,
+      "seccomp": "browser_userns_reviewed",
+      "deadline_ref": "checks.frontend_unit",
+      "release": null
+    },
+    "backend_unit": {
+      "roles": [
+        "backend",
+        "qa",
+        "lead"
+      ],
+      "harness_id": "backend_unit_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "tests",
+      "browser": false,
+      "service": false,
+      "seccomp": "engine_default",
+      "deadline_ref": "checks.backend_unit",
+      "release": null
+    },
+    "api_contract": {
+      "roles": [
+        "backend",
+        "qa",
+        "lead"
+      ],
+      "harness_id": "api_contract_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "tests",
+      "browser": false,
+      "service": true,
+      "seccomp": "engine_default",
+      "deadline_ref": "checks.api_contract",
+      "release": null
+    },
+    "qa_integration": {
+      "roles": [
+        "qa",
+        "lead"
+      ],
+      "harness_id": "qa_integration_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "tests",
+      "browser": true,
+      "service": true,
+      "seccomp": "browser_userns_reviewed",
+      "deadline_ref": "checks.qa_integration",
+      "release": null
+    },
+    "security_static": {
+      "roles": [
+        "security",
+        "lead"
+      ],
+      "harness_id": "security_static_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "scanner",
+      "browser": false,
+      "service": false,
+      "seccomp": "engine_default",
+      "deadline_ref": "checks.security_static",
+      "release": null
+    },
+    "security_negative": {
+      "roles": [
+        "security",
+        "lead"
+      ],
+      "harness_id": "security_negative_v1",
+      "image_family": "notes_checks_v1",
+      "kind": "tests",
+      "browser": false,
+      "service": true,
+      "seccomp": "engine_default",
+      "deadline_ref": "checks.security_negative",
+      "release": null
+    }
+  }
+}
