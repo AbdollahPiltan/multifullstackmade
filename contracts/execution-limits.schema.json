@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:multifullstackmade:execution-limits:1",
+  "title": "LIM-001 notes_local_v1 ceilings; no runtime enforcement",
+  "type": "object",
+  "properties": {
+    "policy_id": {
+      "const": "LIM-001"
+    },
+    "profile_version": {
+      "const": 1
+    },
+    "profile_name": {
+      "const": "notes_local_v1"
+    },
+    "concurrency": {
+      "type": "object",
+      "properties": {
+        "missions": {
+          "type": "integer",
+          "const": 1
+        },
+        "roles": {
+          "type": "integer",
+          "const": 1
+        },
+        "models": {
+          "type": "integer",
+          "const": 1
+        },
+        "tools": {
+          "type": "integer",
+          "const": 1
+        },
+        "containers": {
+          "type": "integer",
+          "const": 1
+        }
+      },
+      "required": [
+        "missions",
+        "roles",
+        "models",
+        "tools",
+        "containers"
+      ],
+      "additionalProperties": false
+    },
+    "mission": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "role_invocations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "model_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 40
+        },
+        "tool_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 240
+        },
+        "checks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 24
+        },
+        "repair_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6
+        },
+        "messages": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        }
+      },
+      "required": [
+        "tasks",
+        "role_invocations",
+        "model_calls",
+        "tool_calls",
+        "checks",
+        "repair_attempts",
+        "messages"
+      ],
+      "additionalProperties": false
+    },
+    "task": {
+      "type": "object",
+      "properties": {
+        "model_calls_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "tool_calls_per_attempt": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 48
+        },
+        "repair_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "messages": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "reply_depth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        }
+      },
+      "required": [
+        "model_calls_per_attempt",
+        "tool_calls_per_attempt",
+        "repair_attempts",
+        "messages",
+        "reply_depth"
+      ],
+      "additionalProperties": false
+    },
+    "invocation": {
+      "type": "object",
+      "properties": {
+        "model_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "tool_calls": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 24
+        }
+      },
+      "required": [
+        "model_calls",
+        "tool_calls"
+      ],
+      "additionalProperties": false
+    },
+    "time": {
+      "type": "object",
+      "properties": {
+        "mission_lifetime_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "mission_active_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        },
+        "task_active_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 900
+        },
+        "invocation_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 300
+        },
+        "model_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "ordinary_tool_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "github_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "sqlite_busy_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1
+        },
+        "stop_grace_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "cleanup_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 15
+        }
+      },
+      "required": [
+        "mission_lifetime_seconds",
+        "mission_active_seconds",
+        "task_active_seconds",
+        "invocation_seconds",
+        "model_seconds",
+        "ordinary_tool_seconds",
+        "github_seconds",
+        "sqlite_busy_seconds",
+        "stop_grace_seconds",
+        "cleanup_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "retry": {
+      "type": "object",
+      "properties": {
+        "max_dispatches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "base_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "jitter_cap_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "max_wait_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      },
+      "required": [
+        "max_dispatches",
+        "base_seconds",
+        "jitter_cap_seconds",
+        "max_wait_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "tokens": {
+      "type": "object",
+      "properties": {
+        "input_per_call": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16000
+        },
+        "output_per_call": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4000
+        },
+        "mission_total": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 400000
+        }
+      },
+      "required": [
+        "input_per_call",
+        "output_per_call",
+        "mission_total"
+      ],
+      "additionalProperties": false
+    },
+    "bytes": {
+      "type": "object",
+      "properties": {
+        "provider_input": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65536
+        },
+        "provider_response": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "tool_request": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "source_files": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "source_total": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2097152
+        },
+        "source_file": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 262144
+        },
+        "tool_read_response": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 262144
+        },
+        "artifact": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4194304
+        },
+        "check_logs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1048576
+        },
+        "mission_logs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8388608
+        },
+        "private_project": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 536870912
+        },
+        "control_reserve": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16777216
+        }
+      },
+      "required": [
+        "provider_input",
+        "provider_response",
+        "tool_request",
+        "source_files",
+        "source_total",
+        "source_file",
+        "tool_read_response",
+        "artifact",
+        "check_logs",
+        "mission_logs",
+        "private_project",
+        "control_reserve"
+      ],
+      "additionalProperties": false
+    },
+    "container": {
+      "type": "object",
+      "properties": {
+        "cpu_units": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "memory_mib": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "memory_plus_swap_mib": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "pids": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "tmpfs_mib": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        }
+      },
+      "required": [
+        "cpu_units",
+        "memory_mib",
+        "memory_plus_swap_mib",
+        "pids",
+        "tmpfs_mib"
+      ],
+      "additionalProperties": false
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "connections": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "queued_requests": {
+          "type": "integer",
+          "const": 0
+        },
+        "lifetime_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      },
+      "required": [
+        "connections",
+        "queued_requests",
+        "lifetime_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "frontend_unit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "backend_unit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "api_contract": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 90
+        },
+        "qa_integration": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 180
+        },
+        "security_static": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "security_negative": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 90
+        }
+      },
+      "required": [
+        "frontend_unit",
+        "backend_unit",
+        "api_contract",
+        "qa_integration",
+        "security_static",
+        "security_negative"
+      ],
+      "additionalProperties": false
+    },
+    "collections": {
+      "type": "object",
+      "properties": {
+        "event_page": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "context_records": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "json_depth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        }
+      },
+      "required": [
+        "event_page",
+        "context_records",
+        "json_depth"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "policy_id",
+    "profile_version",
+    "profile_name",
+    "concurrency",
+    "mission",
+    "task",
+    "invocation",
+    "time",
+    "retry",
+    "tokens",
+    "bytes",
+    "container",
+    "api",
+    "checks",
+    "collections"
+  ],
+  "additionalProperties": false
+}

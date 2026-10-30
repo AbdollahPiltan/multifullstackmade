@@ -14,6 +14,8 @@ Stage-four serialized API/message/tool contracts: [PROTOCOL-CONTRACTS.md](PROTOC
 
 Stage-five detailed graph/storage and restart design: [STATE-001](STATE-PERSISTENCE.md).
 
+Stage-six numeric budgets, bounded repair and cancellation: [LIM-001](EXECUTION-LIMITS.md).
+
 ## Engineering policy
 
 [AGENTS.md](../AGENTS.md) governs the whole repository; [PROJECT.md](../PROJECT.md)

@@ -91,7 +91,8 @@ The controller is not this HTTP service and exposes no hosted control API.
 An error code must match its status even though a reusable error schema lists
 all codes. Route/method errors outside these five operations use ordinary HTTP
 404/405 behavior with a sanitized error; any framework error exposed as JSON must
-use the same envelope. Exact resource/time/rate quotas remain T-015.
+use the same envelope. [LIM-001](EXECUTION-LIMITS.md) now specifies local transport
+admission and numeric bounds without adding HTTP response shapes.
 
 ## 3. Invocation, messages and results
 
@@ -105,7 +106,8 @@ format and must fail preflight instead of truncating a revision.
 Invocation is controller-authored: role, requirements/contract artifact references,
 owned paths, relevant dependency artifacts/messages, available check IDs and remaining
 model/tool/repair/output-token/deadline limits. Example budgets are synthetic values,
-not selected operational defaults; T-015 must supply enforced limits before a run.
+not operational defaults; [LIM-001](EXECUTION-LIMITS.md) now selects the numeric
+profile, whose enforcement is required before a run.
 The active invocation identity is authenticated out of band; copying an invocation
 ID or declaring a role in a message does not authorize the caller.
 
@@ -173,7 +175,7 @@ protected files, stale bases and writes outside owned grants before any change.
 Apply all changes atomically to the candidate workspace or leave it unchanged.
 A recorded proposal is not an applied patch. Content is bounded to 65,536 characters
 per file and 20 files per request; runtime must also cap UTF-8 bytes and total work
-under T-015, and must never silently truncate a patch.
+under LIM-001, and must never silently truncate a patch.
 
 Initial registered profile IDs: frontend_unit (Frontend/QA), backend_unit
 (Backend/QA), api_contract (Backend/QA), qa_integration (QA), security_static
@@ -248,6 +250,6 @@ enabled; all references are local and validation requires no remote schema retri
 
 T-013 delivers these contracts for review. Stage-five [STATE-001](STATE-PERSISTENCE.md)
 specifies graph/storage/migration/retention without changing these wire contracts.
-T-015/T-016/T-017 retain numeric execution limits, validated sandbox profiles
-and external identity/reconciliation detail. T-018 remains the future scaffold;
+Stage-six LIM-001 specifies numeric execution limits and retry/repair/cancellation.
+T-016/T-017 retain validated sandbox profiles and external identity/reconciliation detail. T-018 remains the future scaffold;
 no server, agent, permission engine or model integration is started here.

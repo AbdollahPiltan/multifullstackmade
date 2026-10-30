@@ -172,9 +172,12 @@ An identical operation key/request returns the recorded observation; reuse with 
 different request digest conflicts. State progresses through prepared, running,
 unknown or observed; only authoritative reconciliation resolves unknown. A failed
 observed result is still observed, not a reason to repeat it automatically. New
-eligible retries need a new documented attempt/key and remaining budget. Preserve
+authorized role actions use new keys and remaining budget. Safe transport dispatch
+retries inside a still-pending intent follow LIM-001 and retain their own durable
+dispatch IDs; they are distinct from a new work/repair attempt. Preserve
 budget consumption and uncertain reservations across restart. Numeric limits and
-timeout/retry eligibility are T-015; no execution before that policy exists.
+timeout/retry eligibility are now specified by [LIM-001](EXECUTION-LIMITS.md);
+no execution before those limits are implemented and verified.
 
 For typed tools, the request digest covers the immutable context, tool and canonical
 arguments. The operation key is already in the primary key; request_id is transport
@@ -195,7 +198,7 @@ Read approved decisions first, then current task dependencies and referenced fil
 When a summary contradicts source/evidence, expand inspection and add a correction
 linked to the original entry. A missing dependency, truncated required contract or
 unknown impact blocks the handoff until inspected. Tokens/bytes/record counts must
-fit T-015; provide pagination or ask for a smaller task, never silently drop a
+fit LIM-001; provide pagination or ask for a smaller task, never silently drop a
 required input. Do not automatically load other roles' full transcripts.
 
 Gate validity is recomputed from exact source revision/tree, requirement, plan,
@@ -220,7 +223,7 @@ explicit operator cleanup. Terminal missions remain private until the operator
 chooses archive or deletion; there is no silent age-based purge. Orphans may be
 removed only by explicit cleanup after scanning both databases, pending intents and
 backup manifests. Preview cleanup lists scope, bytes and broken/restricted resume
-paths. Limits must stop writes before unbounded storage growth (T-015).
+paths. Limits must stop writes before unbounded storage growth (LIM-001).
 
 Store concise structured exchanges, decisions and bounded sanitized diagnostics;
 do not persist full provider conversations by default. Exclude secrets before any
@@ -289,7 +292,8 @@ Future integration scenarios (not claimed passing here):
 | ST-10 | Cancel during check/model operation; late result cannot turn cancelled mission into delivered (AC-12) |
 | ST-11 | Unsupported migration/adapter version blocks; tested restore preserves the prior recoverable copy |
 
-T-015 selects enforced budgets, T-016 validates sandbox profiles, T-017 resolves
+LIM-001 now selects numeric budgets and accounting/cancellation design.
+T-016 validates sandbox profiles, T-017 resolves
 external identities/reconciliation and T-018 starts implementation when instructed.
 T-019/T-020 implement this design. Passing the static fixture checks does not prove
 these integration scenarios or a working durable agent team.
