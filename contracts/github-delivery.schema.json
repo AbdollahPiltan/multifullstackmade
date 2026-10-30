@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:multifullstackmade:github-delivery:1",
+  "title": "GH-001 design policy and private controller intent; no authorization proof",
+  "$ref": "#/$defs/Policy",
+  "$defs": {
+    "Policy": {
+      "type": "object",
+      "properties": {
+        "policy_id": {
+          "const": "GH-001"
+        },
+        "design_version": {
+          "const": 1
+        },
+        "host": {
+          "const": "github.com"
+        },
+        "same_repository_only": {
+          "const": true
+        },
+        "branch_prefix": {
+          "const": "codex/mission-"
+        },
+        "credential_kind": {
+          "const": "operator_user"
+        },
+        "binding": {
+          "const": null
+        },
+        "required_checks": {
+          "const": null
+        },
+        "allowed_actions": {
+          "const": [
+            "create_branch",
+            "push_fast_forward",
+            "create_draft_pr",
+            "convert_to_draft",
+            "mark_ready"
+          ]
+        },
+        "denied_actions": {
+          "const": [
+            "push_default_branch",
+            "force_push",
+            "delete_branch",
+            "merge",
+            "auto_merge",
+            "deploy",
+            "submit_review",
+            "write_check_status",
+            "change_repository_settings",
+            "change_base",
+            "reopen_pr",
+            "close_pr",
+            "update_pr_body",
+            "add_comment",
+            "request_reviewers",
+            "rerun_workflow"
+          ]
+        },
+        "lookup": {
+          "const": {
+            "page_size": 100,
+            "max_pages": 2,
+            "max_observations_per_wait": 6
+          }
+        },
+        "create_as_draft": {
+          "const": true
+        },
+        "require_native_checks_for_ready": {
+          "const": true
+        },
+        "body_updates": {
+          "const": false
+        },
+        "merge_authority": {
+          "const": "human_only"
+        },
+        "github_deadline_ref": {
+          "const": "time.github_seconds"
+        }
+      },
+      "required": [
+        "policy_id",
+        "design_version",
+        "host",
+        "same_repository_only",
+        "branch_prefix",
+        "credential_kind",
+        "binding",
+        "required_checks",
+        "allowed_actions",
+        "denied_actions",
+        "lookup",
+        "create_as_draft",
+        "require_native_checks_for_ready",
+        "body_updates",
+        "merge_authority",
+        "github_deadline_ref"
+      ],
+      "additionalProperties": false
+    },
+    "PublicationIntent": {
+      "type": "object",
+      "properties": {
+        "record_kind": {
+          "const": "github_publication_intent"
+        },
+        "design_version": {
+          "const": 1
+        },
+        "mission_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "task_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "operation_key": {
+          "$ref": "#/$defs/Id"
+        },
+        "action": {
+          "enum": [
+            "create_branch",
+            "push_fast_forward",
+            "create_draft_pr",
+            "convert_to_draft",
+            "mark_ready"
+          ]
+        },
+        "host": {
+          "const": "github.com"
+        },
+        "repository_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "principal_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "base_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]{0,127}$"
+        },
+        "base_sha": {
+          "$ref": "#/$defs/Revision"
+        },
+        "head_ref": {
+          "type": "string",
+          "pattern": "^codex/mission-[A-Za-z][A-Za-z0-9_-]{0,63}$"
+        },
+        "head_sha": {
+          "$ref": "#/$defs/Revision"
+        },
+        "expected_remote_head": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Revision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "authorization_ref": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "policy_digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "marker": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "record_kind",
+        "design_version",
+        "mission_id",
+        "task_id",
+        "attempt_id",
+        "operation_key",
+        "action",
+        "host",
+        "repository_id",
+        "principal_id",
+        "base_ref",
+        "base_sha",
+        "head_ref",
+        "head_sha",
+        "expected_remote_head",
+        "source_digest",
+        "authorization_ref",
+        "policy_digest",
+        "marker"
+      ],
+      "additionalProperties": false
+    },
+    "Id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "maxLength": 64
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "Revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

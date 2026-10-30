@@ -229,7 +229,8 @@ delivery awaiting PR review. T-013 now delivers precise API/message/tool
 schemas and compatibility behavior in PROTOCOL-CONTRACTS.md. STATE-001 specifies
 storage/migration/retention; [LIM-001](EXECUTION-LIMITS.md) now selects numeric
 budgets and retry/repair/cancellation. [SBX-001](SANDBOX-PROFILES.md) now defines
-sandbox/tool/path design and qualification gates. Effective images/hosts and
-provider/GitHub implementation remain later work.
+sandbox/tool/path design and qualification gates.
+[GH-001](GITHUB-DELIVERY.md) now defines publication identity and external gates.
+Effective image/host qualification and provider/GitHub implementation remain later work.
 No dependency, role prompt runtime, permission engine or test runner is installed
 or claimed to work by this document.

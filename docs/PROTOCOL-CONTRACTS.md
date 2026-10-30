@@ -253,5 +253,7 @@ T-013 delivers these contracts for review. Stage-five [STATE-001](STATE-PERSISTE
 specifies graph/storage/migration/retention without changing these wire contracts.
 Stage-six LIM-001 specifies numeric execution limits and retry/repair/cancellation.
 Stage-seven SBX-001 specifies sandbox/access design and future qualification checks.
-T-017 retains external identity/reconciliation detail; T-018 remains the future scaffold;
+Stage-eight [GH-001](GITHUB-DELIVERY.md) specifies controller-private publication
+identity/intents/reconciliation without adding a role tool or changing this wire format.
+T-018 remains the future scaffold;
 no server, agent, permission engine or model integration is started here.

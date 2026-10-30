@@ -1,0 +1,45 @@
+{
+  "policy_id": "GH-001",
+  "design_version": 1,
+  "host": "github.com",
+  "same_repository_only": true,
+  "branch_prefix": "codex/mission-",
+  "credential_kind": "operator_user",
+  "binding": null,
+  "required_checks": null,
+  "allowed_actions": [
+    "create_branch",
+    "push_fast_forward",
+    "create_draft_pr",
+    "convert_to_draft",
+    "mark_ready"
+  ],
+  "denied_actions": [
+    "push_default_branch",
+    "force_push",
+    "delete_branch",
+    "merge",
+    "auto_merge",
+    "deploy",
+    "submit_review",
+    "write_check_status",
+    "change_repository_settings",
+    "change_base",
+    "reopen_pr",
+    "close_pr",
+    "update_pr_body",
+    "add_comment",
+    "request_reviewers",
+    "rerun_workflow"
+  ],
+  "lookup": {
+    "page_size": 100,
+    "max_pages": 2,
+    "max_observations_per_wait": 6
+  },
+  "create_as_draft": true,
+  "require_native_checks_for_ready": true,
+  "body_updates": false,
+  "merge_authority": "human_only",
+  "github_deadline_ref": "time.github_seconds"
+}
