@@ -6,6 +6,10 @@ complete stage two, against [MVP-001](MVP-SCOPE.md) and DEV-001 in
 it is not installed software, a compatibility test result or a runtime security
 certification. Implementation still needs a separate instruction.
 
+Implementation checkpoint: [SCAF-001](DEVELOPMENT.md) now provides the package/CLI
+and locked dependency compatibility checks. The design below still describes
+future mission/fixture/runtime capabilities, not a working development team.
+
 ## 1. Stack decisions
 
 | Area | Selected baseline | Reason / boundary |

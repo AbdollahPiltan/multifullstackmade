@@ -1,6 +1,8 @@
 # Contributing
 
-The project is in design / pre-MVP. There is no application to install or test yet.
+The project has an executable foundation and remains pre-MVP. Install the locked
+environment and run the required checks in [DEVELOPMENT.md](docs/DEVELOPMENT.md).
+Mission/agent execution and production sandbox/publication adapters are not implemented.
 
 Read [AGENTS.md](AGENTS.md) and the task-relevant parts of [PROJECT.md](PROJECT.md)
 before contributing. The engineering policy applies across design, implementation,
@@ -41,13 +43,12 @@ and report actual checks, failures, and remaining blockers (AUT-10–AUT-13).
 Use rule IDs for applicable findings and material exceptions. An exception must
 record its reason, impact, and mitigation; irrelevant infrastructure is not required.
 
-Until executable code exists, validate Markdown links, consistency, and clarity.
+Validate Markdown links, consistency, and clarity alongside the executable checks.
 Run `git diff --check` and review the changed files for sensitive data. Policy
 updates must preserve their upstream provenance, rule requirements, and license
 notice unless a deliberate change is documented. See PROJECT.md for the full
 current verification scope.
-Once code is introduced, its setup and required checks must be documented in the
-same contribution. Do not claim a check passed when it was not executed.
+Keep setup and required checks documented in the same contribution as code changes. Do not claim a check passed when it was not executed.
 
 ## Data and credentials
 
