@@ -59,7 +59,8 @@ Verify Git, applicable policy and relevant evidence before relying on this summa
 - Current branch: codex/executable-scaffold, based on open PR #12's codex/github-delivery.
   Deliver against that dependency; verify ancestry before later retargeting.
 - Current T-018 output: installable 0.1.0a1 package, read-only CLI, locked environment,
-  controller tests and CI source. Final checks/commit/PR belong in the milestone report.
+  controller tests and CI source; `5b3188a`, [PR #13](https://github.com/AbdollahPiltan/multifullstackmade/pull/13),
+  awaiting maintainer review. Native CI results are linked in that PR; verify latest head.
 - Actual local checks so far: 22 pytest tests, mypy, Ruff, offline secret scan and
   all five design validators passed. Source/wheel build and a hash-locked fresh
   wheel install outside checkout passed. OSV advisory audit found no known
