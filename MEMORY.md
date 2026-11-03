@@ -1,119 +1,97 @@
 # Project memory / حافظهٔ ادامهٔ کار
 
-Updated: 2026-10-30. This is a compact, human-maintained project summary, not a
-running memory service. Verify it against Git and the current task before relying on it.
+Updated: 2026-11-03. Compact derived context, not a runtime memory service.
+Verify Git, applicable policy and relevant evidence before relying on this summary.
 
 ## Start here
 
-1. Follow applicable AGENTS.md instructions, then read this short file.
-2. Check `git status --short --branch` and `git log -3 --oneline`; verify the
-   relevant PR state when publication or merge status affects the task.
-3. Read only the matching task rows in [TASKS.md](TASKS.md), relevant decisions in
-   [PROJECT.md](PROJECT.md), and the files linked below. Use targeted searches.
-4. Expand inspection when changes, dependencies, missing evidence, or contradictions
-   require it. Never skip necessary code or security review to save tokens.
-5. At handoff update this summary, the affected task rows, and evidence references.
-   Keep historical detail in Git / PRs; do not grow this file into a transcript.
+1. Follow AGENTS.md, read this file, then check Git status/log and relevant PR state.
+2. Load only matching TASKS.md rows, PROJECT.md decisions and linked source/evidence.
+3. Expand inspection for dependencies, stale/missing evidence or contradictions.
+4. Before handoff update compact memory, task evidence and material decisions.
+   Keep detailed history in Git/PRs; never reduce required correctness/security checks.
 
-## Confirmed constraints
+## Confirmed constraints and authorization
 
-- Public repository: AbdollahPiltan/multifullstackmade; MIT license.
-- The human primarily talks to the Tech Lead. Track task ownership, handoffs,
-  decisions, code revisions, and actual test evidence in a persistent workflow.
-- Finish design discussion before implementing application code. Current authorization
-  covers stage-eight GitHub identity/publication/reconciliation design and fixtures;
-  documentation GitHub delivery is authorized; no product runtime or adapter implementation.
-- ARCH-001 selects Python 3.12, uv, argparse, LangGraph, SQLite, Pydantic v2,
-  an OpenAI Responses adapter, Docker, Git/gh and pytest/HTTPX/Playwright Chromium.
-  Notes uses FastAPI/Uvicorn plus plain HTML/CSS/JavaScript, with no Node build stack.
-  Exact dependencies/images need locking and compatibility tests at scaffold.
-- DEV-001 approves lead/architect, Frontend, Backend, QA/API Tester and Security;
-  activate needed roles sequentially. No role runtime has been implemented.
-- No application, runtime agents, database, automated checkpointing, or CI exists.
-- No direct main pushes, force-pushes, automatic merging, or deployment.
+- Public MIT repository: AbdollahPiltan/multifullstackmade. Preserve all 75 upstream
+  normative rules and the MIT notice; source provenance is pinned in AGENTS.md.
+- Human primarily talks to Tech Lead; five roles are lead, frontend, backend, qa,
+  security, selectively activated and sequential in the initial MVP.
+- Owner explicitly requested stage nine and then continuation/completion: T-018
+  executable foundation, dependency/tool setup, tests/build/CI and PR are authorized.
+  Earlier design-only authorization is superseded for this scoped milestone.
+- Do not automatically implement T-019 onward, merge/deploy, change settings, call
+  paid models or claim a qualified sandbox/GitHub mission adapter exists.
+- Python 3.12.14 / uv 0.13.6, LangGraph + SQLite adapter, Pydantic v2 and jsonschema
+  are installed/locked. Optional OpenAI, FastAPI/Uvicorn and Playwright packages
+  are locked/import-checked; no notes server, browser or model call is started.
+- CLI --version and contracts work. doctor deliberately exits 1 because mission
+  execution is absent; executable discovery is not auth/daemon/host qualification.
+- No direct main pushes, force-pushes or automatic merge. Use verified feature PRs.
+- Credentials, execution databases, private source/state/transcripts remain outside Git.
 
 ## Retrieval index
 
 | Need | Read |
 | --- | --- |
-| Applicable engineering policy | [AGENTS.md](AGENTS.md) |
-| Scope, authorization, open decisions, recovery | [PROJECT.md](PROJECT.md), relevant sections only |
-| Completed / pending work and evidence | [TASKS.md](TASKS.md), relevant task IDs only |
-| Roles, handoffs, acceptance gates | [docs/DESIGN.md](docs/DESIGN.md) |
-| Graph, memory records, retrieval, stale evidence | [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md) |
-| Stage-one inputs, outputs, fixture and acceptance | [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md) |
-| Stage-two stack, boundaries, sandbox and planned source layout | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
-| Exact role authority, owned paths and review gates | [docs/AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md) |
-| Wire/API schemas, errors, tool formats and validation command | [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md) |
-| Durable commit/restart, graph fixture, SQL design, retention and restore | [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md) |
-| Numeric ceilings, persistent budgets, retry/repair, clocks and cancellation | [docs/EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md) |
-| Isolation, paths, six check profiles and image/host qualification | [docs/SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md) |
-| Publication identity, draft CI, native checks and external reconciliation | [docs/GITHUB-DELIVERY.md](docs/GITHUB-DELIVERY.md) |
-| Release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
+| Engineering policy and provenance | [AGENTS.md](AGENTS.md) |
+| Scope, authorization, decisions, recovery | [PROJECT.md](PROJECT.md) |
+| Single task/status/evidence ledger | [TASKS.md](TASKS.md) |
+| Setup, actual CLI, required checks and package boundaries | [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) |
+| Overview and cooperation | [docs/DESIGN.md](docs/DESIGN.md) |
+| Graph/memory overview | [docs/GRAPH-MEMORY.md](docs/GRAPH-MEMORY.md) |
+| Notes fixture and AC-01–AC-13 | [docs/MVP-SCOPE.md](docs/MVP-SCOPE.md) |
+| Stack and module boundaries | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| Role/tool/path authority | [docs/AGENT-CONTRACTS.md](docs/AGENT-CONTRACTS.md) |
+| Canonical wire/API schemas | [docs/PROTOCOL-CONTRACTS.md](docs/PROTOCOL-CONTRACTS.md) |
+| Domain/checkpoint/artifact consistency and retention | [docs/STATE-PERSISTENCE.md](docs/STATE-PERSISTENCE.md) |
+| Numeric budgets, retry/repair/cancellation | [docs/EXECUTION-LIMITS.md](docs/EXECUTION-LIMITS.md) |
+| Isolation and image/host qualification | [docs/SANDBOX-PROFILES.md](docs/SANDBOX-PROFILES.md) |
+| Publication principal, draft CI and reconciliation | [docs/GITHUB-DELIVERY.md](docs/GITHUB-DELIVERY.md) |
+| Future release goals | [docs/ROADMAP.md](docs/ROADMAP.md) |
 
-## Last recorded checkpoints and checks
+## Checkpoints and continuation
 
-| Checkpoint | Recorded outcome | Limit |
-| --- | --- | --- |
-| `a291371` on main | Initial public project documentation | Design only |
-| `5eb38fd` in PR #1 | Root policy and brief; 75 original engineering rules and MIT notice preserved | PR #1 verified merged on 2026-10-29 |
-| `0a77334` in PR #1 | TASKS.md, 35 unique task IDs; 13 files, 46 local links, whitespace and final-newline checks passed | Documentation checks, not application tests |
-| `70c3724` in PR #2 | Graph/memory design; 15 files, 68 local links, 36 task IDs, 18 transitions, policy preservation and whitespace checks passed | Documentation only; PR #2 still open when checked |
-| `9814f52` in PR #4 | DEV-001 role split; 15 files, 71 local links, 37 task IDs, five-role consistency and unchanged-policy checks passed | Documentation only; PR #4 verified open at scope-task start |
-| `e955463` in PR #5 | Scope/notes fixture and AC-01–AC-13; 16 files, 78 links, 37 task IDs and documentation checks passed | PR #5 verified open at architecture-task start |
-| `e669624` in PR #6 | ARCH-001; 17 files, 90 links, 37 task IDs, 13 acceptance cases, preserved 75 rules/MIT and documentation checks passed | PR #6 verified open at role-contract task start |
-| `7ac3d2d` in PR #7 | ROLE-001; 18 files, 102 links, 37 tasks, five roles, 13 capability rows and 11 role cases checked; rules/MIT preserved | PR #7 verified open at protocol-task start |
-| `2c2e191` in PR #8 | PROTO-001; 48 protocol + 11 API examples, 3 length boundaries, 11 tools and 5 operations validated | PR #8 verified open at stage-five start |
-| `200c7cf` in PR #9 | STATE-001; 13 stages/18 edges, 11 tables, 17 rejected SQL cases, rollback/version conflict and synthetic backup checked; 28 files/135 local links and policy preserved | PR #9 verified open at stage-six start; synthetic checks on Python 3.10.6 / SQLite 3.37.2, no runtime integration claim |
-| `f3863ca` in PR #10 | LIM-001; closed profile and 50 synthetic cases; earlier validators passed; 33 files/154 links, 37 tasks and 75 pinned rules/MIT checked | PR #10 verified open at stage-seven start; Python 3.10.6 tooling, no runtime enforcement |
-| `b679007` in PR #11 | SBX-001; six frozen profiles/55 synthetic cases, prior validators passed; 38 files/172 local links and 75 pinned rules/MIT checked | PR #11 verified open at stage-eight start; Docker CLI absent, no real sandbox qualification |
-| Current GitHub design | GH-001; 57 synthetic cases and prior validators passed; 43 files/194 local links, 37 tasks and pinned rules/MIT checked | Final commit in delivery PR/report; Python 3.10.6 tooling, no runtime auth/replay/CI proof |
+- PR #1 (policy/tasks) was verified merged on 2026-10-29. Earlier design deliveries
+  remain traceable in TASKS.md, Git and PRs #2/#4–#11; do not infer merge from a summary.
+- `81b762a` / PR #12: GH-001; 57 synthetic cases, prior validators, 43 files/194
+  local links and policy/MIT preservation checked. PR #12 verified open at stage-nine start.
+- Current branch: codex/executable-scaffold, based on open PR #12's codex/github-delivery.
+  Deliver against that dependency; verify ancestry before later retargeting.
+- Current T-018 output: installable 0.1.0a1 package, read-only CLI, locked environment,
+  controller tests and CI source; `5b3188a`, [PR #13](https://github.com/AbdollahPiltan/multifullstackmade/pull/13),
+  awaiting maintainer review. Native CI results are linked in that PR; verify latest head.
+- Actual local checks so far: 22 pytest tests, mypy, Ruff, offline secret scan and
+  all five design validators passed. Source/wheel build and a hash-locked fresh
+  wheel install outside checkout passed. OSV advisory audit found no known
+  vulnerabilities in 104 applicable records on 2026-10-31 (strict OSV audit).
+  Local tests/lint/types rechecked on 2026-11-03; native CI evidence belongs in the PR.
+- Doctor/catalog inspect the installed bundle; they do not run a graph mission,
+  load target code, access credentials or invoke Docker/GitHub/provider operations.
+- Next task is T-019 mission graph/checkpoint implementation, then T-020 memory;
+  T-021–T-026 retain demo/provider/roles, qualified sandbox, GitHub and full acceptance.
 
-## Current continuation
+## Runtime invariants still to implement
 
-- Branch: `codex/github-delivery`, based on open PR #11 (`codex/sandbox-profiles`).
-- Deliver the GitHub-design PR against that dependency. Verify ancestry before retargeting
-  dependent PRs to main; do not auto-merge or rewrite shared history.
-- T-017 tracks GH-001, awaiting review; T-016 is the preceding sandbox design.
-  T-009/T-010/T-011/T-036/T-037 are prior documentation deliveries.
-- OpenAPI defines five notes operations; the internal schema defines 11 typed tools.
-  Schema validity is not authorization or real test evidence. Use
-  scripts/validate_contracts.py with its documented disposable validation environment.
-- ROLE-001 denies raw shell/network/credentials and direct GitHub writes to all
-  roles. Lead proposes/coordinates; developers own product paths; QA/Security own
-  independent tests. Shared config changes require separate validated authorization.
-- MVP-001 selects a local single-user CLI orchestrator, sequential roles, inspectable
-  graph, durable continuation and one reviewable PR. The notes browser/API fixture
-  exercises create/list/edit/delete, validation, persistence and safe text rendering.
-- AC-01–AC-13 define future checks, including restart, stale evidence, repair,
-  reconciliation and usage accounting; none are claimed as runtime tests already run.
-- API contracts and structured questions/answers connect Frontend and Backend.
-  Record version, sender/recipient, task, impact, acknowledgement and next action.
-  Contract/scope changes go to the lead; QA tests the actual combined feature.
-- STATE-001 pins domain results as authority, separate opaque graph checkpoints and
-  immutable objects. Reconcile unknown effects; recheck gates after input changes.
-  Retention is operator-controlled; complete restore still needs integration tests.
-  Validate fixtures: python3 scripts/validate_state_design.py (no dependencies).
+- One project/mission, five sequential roles, notes browser/API CRUD fixture; real
+  combined QA/security checks and exact-revision human delivery are required.
+- Controller alone validates permissions, evidence and state. No role receives raw
+  shell/network/SQL, credentials, Docker socket or direct GitHub/merge/deploy authority.
+- Domain results are authoritative; checkpoints are separate/opaque and artifacts
+  immutable. Reconcile unknown effects and preserve reservations across restart.
 - LIM-001: 40 model requests/mission, 2 repairs/task and 6/mission, 3,600 active
-  seconds and 86,400 lifetime seconds. Reservations/unknown effects survive restart.
-  Validate: python scripts/validate_execution_limits.py (same jsonschema environment).
-- SBX-001: no egress/host mounts/credentials; six fixed checks, owned path grants,
-  reviewed seccomp derivative for browser profiles only. Null releases block execution.
-  Validate: python scripts/validate_sandbox_profiles.py (same jsonschema environment).
-- GH-001: one operator principal; local gates -> draft PR -> native CI -> ready
-  -> human acceptance. Unknown creates require reconciliation; no merge/review tool.
-  Validate: python scripts/validate_github_delivery.py (same jsonschema environment).
-- Next: separately requested implementation scaffold (T-018); design stages 1–8 documented.
-  Do not start runtime implementation without authorization or claim Docker/CI
-  or application dependencies already work.
-- Design delivery has no local blocker; Docker/image/host qualification is absent.
-  Maintainer review and effective sandbox checks remain pending before runtime.
+  seconds and 86,400 lifetime seconds; no automatic resets or hidden retry layers.
+- SBX-001: no egress/host mounts/credentials, bounded resources, reviewed browser
+  seccomp derivative only where qualified. All six image releases remain null.
+  Docker CLI is absent locally; real SB-01–SB-12 are not tested.
+- GH-001: one operator User principal; local gates -> draft -> native CI -> final
+  lead verdict -> ready -> human acceptance. No fabricated native reviews; unknown
+  creates require reconciliation. Runtime binding/check manifest remain unconfigured.
+- Foundation CI tests controller source, not generated code or product-mission gates.
 
-## Maintenance and trust
+## Trust and maintenance
 
-Summaries are derived context, not proof or new permission. Code and test artifacts
-take precedence over stale summaries; explicit human instructions take precedence
-over saved plans. Mark superseded decisions rather than silently rewriting history.
-Never publish credentials, private source, full conversations, or private run logs here.
-Keep this file below approximately 120 lines as a maintenance target; archive detail
-into linked documents. Token savings are an intended benefit, not a measured result.
+Source/evidence outrank stale summaries; human instructions outrank saved plans.
+Correct summaries with linked provenance. Never store private reasoning, secrets,
+full transcripts or private run logs here. Keep this file below ~120 lines; use
+linked documents/Git for detail. Token savings are not a measured result.

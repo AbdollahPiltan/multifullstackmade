@@ -29,9 +29,21 @@ Stage-eight GitHub identity and delivery: [GITHUB-DELIVERY.md](docs/GITHUB-DELIV
 
 ## Status
 
-**Planning / pre-MVP.** This repository currently contains the project specification
-and contribution guidelines. There is no runnable application, agent runtime, or
-working GitHub automation yet. Everything described below is planned behavior.
+**Executable foundation / pre-MVP.** Stage nine adds an installable Python CLI,
+locked dependencies, tests and a controller CI workflow. Mission/role execution,
+private project persistence, the notes app and sandbox/GitHub adapters are still
+future work. See [development and verification](docs/DEVELOPMENT.md).
+
+```sh
+uv python install 3.12.14
+uv sync --locked --all-extras
+uv run --no-sync multifullstackmade --version
+uv run --no-sync multifullstackmade contracts --json
+uv run --no-sync multifullstackmade doctor --json
+```
+
+Doctor exits 1 at this milestone because mission execution is not available.
+It does not install tools, contact models, inspect credentials or certify Docker.
 
 ## The idea
 
@@ -54,7 +66,8 @@ The human talks to the Tech Lead; specialist activity remains inspectable.
   then Tech Lead review. Human approval controls merge and deployment.
 - Bounded retries and execution limits, with escalation to the lead on failure.
 
-These are proposed scope boundaries, not implemented features or a final stack decision.
+These are scope boundaries for the team MVP; the current executable implements
+local inspection only. The selected stack and its compatibility evidence are documented.
 
 ## Proposed workflow
 
@@ -75,8 +88,9 @@ checks rerun after changes. Combined changes require integration testing.
 The selected baseline is Python 3.12, LangGraph, SQLite, a local CLI, an OpenAI
 Responses adapter and Docker execution. The notes fixture uses FastAPI and plain
 browser HTML/CSS/JavaScript. See ARCHITECTURE.md for boundaries and alternatives.
-These are architecture decisions, not installed dependencies or verified runtime
-features; exact versions, role permissions and operation schemas follow later.
+Stage nine locks and checks Python package compatibility. Role/tool/wire contracts
+are documented in stages three through eight; a compatible package environment does
+not prove mission execution or isolation. See DEVELOPMENT.md for exact commands.
 
 Use short-lived feature branches and pull requests into `main`. Use version tags
 for releases; create long-lived version branches only when a supported release
@@ -86,7 +100,7 @@ needs independent maintenance.
 
 Start with [the roadmap](docs/ROADMAP.md) and propose changes through issues.
 Contributions to scope, failure recovery, acceptance criteria, and role boundaries
-are welcome before implementation begins.
+are welcome as implementation proceeds.
 
 ## License
 

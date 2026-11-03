@@ -1,0 +1,62 @@
+name: Scaffold checks
+
+on:
+  pull_request:
+  push:
+    branches: ["codex/**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scaffold-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foundation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      LANGSMITH_TRACING: "false"
+      LANGCHAIN_TRACING_V2: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.6"
+          python-version: "3.12.14"
+          enable-cache: false
+      - run: uv sync --locked --all-extras
+      - run: uv run --no-sync ruff check src tests scripts/verify_repository.py scripts/check_secrets.py scripts/check_wheel.py
+      - run: uv run --no-sync ruff format --check src tests scripts/verify_repository.py scripts/check_secrets.py scripts/check_wheel.py
+      - run: uv run --no-sync mypy
+      - run: uv run --no-sync pytest
+      - name: Design and repository checks
+        run: |
+          uv run --no-sync python scripts/verify_repository.py
+          uv run --no-sync python scripts/validate_contracts.py
+          uv run --no-sync python scripts/validate_state_design.py
+          uv run --no-sync python scripts/validate_execution_limits.py
+          uv run --no-sync python scripts/validate_sandbox_profiles.py
+          uv run --no-sync python scripts/validate_github_delivery.py
+          uv run --no-sync python scripts/check_secrets.py
+      - name: Dependency audit
+        run: |
+          uv export --locked --all-extras --no-emit-project -o "$RUNNER_TEMP/audit.txt"
+          uv run --no-sync pip-audit --require-hashes --disable-pip --strict --vulnerability-service osv --timeout 30 -r "$RUNNER_TEMP/audit.txt"
+      - name: Build and verify wheel payload
+        run: |
+          uv build --no-build-isolation
+          uv run --no-sync python scripts/check_wheel.py
+      - name: Install locked core and wheel outside checkout
+        run: |
+          uv export --locked --no-dev --no-emit-project -o "$RUNNER_TEMP/core.txt"
+          uv venv --python 3.12.14 "$RUNNER_TEMP/wheel-check"
+          uv pip install --python "$RUNNER_TEMP/wheel-check/bin/python" --require-hashes -r "$RUNNER_TEMP/core.txt"
+          uv pip install --offline --no-deps --python "$RUNNER_TEMP/wheel-check/bin/python" dist/*.whl
+          uv pip check --python "$RUNNER_TEMP/wheel-check/bin/python"
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/wheel-check/bin/multifullstackmade" --version
+          "$RUNNER_TEMP/wheel-check/bin/multifullstackmade" contracts --json
